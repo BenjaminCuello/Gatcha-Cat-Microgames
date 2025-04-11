@@ -1,4 +1,4 @@
-# Microjuegos del Gato 🐱🎮
+# Gatcha! / Māo Fēng 猫疯 🐱🎮
 
 Este proyecto es un videojuego tipo WarioWare, desarrollado en Godot 4.4, donde el jugador deberá completar una serie de microjuegos aleatorios, rápidos y entretenidos dentro del sueño de un gato. Cada microjuego desafía reflejos, ingenio y coordinación bajo presión.
 
