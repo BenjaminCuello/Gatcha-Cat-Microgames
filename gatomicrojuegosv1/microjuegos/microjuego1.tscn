@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://ei84kymv8w7y"]
+
+[ext_resource type="Script" uid="uid://c63gvncd2g1nd" path="res://microjuegos/microjuego_1.gd" id="1_pkqss"]
+[ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://sprites1/ChatGPT Image 5 abr 2025, 07_51_15 p.m..png" id="1_xpli2"]
+[ext_resource type="Texture2D" uid="uid://vn4hs7mx1g5j" path="res://sprites1/manoconpescado.png" id="2_pkqss"]
+[ext_resource type="Texture2D" uid="uid://ddpnwgpwp8bec" path="res://sprites1/pescado+.png" id="3_iqx5n"]
+[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites1/gatobocacerrada.png" id="4_6qoei"]
+[ext_resource type="Texture2D" uid="uid://b0chhvj5jidlf" path="res://sprites1/gatobocaabierta.png" id="5_n0pod"]
+[ext_resource type="Texture2D" uid="uid://bo4d5myab6bqf" path="res://sprites1/gatotriste.png" id="6_jfmes"]
+[ext_resource type="Texture2D" uid="uid://c1i82qfmfbo5o" path="res://sprites1/gatofelix.png" id="7_edbci"]
+[ext_resource type="Texture2D" uid="uid://bvvay86utvrrl" path="res://sprites1/manosinnada.png" id="8_sfbwq"]
+[ext_resource type="AudioStream" uid="uid://dif1c0dbr3qbw" path="res://audio/microjuego_rapido.ogg" id="9_3se4i"]
+[ext_resource type="AudioStream" uid="uid://dy4d5rw2atf16" path="res://voz/audioAprieta.ogg" id="10_vcrk3"]
+
+[node name="microGatoAprieta" type="Node2D"]
+script = ExtResource("1_pkqss")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 1.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("1_xpli2")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ManoConPescado" type="Sprite2D" parent="."]
+position = Vector2(911, 148)
+scale = Vector2(0.337891, 0.337891)
+texture = ExtResource("2_pkqss")
+metadata/_edit_lock_ = true
+
+[node name="PescadoSuelto" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(909, 205)
+scale = Vector2(0.304687, 0.304687)
+texture = ExtResource("3_iqx5n")
+
+[node name="GatoCerrado" type="Sprite2D" parent="."]
+position = Vector2(928, 789)
+scale = Vector2(0.638672, 0.69162)
+texture = ExtResource("4_6qoei")
+metadata/_edit_lock_ = true
+
+[node name="GatoAbierto" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(922.5, 788)
+scale = Vector2(0.657227, 0.704145)
+texture = ExtResource("5_n0pod")
+
+[node name="GatoTriste" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(923, 789)
+scale = Vector2(0.628906, 0.724609)
+texture = ExtResource("6_jfmes")
+
+[node name="Pulgar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(907.5, 787.129)
+scale = Vector2(0.668945, 0.695564)
+texture = ExtResource("7_edbci")
+
+[node name="ManoAbierta" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(918, 101)
+scale = Vector2(0.275391, 0.275391)
+texture = ExtResource("8_sfbwq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1299.0
+offset_top = 447.0
+offset_right = 1873.0
+offset_bottom = 655.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextoTecla" type="Label" parent="."]
+offset_left = 1521.0
+offset_top = 438.0
+offset_right = 1631.0
+offset_bottom = 643.0
+theme_override_colors/font_color = Color(0.92549, 0.870588, 0.827451, 1)
+theme_override_font_sizes/font_size = 150
+text = "A"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerApertura" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerCierre" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerBarra" type="Timer" parent="."]
+one_shot = true
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 1370.0
+offset_top = 1021.0
+offset_right = 1770.0
+offset_bottom = 1048.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicaMicrojuego" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_3se4i")
+volume_db = -11.774
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 52.0
+offset_top = 485.0
+offset_right = 700.0
+offset_bottom = 704.0
+theme_override_colors/font_color = Color(0.984582, 0.99246, 0.999914, 1)
+theme_override_font_sizes/font_size = 150
+text = "¡Aprieta!"
+
+[node name="AudioAprieta" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_vcrk3")
+volume_db = 5.887
+
+[connection signal="timeout" from="TimerApertura" to="." method="_on_timer_apertura_timeout"]
+[connection signal="timeout" from="TimerCierre" to="." method="_on_timer_cierre_timeout"]
+[connection signal="timeout" from="TimerBarra" to="." method="_on_timer_barra_timeout"]

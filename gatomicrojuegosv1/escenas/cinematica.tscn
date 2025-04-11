@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://j7sl0v8k3nlo"]
+
+[ext_resource type="Script" uid="uid://365hpt61ahih" path="res://escenas/cinematica.gd" id="1_ff4n1"]
+[ext_resource type="Texture2D" uid="uid://dr0crk7g3yojd" path="res://fondos/gatoSueño.png" id="1_x2xlx"]
+
+[node name="cinematica" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ff4n1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x2xlx")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
