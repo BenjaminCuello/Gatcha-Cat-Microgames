@@ -57,8 +57,8 @@ El jugador debe completar **30 microjuegos aleatorios** antes de quedarse sin vi
 
 ✅ Menú y navegación  
 ✅ Primer microjuego (gato y pescado)  
-✅ Sistema de vidas  
-✅ Música y efectos  
+🔜 Sistema de vidas  
+🔜 Música y efectos  
 🔜 Más microjuegos en desarrollo  
 🔜 Jefe final y modo infinito
 
