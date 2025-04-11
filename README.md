@@ -44,9 +44,12 @@ El jugador debe completar **30 microjuegos aleatorios** antes de quedarse sin vi
 
 ## 👨‍💻 Equipo de desarrollo
 
-- Benjamín Cuello  
-- Proyecto universitario desarrollado en conjunto por [tu grupo aquí]  
-*(puedes agregar más créditos o links a perfiles de GitHub si quieres)*
+- Branco Abalos
+- Ramiro Alvarado
+- Benjamin Cuello
+- Andres Toro
+- Matias Vidal
+- Emily Volta
 
 ---
 
@@ -69,7 +72,6 @@ Este proyecto es académico, pero se aceptan ideas creativas o sugerencias para 
 
 ## 📸 Capturas
 
-*(Agrega imágenes aquí si subes capturas de pantalla o gifs)*
 
 ---
 
