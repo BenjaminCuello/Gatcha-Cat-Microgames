@@ -1,34 +1,35 @@
 # Gatcha! / Māo Fēng 猫疯 🐱🎮
 
-Este proyecto es un videojuego tipo WarioWare, desarrollado en Godot 4.4, donde el jugador deberá completar una serie de microjuegos aleatorios, rápidos y entretenidos dentro del sueño de un gato. Cada microjuego desafía reflejos, ingenio y coordinación bajo presión.
+Este proyecto es un videojuego tipo WarioWare, desarrollado en Godot 4.4, donde el jugador debe completar una serie de microjuegos rápidos, aleatorios y divertidos, todo dentro del sueño de un gato. Cada microjuego pone a prueba tus reflejos, ingenio y coordinación bajo presión.
 
 ---
 
 ## 🎯 Objetivo del juego
 
-El jugador debe completar **30 microjuegos aleatorios** antes de quedarse sin vidas. Cada microjuego presenta un desafío distinto en solo unos segundos. Si completas todos, enfrentarás un jefe final para despertar al gato. Si pierdes todas tus vidas... ¡el gato seguirá soñando!
+El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vidas. Si lo logras, enfrentarás un **jefe final** que reúne elementos de los microjuegos anteriores. Si fallas todos tus intentos... el gato seguirá soñando.
 
 ---
 
-## 🧩 Estructura del juego
+## 🧩 Estructura del juego (versión 2.0)
 
-- `menu_principal.tscn`: pantalla inicial con botones para jugar el modo historia, opciones, etc.
-- `cinematica.tscn`: pequeña intro donde el gato se queda dormido
-- `transicion_microjuego.tscn`: escena de transición con animaciones y contador de vidas
-- `minijuegos/`: carpeta que contiene cada microjuego como una escena independiente (`Node2D`)
-- `micro_inicio.tscn`: primer microjuego ya implementado (reacción con teclas)
-- `audio/`: sonidos y música rápida para cada microjuego
-- `sprites/`: recursos gráficos como gatos, pescados, botones y fondos
+- `menu_principal.tscn`: pantalla inicial con botones de navegación
+- `cinematica.tscn`: intro animada donde el gato se duerme
+- `micro_inicio.tscn`: pantalla de transición con contador y vidas
+- `minijuegos/`: carpeta donde cada microjuego es una escena independiente
+- `microjuego1.tscn`: microjuego implementado (tecla rápida)
+- `sistema_vidas.gd`: script de control de vidas
+- `audio/`: sonidos y música por microjuego
+- `sprites/`: recursos visuales como gatos, pescados, fondos y manos
 
 ---
 
 ## 🕹️ Cómo jugar
 
-1. Inicia el juego desde `menu_principal.tscn`
-2. Elige "Historia"
-3. Observa la cinemática donde el gato se duerme
-4. Supera los microjuegos que aparecen uno tras otro
-5. Si completas 30 microjuegos con tus vidas, ¡enfrentas al jefe final!
+1. Ejecuta `menu_principal.tscn`
+2. Selecciona "Historia"
+3. Mira la intro del gato durmiendo
+4. Supera los microjuegos uno tras otro
+5. Llega al jefe final tras 30 microjuegos
 
 ---
 
@@ -36,43 +37,47 @@ El jugador debe completar **30 microjuegos aleatorios** antes de quedarse sin vi
 
 - [Godot Engine 4.4](https://godotengine.org/)
 - GDScript
-- Audacity / gTTS para efectos de voz
-- Piskel / Illustrator para gráficos
-- OBS Studio para grabaciones de gameplay (opcional)
+- Audacity y gTTS para efectos de voz
+- Piskel y Photoshop para sprites
+- GitHub para control de versiones
 
 ---
 
 ## 👨‍💻 Equipo de desarrollo
 
-- Branco Abalos
-- Ramiro Alvarado
-- Benjamin Cuello
-- Andres Toro
-- Matias Vidal
+- Branco Abalos  
+- Ramiro Alvarado  
+- Benjamin Cuello  
+- Andres Toro  
+- Matias Vidal  
 - Emily Volta
 
 ---
 
-## 🚧 Estado del proyecto
+## 🚧 Estado del proyecto (actualizado a v2.0)
 
-✅ Menú y navegación  
-✅ Primer microjuego (gato y pescado)  
-🔜 Sistema de vidas  
-🔜 Música y efectos  
-🔜 Más microjuegos en desarrollo  
-🔜 Jefe final y modo infinito
+✅ Menú principal  
+✅ Cinemática del gato  
+✅ Transición entre microjuegos  
+✅ Microjuego 1 funcional (reflejos con teclas)  
+✅ Sistema de vidas implementado  
+🔜 Segundo microjuego  
+🔜 Música de fondo y efectos  
+🔜 Jefe final  
+🔜 Señales para juego cruzado
 
 ---
 
 ## 💬 Contribuciones
 
-Este proyecto es académico, pero se aceptan ideas creativas o sugerencias para mejorar la experiencia de juego. Puedes abrir un issue o mandar un pull request.
+Este proyecto es académico. Si quieres dar ideas creativas o mejorar el juego, ¡puedes abrir un issue o enviar un pull request!
 
 ---
 
 ## 📸 Capturas
 
+*(Próximamente se agregarán imágenes de gameplay)*
 
 ---
 
-¡Gracias por jugar y apoyar al gato soñador! 🐾✨
+¡Gracias por apoyar este proyecto y al gato soñador! 🐾✨
