@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwkmtxuo0wl0r" path="res://microjuegos/microjuego_11.gd" id="1_gvrxd"]
 [ext_resource type="Texture2D" uid="uid://djbc848ol8l40" path="res://fondos/fondo_micro11.jpeg" id="2_a48py"]
-[ext_resource type="Texture2D" uid="uid://dt1gf37rnn5og" path="res://sprites/micro 11/Doro_Mu├▒eco.png" id="3_if4uh"]
+[ext_resource type="Texture2D" uid="uid://dt1gf37rnn5og" path="res://sprites/micro 11/doro.png" id="3_if4uh"]
 [ext_resource type="Texture2D" uid="uid://ccyjngur8ffyb" path="res://sprites/micro 11/gato_panzon.png" id="4_khho4"]
 
 [sub_resource type="Theme" id="Theme_jnxlv"]
