@@ -7,9 +7,10 @@ var max_microjuegos = 30
 
 # Lista de microjuegos disponibles
 var lista_microjuegos = [
-	"res://microjuegos/microjuego1.tscn"
+	"res://microjuegos/microjuego1.tscn",
+	"res://microjuegos/micro_abrelatas.tscn"
 	# Puedes agregar más microjuegos aquí después
-]
+	]
 
 # Elegir uno al azar
 func obtener_microjuego_aleatorio() -> String:
