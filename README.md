@@ -60,7 +60,6 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 ## 🚧 Estado del proyecto (actualizado a v3.0)
 
 ✅ Menú principal  
-✅ Cinemática del gato  
 ✅ Transición entre microjuegos con contador visible  
 ✅ Microjuego 1 funcional (reflejos con teclas)  
 ✅ Microjuego 2: Gato equilibrio  
@@ -70,15 +69,19 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 ✅ Selección aleatoria de microjuegos  
 ✅ Botón de salida y tecla ESC funcional en cualquier momento  
 ✅ Carpeta `plantilla/` con estructura base para nuevos microjuegos  
+🔜 Cinemática del gato 
 🔜 Música de fondo y efectos  
 🔜 Jefe final  
+🔜 Botones infinito
+🔜 Menu de opciones
+🔜 27 microjuegos mas 
 🔜 Señales para juego cruzado  
 
 ---
 
 ## 💬 Contribuciones
 
-Este proyecto es académico. Si quieres dar ideas creativas o mejorar el juego, ¡puedes abrir un issue o enviar un pull request!
+Este proyecto es académico. Si quieres dar ideas creativas o mejorar el juego, puedes enviar tus ideas
 
 ---
 
