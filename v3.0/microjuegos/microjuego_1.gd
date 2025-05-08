@@ -6,11 +6,12 @@ var teclas_posibles = []
 var tecla_actual = ""
 var boca_abierta = false
 var TextoInstruccion_pos_original = Vector2.ZERO
+var puede_presionar := false
 
 
 func _ready():
 	# Generar teclas posibles: letras, números y especiales
-	var teclas_especiales = ["SPACE", "ENTER", "SHIFT", "CTRL", "ALT", "TAB"]
+	var teclas_especiales = ["SPACE"]
 
 	for i in range(65, 91):
 		teclas_posibles.append(String.chr(i))  # Letras A–Z
@@ -33,19 +34,24 @@ func _ready():
 
 	# Empezar microjuego altiro
 	_on_timer_apertura_timeout()
-	
-	var TextoInstruccion_pos_original = Vector2.ZERO
+
 
 
 func _input(event):
-	if event is InputEventKey and event.pressed and boca_abierta:
+	if not puede_presionar or not boca_abierta:
+		return
+
+	if event is InputEventKey and event.pressed:
 		var tecla_presionada = event.as_text()
 		if tecla_presionada == tecla_actual:
 			acierto()
 		else:
 			fallo()
 
+
 func acierto():
+	puede_presionar = false
+	$MusicaMicrojuego.stop()
 	boca_abierta = false
 	$TextoTecla.visible = false
 	$GatoAbierto.visible = false
@@ -71,6 +77,8 @@ func acierto():
 	emit_signal("finished", true)
 
 func fallo():
+	puede_presionar = false
+	$MusicaMicrojuego.stop()
 	boca_abierta = false
 	$TextoTecla.visible = false
 	$GatoAbierto.visible = false
@@ -103,12 +111,17 @@ func fallo():
 	$ManoAbierta.visible = false
 	$GatoCerrado.visible = false
 	$GatoTriste.visible = true
-
+	if $MusicaMicrojuego.playing:
+		$MusicaMicrojuego.stop()
+		await get_tree().create_timer(0.05).timeout  # pausa mínima para asegurar que se detuvo
 	emit_signal("finished", false)
+
+	
 
 func _on_timer_apertura_timeout() -> void:
 	boca_abierta = true
 	tecla_actual = teclas_posibles[randi() % teclas_posibles.size()]
+	puede_presionar = true
 
 	# Mostrar "¡Apreta!" y reproducir voz
 	$TextoInstruccion.text = "¡Aprieta!"
@@ -163,3 +176,6 @@ func _process(delta):
 		$TextoInstruccion.position = TextoInstruccion_pos_original + shake
 	else:
 		$TextoInstruccion.position = TextoInstruccion_pos_original
+func _exit_tree():
+	if is_instance_valid($MusicaMicrojuego) and $MusicaMicrojuego.playing:
+		$MusicaMicrojuego.stop()

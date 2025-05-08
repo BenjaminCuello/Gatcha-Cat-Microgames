@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo4d5myab6bqf"
-path="res://.godot/imported/gatotriste.png-cdf5d62fef83ca314dac5699d625f3ea.ctex"
+uid="uid://ddpnwgpwp8bec"
+path="res://.godot/imported/pescado+.png-f6e56b85723adae7d83ef80ba00577fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gatotriste.png"
-dest_files=["res://.godot/imported/gatotriste.png-cdf5d62fef83ca314dac5699d625f3ea.ctex"]
+source_file="res://sprites/micro 1/pescado+.png"
+dest_files=["res://.godot/imported/pescado+.png-f6e56b85723adae7d83ef80ba00577fc.ctex"]
 
 [params]
 

@@ -12,7 +12,13 @@ func _input(event):
 
 func _on_boton_historia_pressed() -> void:
 	print("¡Botón HISTORIA presionado!")
+
+	# Reiniciar vidas y progreso
+	Juego.reiniciar()
+
+	# Ir a la cinemática
 	get_tree().change_scene_to_file("res://escenas/cinematica.tscn")
+
 
 func _on_boton_infinito_pressed() -> void:
 	print("¡Botón MODO INFINITO presionado!")

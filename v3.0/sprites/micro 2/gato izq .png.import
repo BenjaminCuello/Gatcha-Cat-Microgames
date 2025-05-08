@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvvay86utvrrl"
-path="res://.godot/imported/manosinnada.png-a882af51cd8b76d201c3c4a5e43975be.ctex"
+uid="uid://06jg46vywuyi"
+path="res://.godot/imported/gato izq .png-90f6e8858488acc65d1b8b9569d679bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/manosinnada.png"
-dest_files=["res://.godot/imported/manosinnada.png-a882af51cd8b76d201c3c4a5e43975be.ctex"]
+source_file="res://sprites/micro 2/gato izq .png"
+dest_files=["res://.godot/imported/gato izq .png-90f6e8858488acc65d1b8b9569d679bd.ctex"]
 
 [params]
 
