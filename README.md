@@ -87,7 +87,9 @@ Este proyecto es académico. Si quieres dar ideas creativas o mejorar el juego, 
 
 ## 📸 Capturas
 
-*(Próximamente se agregarán imágenes de gameplay)*
+![image](https://github.com/user-attachments/assets/6a6be39f-9221-4592-8022-45d48e37cfe8)
+![image](https://github.com/user-attachments/assets/2c5ffa12-a32e-4ee4-99c2-41926c0e2734)
+![image](https://github.com/user-attachments/assets/2dc3a5a0-24bf-42d7-9515-d218766fef86)
 
 ---
 
