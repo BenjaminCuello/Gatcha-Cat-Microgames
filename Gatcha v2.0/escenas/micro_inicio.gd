@@ -27,12 +27,13 @@ func _on_TimerTransicion_timeout():
 		get_tree().change_scene_to_file("res://escenas/fin_derrota.tscn")
 		return
 
+	# Aumentar el contador de microjuegos jugados
+	Juego.microjuego_actual += 1
+
+	# Verificar si se alcanzó el máximo
 	if Juego.microjuego_actual >= Juego.max_microjuegos:
 		get_tree().change_scene_to_file("res://escenas/fin_victoria.tscn")
 		return
-
-	# Aumentar el contador de microjuegos jugados
-	Juego.microjuego_actual += 1
 
 	# Cargar un microjuego al azar
 	var escena_controlador = load("res://escenas/controlador_microjuego.tscn").instantiate()

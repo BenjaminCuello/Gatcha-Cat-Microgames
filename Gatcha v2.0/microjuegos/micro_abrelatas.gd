@@ -1,5 +1,5 @@
 extends Control
-
+signal finished(success: bool)
 var clicks_necesarios = 20
 var clicks_actuales = 0
 
@@ -33,9 +33,11 @@ func victoria():
 	lata.texture = preload("res://sprites/fish-can-pixel-art-food-260nw-2302674731.webp")
 	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file("res://escenas/fin_victoria.tscn")
+	emit_signal("finished", true)
 
 func derrota():
 	texto.text = "¡Muy lento!"
 	gato.texture = preload("res://sprites/gatotriste.png")
 	await get_tree().create_timer(1.5).timeout
 	get_tree().change_scene_to_file("res://escenas/fin_derrota.tscn")
+	emit_signal("finished", false)

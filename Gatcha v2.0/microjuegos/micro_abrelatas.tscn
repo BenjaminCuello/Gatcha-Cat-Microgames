@@ -19,6 +19,7 @@ offset_bottom = 40.0
 texture = ExtResource("2_lt8fw")
 
 [node name="Gato" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 590.0
 offset_top = 84.0
 offset_right = 1614.0
@@ -26,6 +27,7 @@ offset_bottom = 1108.0
 texture = ExtResource("3_kjngu")
 
 [node name="Lata" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 234.0
 offset_top = 739.0
 offset_right = 494.0

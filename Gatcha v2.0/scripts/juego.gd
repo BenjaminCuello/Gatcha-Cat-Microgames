@@ -8,7 +8,9 @@ var max_microjuegos = 30
 # Lista de microjuegos disponibles
 var lista_microjuegos = [
 	"res://microjuegos/microjuego1.tscn",
-	"res://microjuegos/micro_abrelatas.tscn"
+	"res://microjuegos/micro_abrelatas.tscn",
+	"res://microjuegos/micro_atrapalo.tscn"
+	
 	# Puedes agregar más microjuegos aquí después
 	]
 
@@ -20,3 +22,4 @@ func obtener_microjuego_aleatorio() -> String:
 func reiniciar():
 	vidas = 3
 	microjuego_actual = 0
+	max_microjuegos = 30
