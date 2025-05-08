@@ -9,6 +9,8 @@ var max_microjuegos = 30
 var lista_microjuegos = [
 	"res://microjuegos/microjuego1.tscn",
 	"res://microjuegos/microjuego2.tscn",
+	"res://microjuegos/microjuego11.tscn",
+	#"res://microjuegos/micro_atrapalo.tscn",
 	"res://microjuegos/microjuego3.tscn"
 ]
 # Elegir uno al azar
