@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_x3b3o")
 
 [node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1915.0
 offset_bottom = 1084.0
 texture = ExtResource("2_cg5cl")

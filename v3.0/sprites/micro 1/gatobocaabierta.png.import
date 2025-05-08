@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1i82qfmfbo5o"
-path="res://.godot/imported/gatofelix.png-870d65d467c0f748ea42b5887b8c0ebb.ctex"
+uid="uid://b0chhvj5jidlf"
+path="res://.godot/imported/gatobocaabierta.png-b47cc8f2483fd2d98e8adcfa31acec63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gatofelix.png"
-dest_files=["res://.godot/imported/gatofelix.png-870d65d467c0f748ea42b5887b8c0ebb.ctex"]
+source_file="res://sprites/micro 1/gatobocaabierta.png"
+dest_files=["res://.godot/imported/gatobocaabierta.png-b47cc8f2483fd2d98e8adcfa31acec63.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vn4hs7mx1g5j"
-path="res://.godot/imported/manoconpescado.png-e4e2ea91c7cfebdb10996ecb23adcadf.ctex"
+uid="uid://dbalkb2p84xpg"
+path="res://.godot/imported/fondo 2.jpg-e562cc8d871e4cf364784cbc5d3ef643.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/manoconpescado.png"
-dest_files=["res://.godot/imported/manoconpescado.png-e4e2ea91c7cfebdb10996ecb23adcadf.ctex"]
+source_file="res://fondos/fondo 2.jpg"
+dest_files=["res://.godot/imported/fondo 2.jpg-e562cc8d871e4cf364784cbc5d3ef643.ctex"]
 
 [params]
 

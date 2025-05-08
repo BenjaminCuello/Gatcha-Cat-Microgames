@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddpnwgpwp8bec"
-path="res://.godot/imported/pescado+.png-04ebffc444c09c06162032dbdd76d230.ctex"
+uid="uid://bty4sfen23dqi"
+path="res://.godot/imported/lata.webp-0e4b5d965db4d4e532adeb30c2fb39a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pescado+.png"
-dest_files=["res://.godot/imported/pescado+.png-04ebffc444c09c06162032dbdd76d230.ctex"]
+source_file="res://sprites/micro 3/lata.webp"
+dest_files=["res://.godot/imported/lata.webp-0e4b5d965db4d4e532adeb30c2fb39a9.ctex"]
 
 [params]
 

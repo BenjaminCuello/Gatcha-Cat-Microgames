@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Gatcha! v2.0"
+config/name="Gatcha! v3.0"
 config/version="2.0"
 run/main_scene="uid://h840madvao4i"
 config/features=PackedStringArray("4.4", "Forward Plus")

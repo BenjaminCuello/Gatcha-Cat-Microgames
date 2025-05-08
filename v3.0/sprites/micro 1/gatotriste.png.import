@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgi3aj6dhml7m"
-path="res://.godot/imported/gatobocacerrada.png-dd0f8f3d0bd4d8e9f02e22ce2ab14fda.ctex"
+uid="uid://bo4d5myab6bqf"
+path="res://.godot/imported/gatotriste.png-190a79d67d64670ba9df0e3c7f41e327.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gatobocacerrada.png"
-dest_files=["res://.godot/imported/gatobocacerrada.png-dd0f8f3d0bd4d8e9f02e22ce2ab14fda.ctex"]
+source_file="res://sprites/micro 1/gatotriste.png"
+dest_files=["res://.godot/imported/gatotriste.png-190a79d67d64670ba9df0e3c7f41e327.ctex"]
 
 [params]
 

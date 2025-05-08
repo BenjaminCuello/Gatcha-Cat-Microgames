@@ -14,6 +14,11 @@ var lista_microjuegos = [
 	# Puedes agregar más microjuegos aquí después
 	]
 
+
+	"res://microjuegos/microjuego2.tscn",
+	"res://microjuegos/microjuego3.tscn"
+]
+
 # Elegir uno al azar
 func obtener_microjuego_aleatorio() -> String:
 	return lista_microjuegos.pick_random()
