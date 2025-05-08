@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d05xiufal8idq" path="res://microjuegos/micro_abrelatas.gd" id="1_tfu1x"]
 [ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://fondos/fondocielo.png" id="2_lt8fw"]
-[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites/gatobocacerrada.png" id="3_kjngu"]
-[ext_resource type="Texture2D" uid="uid://cpugackh2frmd" path="res://sprites/fish-can-pixel-art-food-260nw-2302674731.webp" id="4_v37h8"]
+[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites/micro 1/gatobocacerrada.png" id="3_kjngu"]
+[ext_resource type="Texture2D" uid="uid://cpugackh2frmd" path="res://sprites/micro 1/fish-can-pixel-art-food-260nw-2302674731.webp" id="4_v37h8"]
 
 [node name="MicroAbrelatas" type="Control"]
 layout_mode = 3
