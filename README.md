@@ -57,7 +57,7 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 ---
 
-## 🚧 Estado del proyecto (actualizado a v3.0)
+## 🚧 Estado del proyecto (actualizado a v3.1)
 
 ✅ Menú principal  
 ✅ Transición entre microjuegos con contador visible  
