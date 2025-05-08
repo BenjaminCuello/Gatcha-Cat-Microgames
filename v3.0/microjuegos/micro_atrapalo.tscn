@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b1ll4bgwtkoin" path="res://micro_atrapalo.gd" id="1_anq08"]
 [ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://fondos/fondocielo.png" id="2_brtyp"]
-[ext_resource type="Texture2D" uid="uid://ccahi454ny40h" path="res://sprites/gatocaja.png" id="3_pu7re"]
-[ext_resource type="Texture2D" uid="uid://c4i174hdyxd7f" path="res://sprites/rat.png" id="4_rywxs"]
+[ext_resource type="Texture2D" uid="uid://ccahi454ny40h" path="res://sprites/micro 1/gatocaja.png" id="3_pu7re"]
+[ext_resource type="Texture2D" uid="uid://c4i174hdyxd7f" path="res://sprites/micro 1/rat.png" id="4_rywxs"]
 
 [node name="MicroAtrapalo" type="Control"]
 layout_mode = 3
@@ -19,6 +19,7 @@ offset_bottom = 1090.0
 texture = ExtResource("2_brtyp")
 
 [node name="Caja" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 627.0
 offset_top = 494.0
 offset_right = 1256.0
@@ -26,6 +27,7 @@ offset_bottom = 1123.0
 texture = ExtResource("3_pu7re")
 
 [node name="Raton" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 811.0
 offset_top = 300.0
 offset_right = 1131.0

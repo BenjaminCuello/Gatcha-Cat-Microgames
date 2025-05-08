@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpugackh2frmd"
-path="res://.godot/imported/fish-can-pixel-art-food-260nw-2302674731.webp-16f1d2852848496d669669f0857ad70b.ctex"
+path="res://.godot/imported/fish-can-pixel-art-food-260nw-2302674731.webp-2f934fa1cb9921b64ebcda34372c37ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fish-can-pixel-art-food-260nw-2302674731.webp"
-dest_files=["res://.godot/imported/fish-can-pixel-art-food-260nw-2302674731.webp-16f1d2852848496d669669f0857ad70b.ctex"]
+source_file="res://sprites/micro 1/fish-can-pixel-art-food-260nw-2302674731.webp"
+dest_files=["res://.godot/imported/fish-can-pixel-art-food-260nw-2302674731.webp-2f934fa1cb9921b64ebcda34372c37ec.ctex"]
 
 [params]
 

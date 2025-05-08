@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccahi454ny40h"
-path="res://.godot/imported/gatocaja.png-63d4acf9a45252dcc00f67691cb9859f.ctex"
+path="res://.godot/imported/gatocaja.png-7fb7a91c0b9978bf0cf8391e2bacf246.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gatocaja.png"
-dest_files=["res://.godot/imported/gatocaja.png-63d4acf9a45252dcc00f67691cb9859f.ctex"]
+source_file="res://sprites/micro 1/gatocaja.png"
+dest_files=["res://.godot/imported/gatocaja.png-7fb7a91c0b9978bf0cf8391e2bacf246.ctex"]
 
 [params]
 
