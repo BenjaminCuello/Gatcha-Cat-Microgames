@@ -1,20 +1,20 @@
 [gd_scene load_steps=7 format=3 uid="uid://3t1m2fj48puh"]
 
-[ext_resource type="Script" uid="uid://bsjy4aiqcsgac" path="res://microjuegos/microjuego_2.gd" id="1_7xt7u"]
-[ext_resource type="Texture2D" uid="uid://dbalkb2p84xpg" path="res://fondos/fondo 2.jpg" id="2_1j6v7"]
-[ext_resource type="Texture2D" uid="uid://bfyov4l7rb265" path="res://sprites/micro 2/gato equilibrio.png" id="3_nv5do"]
-[ext_resource type="Texture2D" uid="uid://06jg46vywuyi" path="res://sprites/micro 2/gato izq .png" id="4_1gl2c"]
-[ext_resource type="Texture2D" uid="uid://d38renn5ssbdv" path="res://sprites/micro 2/gato der .png" id="5_x7xyx"]
-[ext_resource type="Texture2D" uid="uid://oreimrcy4a2s" path="res://sprites/micro 2/gato cae .png" id="6_srngb"]
+[ext_resource type="Script" uid="uid://bsjy4aiqcsgac" path="res://microjuegos/Gato equilibrio_2.gd" id="1_rb7ae"]
+[ext_resource type="Texture2D" uid="uid://dbalkb2p84xpg" path="res://fondos/fondo 2.jpg" id="2_yviub"]
+[ext_resource type="Texture2D" uid="uid://bfyov4l7rb265" path="res://sprites/micro 2/gato equilibrio.png" id="3_k6vnf"]
+[ext_resource type="Texture2D" uid="uid://06jg46vywuyi" path="res://sprites/micro 2/gato izq .png" id="4_g0nnm"]
+[ext_resource type="Texture2D" uid="uid://d38renn5ssbdv" path="res://sprites/micro 2/gato der .png" id="5_xlodk"]
+[ext_resource type="Texture2D" uid="uid://oreimrcy4a2s" path="res://sprites/micro 2/gato cae .png" id="6_nq07b"]
 
 [node name="microjuego 2" type="Node2D"]
-script = ExtResource("1_7xt7u")
+script = ExtResource("1_rb7ae")
 
 [node name="Fondo" type="TextureRect" parent="."]
 offset_top = 1.0
 offset_right = 1918.0
 offset_bottom = 1080.0
-texture = ExtResource("2_1j6v7")
+texture = ExtResource("2_yviub")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
@@ -42,25 +42,25 @@ one_shot = true
 [node name="GatoEquilibrio" type="Sprite2D" parent="."]
 position = Vector2(977, 693)
 scale = Vector2(1.33191, 1.33191)
-texture = ExtResource("3_nv5do")
+texture = ExtResource("3_k6vnf")
 
 [node name="gato_izq" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(927, 720)
 scale = Vector2(0.572266, 0.572266)
-texture = ExtResource("4_1gl2c")
+texture = ExtResource("4_g0nnm")
 
 [node name="gato_der" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(993, 738)
 scale = Vector2(0.572266, 0.572266)
-texture = ExtResource("5_x7xyx")
+texture = ExtResource("5_xlodk")
 
 [node name="gato_se_cae" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(857, 738)
 scale = Vector2(0.482422, 0.482422)
-texture = ExtResource("6_srngb")
+texture = ExtResource("6_nq07b")
 
 [node name="TextoInstruccion" type="Label" parent="."]
 offset_left = 502.0

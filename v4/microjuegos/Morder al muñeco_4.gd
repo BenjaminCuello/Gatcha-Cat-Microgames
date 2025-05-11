@@ -98,9 +98,13 @@ func crear_particulas_explosion():
 func _input(event):
 	if terminado:
 		return
-	
+
 	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			return  # Ignorar ESC
+
 		procesar_tecla_presionada(event.keycode)
+
 
 func procesar_tecla_presionada(codigo_tecla):
 	# Verificar si la tecla presionada corresponde a la tecla actual

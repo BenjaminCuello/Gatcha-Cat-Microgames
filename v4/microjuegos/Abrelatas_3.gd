@@ -22,10 +22,14 @@ func _ready():
 	timer.start(3.0)  # Duración del microjuego (en segundos)
 
 func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == KEY_A:
-		clicks_actuales += 1
-		if clicks_actuales >= clicks_necesarios:
-			victoria()
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			return  # Ignora ESC completamente
+
+		if event.keycode == KEY_A:
+			clicks_actuales += 1
+			if clicks_actuales >= clicks_necesarios:
+				victoria()
 
 func _on_Timer_timeout():
 	if clicks_actuales < clicks_necesarios:

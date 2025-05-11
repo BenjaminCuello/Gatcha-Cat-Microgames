@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://sryf7l02uvf5"]
 
-[ext_resource type="Script" uid="uid://cwkmtxuo0wl0r" path="res://microjuegos/microjuego_11.gd" id="1_gvrxd"]
-[ext_resource type="Texture2D" uid="uid://djbc848ol8l40" path="res://fondos/fondo_micro11.jpeg" id="2_a48py"]
-[ext_resource type="Texture2D" uid="uid://dt1gf37rnn5og" path="res://sprites/micro 11/doro.png" id="3_if4uh"]
-[ext_resource type="Texture2D" uid="uid://ccyjngur8ffyb" path="res://sprites/micro 11/gato_panzon.png" id="4_khho4"]
+[ext_resource type="Script" uid="uid://ccxt7ougdety5" path="res://microjuegos/Morder al muñeco_4.gd" id="1_h4fbg"]
+[ext_resource type="Texture2D" uid="uid://dqugvsec3hvi" path="res://fondos/fondo_micro11.jpeg" id="2_nog70"]
+[ext_resource type="Texture2D" uid="uid://d034mn8qnyl7i" path="res://sprites/micro 11/doro.png" id="3_317ve"]
+[ext_resource type="Texture2D" uid="uid://ckoaqagi7kcnw" path="res://sprites/micro 11/gato_panzon.png" id="4_fl0m5"]
 
 [sub_resource type="Theme" id="Theme_jnxlv"]
 
 [node name="juego gato" type="Node2D"]
-script = ExtResource("1_gvrxd")
+script = ExtResource("1_h4fbg")
 
 [node name="fondo" type="TextureRect" parent="."]
 offset_left = -13.9999
@@ -16,17 +16,17 @@ offset_top = -3.0
 offset_right = 1010.0
 offset_bottom = 1021.0
 scale = Vector2(1.8877, 1.05957)
-texture = ExtResource("2_a48py")
+texture = ExtResource("2_nog70")
 
 [node name="muñeco" type="Sprite2D" parent="."]
 position = Vector2(1350, 770)
 scale = Vector2(0.456634, 0.442676)
-texture = ExtResource("3_if4uh")
+texture = ExtResource("3_317ve")
 
 [node name="gato" type="Sprite2D" parent="."]
 position = Vector2(597, 825)
 scale = Vector2(0.478689, 0.362389)
-texture = ExtResource("4_khho4")
+texture = ExtResource("4_fl0m5")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

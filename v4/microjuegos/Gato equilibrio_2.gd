@@ -52,13 +52,18 @@ func nueva_instruccion():
 func _input(event):
 	if not esperando:
 		return
+
 	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			return  # Ignora ESC para que no dispare perder()
+
 		if lado_actual == "izquierda" and event.keycode == KEY_RIGHT:
 			acertar()
 		elif lado_actual == "derecha" and event.keycode == KEY_LEFT:
 			acertar()
 		else:
 			perder()
+
 
 func acertar():
 	esperando = false

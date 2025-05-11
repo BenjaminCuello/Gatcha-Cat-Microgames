@@ -1,22 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://i7cxduoj1ipt"]
 
-[ext_resource type="Script" uid="uid://fsp4qtxmxhcm" path="res://microjuegos/microjuego_3.gd" id="1_dp5vn"]
-[ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://fondos/fondocielo.png" id="2_610ib"]
-[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites/micro 1/gatobocacerrada.png" id="3_n8l05"]
-[ext_resource type="Texture2D" uid="uid://bty4sfen23dqi" path="res://sprites/micro 3/lata.webp" id="4_3v5xh"]
+[ext_resource type="Script" uid="uid://fsp4qtxmxhcm" path="res://microjuegos/Abrelatas_3.gd" id="1_7wvdl"]
+[ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://fondos/fondocielo.png" id="2_058mn"]
+[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites/micro 1/gatobocacerrada.png" id="3_j8hu3"]
+[ext_resource type="Texture2D" uid="uid://bty4sfen23dqi" path="res://sprites/micro 3/lata.webp" id="4_846i0"]
 
 [node name="MicroAbrelatas" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_dp5vn")
+script = ExtResource("1_7wvdl")
 
 [node name="Fondo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1084.0
-texture = ExtResource("2_610ib")
+texture = ExtResource("2_058mn")
 
 [node name="Gato" type="TextureRect" parent="."]
 layout_mode = 0
@@ -24,7 +24,7 @@ offset_left = 590.0
 offset_top = 84.0
 offset_right = 1614.0
 offset_bottom = 1108.0
-texture = ExtResource("3_n8l05")
+texture = ExtResource("3_j8hu3")
 
 [node name="Lata" type="TextureRect" parent="."]
 layout_mode = 0
@@ -32,7 +32,7 @@ offset_left = 234.0
 offset_top = 739.0
 offset_right = 494.0
 offset_bottom = 1019.0
-texture = ExtResource("4_3v5xh")
+texture = ExtResource("4_846i0")
 
 [node name="TextoInstruccion" type="Label" parent="."]
 layout_mode = 0

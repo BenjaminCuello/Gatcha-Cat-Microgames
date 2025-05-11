@@ -42,6 +42,9 @@ func _input(event):
 		return
 
 	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			return  # Ignora ESC
+
 		var tecla_presionada = event.as_text()
 		if tecla_presionada == tecla_actual:
 			acierto()

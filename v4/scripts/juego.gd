@@ -7,11 +7,13 @@ var max_microjuegos = 30
 
 # Lista de microjuegos disponibles
 var lista_microjuegos = [
-	"res://microjuegos/microjuego1.tscn",
-	"res://microjuegos/microjuego2.tscn",
-	"res://microjuegos/microjuego11.tscn",
-	#"res://microjuegos/micro_atrapalo.tscn",
-	"res://microjuegos/microjuego3.tscn"
+	"res://microjuegos/Tecla gatuna (1).tscn",
+	"res://microjuegos/Gato equilibrio (2).tscn",
+	"res://microjuegos/Abrelatas (3).tscn",
+	"res://microjuegos/Morder al muñeco(4).tscn",
+	"res://microjuegos/Baile rítmico (5).tscn",
+	"res://microjuegos/Atrapalo (6).tscn"
+	
 ]
 # Elegir uno al azar
 func obtener_microjuego_aleatorio() -> String:
