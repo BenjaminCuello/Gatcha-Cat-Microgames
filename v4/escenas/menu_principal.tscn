@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://h840madvao4i"]
+
+[ext_resource type="Script" uid="uid://bfkmuetanttve" path="res://escenas/menu_principal.gd" id="1_arcut"]
+[ext_resource type="Texture2D" uid="uid://ddywhan1rjexl" path="res://fondos/fondoprincipal.png" id="2_qf1q6"]
+[ext_resource type="Texture2D" uid="uid://cs7n51v67tnqt" path="res://sprites/titulo.png" id="3_qf1q6"]
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arcut")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qf1q6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -242.5
+offset_right = 235.0
+offset_bottom = 242.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="TituloJuego" type="TextureRect" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_qf1q6")
+expand_mode = 5
+
+[node name="botonHistoria" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Modo Historia"
+
+[node name="botonInfinito" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Modo infinito"
+
+[node name="botonMultijugador" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Modo Multijugador"
+
+[node name="botonOpciones" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Opciones"
+
+[node name="botonSalir" type="Button" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Salir"
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/botonHistoria" to="." method="_on_boton_historia_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/botonSalir" to="." method="_on_boton_salir_pressed"]

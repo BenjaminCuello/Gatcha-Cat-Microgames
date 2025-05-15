@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://buimetqyn1608"]
+
+[ext_resource type="Script" uid="uid://dcjfhs8dpor00" path="res://microjuegos/atrapar_ratonEs.gd" id="1_cc5ib"]
+[ext_resource type="Texture2D" uid="uid://bx8qkatbukb3n" path="res://fondos/alfombra.jpeg" id="2_4786f"]
+[ext_resource type="Texture2D" uid="uid://tdvjlb3x4vvv" path="res://sprites/microAtrapaAlRaton/RATON.png" id="3_37c7n"]
+[ext_resource type="Script" uid="uid://cwi0oysj73cyj" path="res://scripts/pata_gato.gd" id="4_ygb7e"]
+[ext_resource type="Texture2D" uid="uid://brqk6otj130cm" path="res://sprites/microAtrapaAlRaton/aaa.png" id="5_elslu"]
+
+[sub_resource type="Animation" id="Animation_5i25o"]
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.03333, 1.66667, 2.03333, 2.6, 3.16667, 3.66667, 4.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(451, 255), Vector2(1089, 323), Vector2(416, 726), Vector2(1389, 648), Vector2(1019, 503), Vector2(244, 585), Vector2(860, 296), Vector2(1128, 637), Vector2(1527, 232)]
+}
+
+[sub_resource type="Animation" id="Animation_syxkw"]
+resource_name = "movimiento"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.13333, 2.03333, 3, 3.83333, 4.73333, 5.36667, 6.06667, 6.8, 7.6, 8.53333, 9.26667, 9.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(159, 80), Vector2(656, 232), Vector2(166, 826), Vector2(59, 429), Vector2(1022, 205), Vector2(1153, 913), Vector2(763, 64), Vector2(1319, 85), Vector2(97, 893), Vector2(277, 375), Vector2(1454, 320), Vector2(743, 124), Vector2(688, 1035), Vector2(159, 80)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jls5e"]
+_data = {
+&"RESET": SubResource("Animation_5i25o"),
+&"movimiento": SubResource("Animation_syxkw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqp"]
+size = Vector2(311, 365)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4786f"]
+bg_color = Color(0.165656, 0.165656, 0.165657, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cc5ib"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[node name="AtraparRaton" type="Node2D"]
+script = ExtResource("1_cc5ib")
+
+[node name="Alfombra" type="Sprite2D" parent="."]
+position = Vector2(960.766, 517.39)
+scale = Vector2(1.87741, 1.54474)
+texture = ExtResource("2_4786f")
+
+[node name="SpriteRaton" type="Sprite2D" parent="."]
+position = Vector2(451, 255)
+scale = Vector2(0.664216, 0.664216)
+texture = ExtResource("3_37c7n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteRaton"]
+libraries = {
+&"": SubResource("AnimationLibrary_jls5e")
+}
+
+[node name="pataGato" type="CharacterBody2D" parent="."]
+script = ExtResource("4_ygb7e")
+vel_gato = 1000
+
+[node name="sprite" type="Sprite2D" parent="pataGato"]
+position = Vector2(961.05, 858)
+texture = ExtResource("5_elslu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pataGato"]
+position = Vector2(961.5, 800.5)
+shape = SubResource("RectangleShape2D_1aiqp")
+
+[node name="TiempoRestante" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="barraDeTiempo" type="ProgressBar" parent="."]
+offset_left = 328.0
+offset_top = 36.0
+offset_right = 1645.0
+offset_bottom = 89.0
+show_percentage = false
+
+[node name="Controles" type="Label" parent="."]
+offset_top = 774.0
+offset_right = 627.0
+offset_bottom = 1079.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_4786f")
+text = "Moverse: WASD
+Atrapar: Espacio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instruccion" type="Label" parent="."]
+offset_left = 360.0
+offset_top = 311.0
+offset_right = 1638.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxFlat_cc5ib")
+text = "Atrapalo! (Espacio)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TiempoRestante" to="." method="_on_timer_timeout"]
