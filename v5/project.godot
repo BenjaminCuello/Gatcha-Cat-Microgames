@@ -1,0 +1,20 @@
+config_version=5
+
+[application]
+
+config/name="Gatcha! v5"
+config/version="2.0"
+run/main_scene="uid://h840madvao4i"
+config/features=PackedStringArray("4.4", "Forward Plus")
+
+[autoload]
+
+Juego="*res://scripts/juego.gd"
+InputGlobal="*res://scripts/input_global.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="canvas_items"

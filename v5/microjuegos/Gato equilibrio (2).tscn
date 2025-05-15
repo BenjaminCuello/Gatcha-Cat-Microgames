@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://3t1m2fj48puh"]
+
+[ext_resource type="Script" uid="uid://bsjy4aiqcsgac" path="res://microjuegos/Gato equilibrio_2.gd" id="1_rb7ae"]
+[ext_resource type="Texture2D" uid="uid://dbalkb2p84xpg" path="res://fondos/fondo 2.jpg" id="2_yviub"]
+[ext_resource type="Texture2D" uid="uid://bfyov4l7rb265" path="res://sprites/micro 2/gato equilibrio.png" id="3_k6vnf"]
+[ext_resource type="Texture2D" uid="uid://06jg46vywuyi" path="res://sprites/micro 2/gato izq .png" id="4_g0nnm"]
+[ext_resource type="Texture2D" uid="uid://d38renn5ssbdv" path="res://sprites/micro 2/gato der .png" id="5_xlodk"]
+[ext_resource type="Texture2D" uid="uid://oreimrcy4a2s" path="res://sprites/micro 2/gato cae .png" id="6_nq07b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb7ae"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="microjuego 2" type="Node2D"]
+script = ExtResource("1_rb7ae")
+
+[node name="Fondo" type="TextureRect" parent="."]
+offset_top = 1.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("2_yviub")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 762.0
+offset_top = 24.0
+offset_right = 1162.0
+offset_bottom = 51.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerJuego" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerCambio" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerRespuesta" type="Timer" parent="."]
+one_shot = true
+
+[node name="GatoEquilibrio" type="Sprite2D" parent="."]
+position = Vector2(977, 693)
+scale = Vector2(1.33191, 1.33191)
+texture = ExtResource("3_k6vnf")
+
+[node name="gato_izq" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(927, 720)
+scale = Vector2(0.572266, 0.572266)
+texture = ExtResource("4_g0nnm")
+
+[node name="gato_der" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(993, 738)
+scale = Vector2(0.572266, 0.572266)
+texture = ExtResource("5_xlodk")
+
+[node name="gato_se_cae" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(857, 738)
+scale = Vector2(0.482422, 0.482422)
+texture = ExtResource("6_nq07b")
+
+[node name="LabelControles" type="Label" parent="."]
+offset_left = -5.0
+offset_top = 746.0
+offset_right = 445.0
+offset_bottom = 1082.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_rb7ae")
+text = "Presiona:
+ [←] o [→]
+Atento!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelInstruccion" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 440.0
+offset_right = 1592.0
+offset_bottom = 671.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_rb7ae")
+text = "¡Atento a las flechas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelDireccion" type="Label" parent="."]
+visible = false
+offset_left = 834.0
+offset_top = 109.0
+offset_right = 1135.0
+offset_bottom = 340.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_rb7ae")
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerJuego" to="." method="_on_TimerJuego_timeout"]
+[connection signal="timeout" from="TimerCambio" to="." method="_on_TimerCambio_timeout"]
+[connection signal="timeout" from="TimerRespuesta" to="." method="_on_TimerRespuesta_timeout"]

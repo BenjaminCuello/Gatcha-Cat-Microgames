@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://cnccd3qa6parh"]
+
+[ext_resource type="Script" uid="uid://c0sdovd35ovxr" path="res://microjuegos/main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ci0u8xx8ull32" path="res://sprites/micro cajas/Gato6.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://elm307s26w8y" path="res://sprites/micro cajas/pared.jpg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bo1byy3r7wle2" path="res://sprites/micro cajas/caja.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cqa32kaunvvyv" path="res://sprites/micro cajas/NumeroUno.png" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://clrfqioox42tc" path="res://sprites/micro cajas/NumeroDos.png" id="6_5vw27"]
+[ext_resource type="Texture2D" uid="uid://vgrirk3yjc73" path="res://sprites/micro cajas/NumeroTres.png" id="7_kek77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(233, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(239, 119.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(242, 114)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="pared" type="Sprite2D" parent="."]
+position = Vector2(575.625, 323.5)
+scale = Vector2(0.747714, 0.654082)
+texture = ExtResource("2_h2yge")
+
+[node name="Caja1" type="Area2D" parent="."]
+position = Vector2(200, 535)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja1"]
+position = Vector2(-3.03125, -0.09375)
+scale = Vector2(0.183147, 0.180266)
+texture = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja1"]
+position = Vector2(-1.0625, -0.187447)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Caja2" type="Area2D" parent="."]
+position = Vector2(550, 535)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja2"]
+position = Vector2(-3.46875, -0.781311)
+scale = Vector2(0.183999, 0.184202)
+texture = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja2"]
+position = Vector2(-0.96875, 0.46875)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Caja3" type="Area2D" parent="."]
+position = Vector2(900, 535)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja3"]
+position = Vector2(1.18762, -1.53125)
+scale = Vector2(0.184992, 0.18633)
+texture = ExtResource("3_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja3"]
+position = Vector2(1.1875, -2.53125)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Gato" type="Sprite2D" parent="."]
+position = Vector2(0.25, 1.25)
+scale = Vector2(0.386592, 0.359003)
+texture = ExtResource("2_0xm2m")
+
+[node name="FondoMensaje" type="ColorRect" parent="."]
+offset_left = 345.0
+offset_top = 182.0
+offset_right = 385.0
+offset_bottom = 222.0
+scale = Vector2(11.6461, 2.70826)
+color = Color(0.626119, 0.227556, 0.155387, 1)
+
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 414.0
+offset_top = 207.0
+offset_right = 526.0
+offset_bottom = 230.0
+scale = Vector2(2.84266, 2.476)
+text = "Sigue al gato..."
+
+[node name="Numero1" type="Sprite2D" parent="."]
+position = Vector2(200, 350)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("5_272bh")
+
+[node name="Numero2" type="Sprite2D" parent="."]
+position = Vector2(550, 350)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("6_5vw27")
+
+[node name="Numero3" type="Sprite2D" parent="."]
+position = Vector2(900, 350)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("7_kek77")
