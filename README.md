@@ -10,23 +10,25 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 ---
 
-## 🧩 Estructura del juego (versión 4.0)
+## 🧩 Estructura del juego (versión 5.0)
 
 - `menu_principal.tscn`: pantalla inicial con botones de navegación  
-- `cinematica.tscn`: intro animada donde el gato se duerme  
+- `cinematica.tscn`: intro animada con el gato durmiendo  
 - `micro_inicio.tscn`: pantalla de transición con contador y vidas  
-- `minijuegos/`: carpeta donde cada microjuego es una escena independiente  
-- `plantilla/`: escena base con barra de tiempo e instrucciones para guiar nuevos microjuegos  
+- `minijuegos/`: carpeta con escenas de microjuegos individuales  
+- `plantilla/`: escena base con barra de tiempo e instrucciones para nuevos microjuegos  
 - `sistema_vidas.gd`: script de control de vidas  
-- `audio/`: sonidos y música por microjuego  
-- `sprites/`: recursos visuales como gatos, pescados, fondos y manos  
+- `audio/`: música y efectos (menú, victoria, derrota, sonidos por microjuego)  
+- `sprites/`: recursos visuales como gatos, botones, fondos, etc.
 
-### 🎮 Microjuegos disponibles (6 en total):
+---
+
+### 🎮 Microjuegos disponibles (7 en total):
 
 - `microjuego1.tscn`: reacción con tecla aleatoria  
 - `micro_gato_equilibrio.tscn`: mantener el equilibrio con flechas  
 - `micro_abrelatas.tscn`: presionar rápido para abrir la lata (falta sprites finales)  
-- *Otros 3 microjuegos más funcionales ya agregados al sistema*
+- *Otros 4 microjuegos funcionales integrados al sistema*
 
 ---
 
@@ -34,9 +36,10 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 1. Ejecuta `menu_principal.tscn`  
 2. Selecciona "Historia"  
-3. Mira la intro del gato durmiendo  
+3. Observa la animación del gato durmiendo  
 4. Supera los microjuegos uno tras otro  
-5. Llega al jefe final tras 30 microjuegos  
+5. Si completas los 30, enfrentas al jefe final (pendiente)  
+6. Puedes salir en cualquier momento con `ESC`
 
 ---
 
@@ -61,24 +64,28 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 ---
 
-## 🚧 Estado del proyecto (actualizado a v4.0)
+## 🚧 Estado del proyecto (actualizado a v5.0)
 
 ✅ Menú principal  
+✅ Cinemática con animación del gato durmiendo  
 ✅ Transición entre microjuegos con contador visible  
-✅ 6 microjuegos funcionales y conectados al sistema de vidas  
-✅ Sistema de vidas corregido y funcionando (pierdes si fallas 3 veces)  
-✅ Fin de partida por derrota o al completar los 30 microjuegos  
+✅ 7 microjuegos funcionales conectados al sistema de vidas  
+✅ Sistema de vidas corregido y funcional (pierdes si fallas 3 veces)  
+✅ Fin de partida por derrota o al completar 30 microjuegos  
 ✅ Selección aleatoria de microjuegos  
 ✅ Botón de salida y tecla ESC funcional en cualquier momento  
 ✅ Carpeta `plantilla/` con estructura base para nuevos microjuegos  
-✅ Reorganización completa de carpetas y archivos del proyecto  
+✅ Sonidos al ganar o perder  
+✅ Música de fondo en el menú principal  
+✅ Efectos de sonido agregados en microjuegos  
+✅ Instrucciones más claras en cada microjuego  
+✅ Reorganización de carpetas y archivos  
 
-🔜 Cinemática del gato  
-🔜 Música de fondo y efectos  
+🔜 Música durante los microjuegos  
 🔜 Jefe final  
 🔜 Botones para modo infinito  
 🔜 Menú de opciones  
-🔜 24 microjuegos más para completar los 30  
+🔜 23 microjuegos más para completar los 30  
 🔜 Señales para juego cruzado  
 
 ---
@@ -88,7 +95,6 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 Este proyecto es académico. Si quieres dar ideas creativas o mejorar el juego, puedes enviar tus ideas o colaborar con nuevos microjuegos siguiendo la estructura base.
 
 ---
-
 
 ## 📸 Capturas
 
