@@ -7,9 +7,9 @@ var fase_actual: String = "mostrar_gato"
 
 # Nodos
 @onready var cajas = {
-	1: $Caja1,  # Izquierda (200,535)
-	2: $Caja2,  # Centro (550,535)
-	3: $Caja3   # Derecha (900,535)
+	1: $Caja1,  
+	2: $Caja2,
+	3: $Caja3   
 }
 @onready var gato = $Gato
 @onready var mensaje = $Mensaje
