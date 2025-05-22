@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0gboyjl7ll7x"]
+
+[ext_resource type="Script" uid="uid://dqh0xv4jq7mme" path="res://sprites/micro 12/cat_licking_game.gd" id="1_4ntoh"]
+[ext_resource type="Texture2D" uid="uid://biopmwt4dktic" path="res://sprites/micro 12/fondo6pixel.png" id="2_boboa"]
+[ext_resource type="Texture2D" uid="uid://hgt0htot4fuu" path="res://sprites/micro 12/cat_idle.jpg" id="3_xdc3o"]
+
+[node name="CatLickingGame" type="Node2D"]
+script = ExtResource("1_4ntoh")
+
+[node name="Fondo6Pixel" type="Sprite2D" parent="."]
+position = Vector2(953, 537)
+scale = Vector2(1.24284, 1.0498)
+texture = ExtResource("2_boboa")
+
+[node name="CatSprite" type="Sprite2D" parent="."]
+position = Vector2(874, 753)
+scale = Vector2(0.396154, 0.323846)
+texture = ExtResource("3_xdc3o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 126.0
+offset_right = 410.0
+offset_bottom = 236.0
+theme_override_font_sizes/font_size = 80
+text = "Limpiate"
+
+[node name="GameTimer" type="Timer" parent="."]
