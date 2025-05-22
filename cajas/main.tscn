@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnccd3qa6parh"]
+[gd_scene load_steps=12 format=3 uid="uid://cnccd3qa6parh"]
 
 [ext_resource type="Script" uid="uid://dcbntk1h16r2" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Texture2D" uid="uid://bhd55qyq2s6b0" path="res://Gato6.png" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://0hqmx15rcysj" path="res://pared.jpg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://51qmykvrvbj6" path="res://fondocajasema.png" id="2_5vw27"]
 [ext_resource type="Texture2D" uid="uid://buesqhjngfgav" path="res://caja.png" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://ct6r3uxx7hjdk" path="res://decoracioncajasdelante.png" id="3_kek77"]
 [ext_resource type="Texture2D" uid="uid://vlfufrote674" path="res://NumeroUno.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://duhloabwjxaua" path="res://NumeroDos.png" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://dnyus2ocg57ld" path="res://NumeroTres.png" id="7_kek77"]
@@ -27,81 +28,89 @@ grow_vertical = 2
 script = ExtResource("1_272bh")
 
 [node name="pared" type="Sprite2D" parent="."]
-position = Vector2(680.625, 382)
-scale = Vector2(0.891411, 0.783674)
-texture = ExtResource("2_h2yge")
+position = Vector2(966.5, 547.5)
+scale = Vector2(1.25195, 1.05566)
+texture = ExtResource("2_5vw27")
+
+[node name="pared2" type="Sprite2D" parent="."]
+position = Vector2(964.5, 547.5)
+scale = Vector2(1.24935, 1.06348)
+texture = ExtResource("3_kek77")
 
 [node name="Caja1" type="Area2D" parent="."]
-position = Vector2(350, 630)
+position = Vector2(350, 800)
 
 [node name="Sprite2D" type="Sprite2D" parent="Caja1"]
 position = Vector2(-3.03125, -0.09375)
-scale = Vector2(0.183147, 0.180266)
+scale = Vector2(0.295, 0.29)
 texture = ExtResource("3_1bvp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Caja1"]
 position = Vector2(-1.0625, -0.187447)
+scale = Vector2(1.58, 1.58)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Caja2" type="Area2D" parent="."]
-position = Vector2(700, 630)
+position = Vector2(900, 800)
 
 [node name="Sprite2D" type="Sprite2D" parent="Caja2"]
 position = Vector2(-3.46875, -0.781311)
-scale = Vector2(0.183999, 0.184202)
+scale = Vector2(0.289, 0.289)
 texture = ExtResource("3_1bvp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Caja2"]
 position = Vector2(-0.96875, 0.46875)
+scale = Vector2(1.58, 1.58)
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="Caja3" type="Area2D" parent="."]
-position = Vector2(1050, 630)
+position = Vector2(1450, 800)
 
 [node name="Sprite2D" type="Sprite2D" parent="Caja3"]
 position = Vector2(1.18762, -1.53125)
-scale = Vector2(0.184992, 0.18633)
+scale = Vector2(0.289, 0.29)
 texture = ExtResource("3_1bvp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Caja3"]
 position = Vector2(1.1875, -2.53125)
+scale = Vector2(1.58, 1.58)
 shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="Gato" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0.25, 1.25)
-scale = Vector2(0.386592, 0.359003)
+position = Vector2(27.2429, 28.1474)
+scale = Vector2(0.514218, 0.478282)
 texture = ExtResource("2_0xm2m")
 
 [node name="FondoMensaje" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 345.0
-offset_top = 182.0
-offset_right = 402.0
-offset_bottom = 222.0
+offset_left = 596.0
+offset_top = 291.0
+offset_right = 653.0
+offset_bottom = 331.0
 scale = Vector2(11.6461, 2.70826)
 color = Color(0.626119, 0.227556, 0.155387, 1)
 
 [node name="Mensaje" type="Label" parent="."]
 layout_mode = 0
-offset_left = 414.0
-offset_top = 207.0
-offset_right = 610.0
-offset_bottom = 230.0
+offset_left = 652.0
+offset_top = 320.0
+offset_right = 848.0
+offset_bottom = 343.0
 scale = Vector2(2.84266, 2.476)
 text = "Sigue al gato..."
 
 [node name="Numero1" type="Sprite2D" parent="."]
-position = Vector2(340, 376)
-scale = Vector2(0.35, 0.35)
+position = Vector2(350, 500)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_272bh")
 
 [node name="Numero2" type="Sprite2D" parent="."]
-position = Vector2(699, 381)
-scale = Vector2(0.35, 0.35)
+position = Vector2(900, 500)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_5vw27")
 
 [node name="Numero3" type="Sprite2D" parent="."]
-position = Vector2(1056, 379)
-scale = Vector2(0.35, 0.35)
+position = Vector2(1450, 500)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_kek77")

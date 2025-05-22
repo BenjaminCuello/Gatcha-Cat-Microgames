@@ -20,9 +20,9 @@ var fase_actual: String = "mostrar_gato"
 
 # Posiciones fijas
 var posiciones_fijas = {
-	1: Vector2(350, 630),
-	2: Vector2(700, 630),
-	3: Vector2(1050, 630)
+	1: Vector2(350, 800),
+	2: Vector2(900, 800),
+	3: Vector2(1450, 800)
 }
 
 func _ready():
@@ -71,9 +71,9 @@ func mezclar_cajas():
 	fase_actual = "adivinar"
 	
 	# Mostrar números sobre las cajas
-	numero1.position = posiciones_fijas[1] + Vector2(0, -100)  # Arriba de caja izquierda
-	numero2.position = posiciones_fijas[2] + Vector2(0, -100)  # Arriba de caja centro
-	numero3.position = posiciones_fijas[3] + Vector2(0, -100)  # Arriba de caja derecha
+	numero1.position = posiciones_fijas[1] + Vector2(0, -260)  # Arriba de caja izquierda
+	numero2.position = posiciones_fijas[2] + Vector2(0, -260)  # Arriba de caja centro
+	numero3.position = posiciones_fijas[3] + Vector2(0, -260)  # Arriba de caja derecha
 	numero1.visible = true
 	numero2.visible = true
 	numero3.visible = true
