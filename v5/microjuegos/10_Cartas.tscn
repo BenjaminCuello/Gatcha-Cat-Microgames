@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://dig4jv6y6c8hn"]
+
+[ext_resource type="Texture2D" uid="uid://56e2g1dnok63" path="res://fondos/Fondo10.png" id="1_ffffh"]
+[ext_resource type="Script" uid="uid://cbm8ox2b7hif6" path="res://microjuegos/10_Cartas.gd" id="1_gwmn6"]
+[ext_resource type="Texture2D" uid="uid://b7ig808kh12fq" path="res://sprites/micro 10/Asientos.png" id="2_dclds"]
+[ext_resource type="Texture2D" uid="uid://cdhl0rn615ejv" path="res://sprites/micro 10/GatitosMesa.png" id="3_xfi70"]
+[ext_resource type="Texture2D" uid="uid://dugqx741yd0im" path="res://sprites/micro 10/ElementosDelanteros.png" id="4_se7dt"]
+[ext_resource type="Texture2D" uid="uid://cvvoedsphdu3u" path="res://sprites/micro 10/pataestatica.png" id="5_57841"]
+[ext_resource type="Texture2D" uid="uid://i7gbjtwg6sl3" path="res://sprites/micro 10/patacartas-removebg-preview.png" id="6_gwmn6"]
+[ext_resource type="Texture2D" uid="uid://oxt8hbble8nf" path="res://sprites/micro 10/cartas.png" id="7_h8jpe"]
+[ext_resource type="Texture2D" uid="uid://cwjscqu5xsba" path="res://sprites/micro 10/cartatirada-removebg-preview.png" id="9_h8jpe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8jpe"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ayfx"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="Cartas" type="Node2D"]
+script = ExtResource("1_gwmn6")
+
+[node name="Fondo10" type="TextureRect" parent="."]
+offset_right = 1922.0
+offset_bottom = 1079.0
+texture = ExtResource("1_ffffh")
+
+[node name="Asientos" type="TextureRect" parent="."]
+offset_right = 1921.0
+offset_bottom = 1077.0
+texture = ExtResource("2_dclds")
+
+[node name="NPC" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1081.0
+texture = ExtResource("3_xfi70")
+
+[node name="ElementosDelanteros" type="TextureRect" parent="."]
+offset_left = -122.0
+offset_top = -9.0
+offset_right = 1922.0
+offset_bottom = 1078.0
+texture = ExtResource("4_se7dt")
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 762.0
+offset_top = 24.0
+offset_right = 1162.0
+offset_bottom = 51.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerJuego" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerCambio" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerRespuesta" type="Timer" parent="."]
+one_shot = true
+
+[node name="PataEstatica" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 686.0
+offset_right = 428.0
+offset_bottom = 1081.0
+texture = ExtResource("5_57841")
+
+[node name="PataJugadora" type="Sprite2D" parent="."]
+position = Vector2(643, 938)
+rotation = 0.705113
+scale = Vector2(1.09481, 1.08841)
+texture = ExtResource("6_gwmn6")
+
+[node name="Carta" type="Sprite2D" parent="."]
+position = Vector2(154, 936)
+scale = Vector2(0.255472, 0.274579)
+texture = ExtResource("7_h8jpe")
+
+[node name="Carta2" type="Sprite2D" parent="."]
+position = Vector2(179, 936)
+scale = Vector2(0.255472, 0.274579)
+texture = ExtResource("7_h8jpe")
+
+[node name="Carta3" type="Sprite2D" parent="."]
+position = Vector2(205, 936)
+scale = Vector2(0.255472, 0.274579)
+texture = ExtResource("7_h8jpe")
+
+[node name="Carta4" type="Sprite2D" parent="."]
+position = Vector2(228, 936)
+scale = Vector2(0.255472, 0.274579)
+texture = ExtResource("7_h8jpe")
+
+[node name="CartaAnimacion" type="Sprite2D" parent="."]
+position = Vector2(453, 744)
+scale = Vector2(0.455932, 0.523641)
+texture = ExtResource("9_h8jpe")
+
+[node name="LabelControles" type="Label" parent="."]
+offset_left = 1462.0
+offset_top = 107.0
+offset_right = 1912.0
+offset_bottom = 444.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_h8jpe")
+text = "Presiona:
+A
+Atento!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelInstruccion" type="Label" parent="."]
+offset_left = 236.0
+offset_top = 27.0
+offset_right = 1476.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ayfx")
+text = "¡Atento a las teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1

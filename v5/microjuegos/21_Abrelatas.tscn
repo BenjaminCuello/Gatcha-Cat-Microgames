@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://i7cxduoj1ipt"]
+
+[ext_resource type="Script" uid="uid://fsp4qtxmxhcm" path="res://microjuegos/21_Abrelatas.gd" id="1_dcaet"]
+[ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://fondos/fondocielo.png" id="2_8e0yr"]
+[ext_resource type="Texture2D" uid="uid://dgi3aj6dhml7m" path="res://sprites/micro 16/gatobocacerrada.png" id="3_ihgap"]
+[ext_resource type="Texture2D" uid="uid://yjk3ef1stljo" path="res://sprites/micro 21/lata.png" id="4_kd5hs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wvdl"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="MicroAbrelatas" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dcaet")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1084.0
+texture = ExtResource("2_8e0yr")
+
+[node name="Gato" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 57.0
+offset_right = 1839.0
+offset_bottom = 1081.0
+texture = ExtResource("3_ihgap")
+
+[node name="Lata" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 628.0
+offset_right = 887.0
+offset_bottom = 1070.0
+texture = ExtResource("4_kd5hs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="TextoControles" type="Label" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 746.0
+offset_right = 445.0
+offset_bottom = 1082.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wvdl")
+text = "Presiona:
+[A]
+Rapido!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 440.0
+offset_right = 1592.0
+offset_bottom = 671.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wvdl")
+text = "¡Presiona Rapido! [A]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
