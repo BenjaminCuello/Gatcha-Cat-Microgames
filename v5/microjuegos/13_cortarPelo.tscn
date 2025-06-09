@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://xtfg0e6w3aih"]
+
+[ext_resource type="Script" uid="uid://ncg28xiykl0" path="res://escenas/13_cortar_pelo.gd" id="1_i7f40"]
+[ext_resource type="Texture2D" uid="uid://wb1lkcvg7lom" path="res://sprites/micro 13/cat_messy.png" id="2_b0cry"]
+[ext_resource type="Texture2D" uid="uid://bo8scu8hdnqg6" path="res://sprites/micro 13/cat_neat.png" id="3_tx4ll"]
+[ext_resource type="Texture2D" uid="uid://diah55jrch02f" path="res://sprites/micro 13/gatoqueria.png" id="4_pd07x"]
+[ext_resource type="Texture2D" uid="uid://c5ir7is3xd0rs" path="res://sprites/micro 13/ol.png" id="5_pd07x"]
+
+[node name="13CortarPelo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_i7f40")
+cat_messy_texture = ExtResource("2_b0cry")
+cat_neat_texture = ExtResource("3_tx4ll")
+
+[node name="fondo" type="Sprite2D" parent="."]
+position = Vector2(956, 562)
+scale = Vector2(1.50469, 1.55)
+texture = ExtResource("4_pd07x")
+
+[node name="CatSprite" type="Sprite2D" parent="."]
+position = Vector2(250, 300)
+scale = Vector2(0.602539, 0.467773)
+
+[node name="ScissorsSprite" type="Sprite2D" parent="."]
+position = Vector2(1320, 560)
+scale = Vector2(0.445408, 0.408311)
+texture = ExtResource("5_pd07x")
+
+[node name="InstructionLabel" type="Label" parent="."]
+modulate = Color(0.892936, 0.157374, 0.270007, 1)
+self_modulate = Color(0.567025, 0.0533897, 0.0584194, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 944.0
+offset_bottom = 203.0
+theme_override_font_sizes/font_size = 65
+text = "\"¡Corta el pelo del gato siguiendo la secuencia!\""
+
+[node name="SequenceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 201.0
+offset_right = 1497.0
+offset_bottom = 321.0
+theme_override_colors/font_color = Color(0.978293, 0.20058, 0, 1)
+theme_override_font_sizes/font_size = 65
+text = " \"Secuencia: A → S → D\""
+
+[node name="InputLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 318.0
+offset_right = 123.0
+offset_bottom = 468.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 65
+text = "\"Tu entrada: \"
+"
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1492.0
+offset_top = 167.0
+offset_right = 1887.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 65
+theme_override_font_sizes/font_size = 65
+text = "\"Tiempo: 5s\""
