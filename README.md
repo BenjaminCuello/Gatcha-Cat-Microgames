@@ -10,7 +10,7 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 ---
 
-## 🧩 Estructura del juego (versión 5.0)
+## 🧩 Estructura del juego (versión 6.1)
 
 - `menu_principal.tscn`: pantalla inicial con botones de navegación  
 - `cinematica.tscn`: intro animada con el gato durmiendo  
@@ -64,7 +64,7 @@ El objetivo es completar **30 microjuegos aleatorios** sin perder todas tus vida
 
 ---
 
-## 🚧 Estado del proyecto (actualizado a v5.0)
+## 🚧 Estado del proyecto (actualizado a v6.1)
 
 ✅ Menú principal  
 ✅ Cinemática con animación del gato durmiendo  
