@@ -1,0 +1,135 @@
+[gd_scene load_steps=13 format=3 uid="uid://cja2xa3bgn8i4"]
+
+[ext_resource type="Script" uid="uid://kxdno7xrt0g4" path="res://Microjuegos/Cuello/19_  Baile rítmico/Script/Baile rítmico_5.gd" id="1_ang40"]
+[ext_resource type="Texture2D" uid="uid://cv88ljj5o5ye0" path="res://Fondos/CalleCiudad.png" id="2_bfn6k"]
+[ext_resource type="Texture2D" uid="uid://djp6d6klfaoya" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoQuieto.png" id="3_6r8hg"]
+[ext_resource type="Texture2D" uid="uid://dxfao4myf16fn" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Sombrero.png" id="4_m1g4w"]
+[ext_resource type="Texture2D" uid="uid://2o0c24klk4d2" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose1.png" id="5_7rcwr"]
+[ext_resource type="Texture2D" uid="uid://bby2tghry68mg" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose2 .png" id="6_q6ue0"]
+[ext_resource type="Texture2D" uid="uid://cilbrqbst1dcn" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose3 .png" id="7_hvhp2"]
+[ext_resource type="Texture2D" uid="uid://ck3n1q26ucaun" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoFeliz .png" id="8_xxrxh"]
+[ext_resource type="Texture2D" uid="uid://v0mjcwbfnt6k" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoTriste .png" id="9_gaj0s"]
+[ext_resource type="Texture2D" uid="uid://di581b844r1eg" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/SombreroDinero .png" id="10_ku3wn"]
+[ext_resource type="Texture2D" uid="uid://1bpb2lslbu8t" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/PersonasFelices .png" id="11_wyouo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ang40"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="micro_baile" type="Node2D"]
+script = ExtResource("1_ang40")
+
+[node name="Fondo" type="TextureRect" parent="."]
+offset_top = 1.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+texture = ExtResource("2_bfn6k")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="TimerApertura" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 1370.0
+offset_top = 1021.0
+offset_right = 1770.0
+offset_bottom = 1048.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="GatoQuieto" type="Sprite2D" parent="."]
+position = Vector2(981, 759)
+scale = Vector2(0.402344, 0.402344)
+texture = ExtResource("3_6r8hg")
+
+[node name="Sombrero" type="Sprite2D" parent="."]
+position = Vector2(1329, 912)
+scale = Vector2(0.220703, 0.220703)
+texture = ExtResource("4_m1g4w")
+
+[node name="Pose1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1002, 765)
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("5_7rcwr")
+
+[node name="Pose2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1026, 780)
+scale = Vector2(0.402344, 0.402344)
+texture = ExtResource("6_q6ue0")
+
+[node name="Pose3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1020, 747)
+scale = Vector2(0.519531, 0.519531)
+texture = ExtResource("7_hvhp2")
+
+[node name="GatoFeliz" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(984, 762)
+scale = Vector2(0.519531, 0.519531)
+texture = ExtResource("8_xxrxh")
+
+[node name="GatoTriste" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(993, 825)
+scale = Vector2(0.519531, 0.519531)
+texture = ExtResource("9_gaj0s")
+
+[node name="SombreroDinero" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1328, 913)
+scale = Vector2(0.242187, 0.242187)
+texture = ExtResource("10_ku3wn")
+
+[node name="PersonasFelices1" type="Sprite2D" parent="."]
+position = Vector2(1531, 625)
+scale = Vector2(0.478516, 0.478516)
+texture = ExtResource("11_wyouo")
+
+[node name="PersonasFelices2" type="Sprite2D" parent="."]
+position = Vector2(416, 631)
+scale = Vector2(0.478516, 0.478516)
+texture = ExtResource("11_wyouo")
+
+[node name="TimerRespuesta" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="TextoControles" type="Label" parent="."]
+visible = false
+offset_left = 761.0
+offset_top = 147.0
+offset_right = 1211.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ang40")
+text = "Presiona:
+[A]
+Rapido!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ang40")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerApertura" to="." method="_on_TimerApertura_timeout"]
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]
+[connection signal="timeout" from="TimerRespuesta" to="." method="_on_TimerRespuesta_timeout"]
