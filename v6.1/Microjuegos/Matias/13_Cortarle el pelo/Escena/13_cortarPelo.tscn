@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctr0k6bnyfy44" path="res://microjuegos/Matias/13_Cortarle el pelo/Script/13_cortar_pelo.gd" id="1_i7f40"]
 [ext_resource type="Texture2D" uid="uid://c3g4xf03p720x" path="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/cat_messy.png" id="2_b0cry"]
-[ext_resource type="Texture2D" uid="uid://b8w5qscdoo6mq" path="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/cat_neat.png" id="3_tx4ll"]
+[ext_resource type="Texture2D" uid="uid://b8w5qscdoo6mq" path="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/Pelon.png" id="3_tx4ll"]
 [ext_resource type="Texture2D" uid="uid://bvtvuj6e6lu5r" path="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/gatoqueria.png" id="4_pd07x"]
 [ext_resource type="Texture2D" uid="uid://ds0jhpclr2wel" path="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/tijeras.png" id="5_pd07x"]
 
