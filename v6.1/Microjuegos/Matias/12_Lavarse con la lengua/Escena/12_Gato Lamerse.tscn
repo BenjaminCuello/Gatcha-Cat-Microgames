@@ -17,7 +17,6 @@ position = Vector2(874, 753)
 scale = Vector2(0.396154, 0.323846)
 texture = ExtResource("3_5vxte")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
