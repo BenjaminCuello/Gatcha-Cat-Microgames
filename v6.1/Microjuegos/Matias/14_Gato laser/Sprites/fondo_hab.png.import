@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f1ilnyt4md6n"
-path="res://.godot/imported/cat_neat.png-11e66c209031ef6c06a29e06f4900509.ctex"
+uid="uid://disxh0xgy8day"
+path="res://.godot/imported/fondo_hab.png-6831e47746bd19977dfcdc8b9e5ad5bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/cat_neat.png"
-dest_files=["res://.godot/imported/cat_neat.png-11e66c209031ef6c06a29e06f4900509.ctex"]
+source_file="res://Microjuegos/Matias/14_Gato laser/Sprites/fondo_hab.png"
+dest_files=["res://.godot/imported/fondo_hab.png-6831e47746bd19977dfcdc8b9e5ad5bd.ctex"]
 
 [params]
 
