@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://1nwcobqt3jwl"]
+[gd_scene load_steps=10 format=3 uid="uid://1nwcobqt3jwl"]
 
 [ext_resource type="Script" uid="uid://dtjxv4sh0s1u0" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/9_Flappy_cat.gd" id="1_5gypy"]
 [ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://Fondos/Fondocielo.png" id="2_sme5o"]
+[ext_resource type="Script" uid="uid://dpsbd1kgmkrln" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/gatito_volador.gd" id="3_fnubj"]
 [ext_resource type="Texture2D" uid="uid://cr76tkti0tbbx" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/GLOBOPNG.png" id="4_5c2tq"]
 [ext_resource type="Texture2D" uid="uid://b328in2qwlxcr" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/Mario_pipe.png" id="5_k8vc0"]
 
@@ -71,6 +72,7 @@ vertical_alignment = 1
 
 [node name="GatitoVolador" type="CharacterBody2D" parent="."]
 position = Vector2(134, 621)
+script = ExtResource("3_fnubj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatitoVolador"]
 position = Vector2(0.8125, -0.8125)
