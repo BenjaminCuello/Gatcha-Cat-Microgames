@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://e83brww4smox"]
+
+[ext_resource type="Script" uid="uid://iy0npiu1sr14" path="res://Microjuegos/Andres/27_Llamar al gato/Script/llamar_al_gato.gd" id="1_7j2tl"]
+[ext_resource type="Texture2D" uid="uid://cj86kddxlhghv" path="res://Fondos/ParedDeMadera.jpg" id="1_f66wr"]
+[ext_resource type="Texture2D" uid="uid://jtqd6yxaro84" path="res://Microjuegos/Andres/27_Llamar al gato/Sprites/GatoQuieto.png" id="1_vpdon"]
+[ext_resource type="Texture2D" uid="uid://bqlbt531w4fq3" path="res://Microjuegos/Andres/27_Llamar al gato/Sprites/taza.png" id="2_0je8l"]
+[ext_resource type="Texture2D" uid="uid://bqgokx0uq4wlj" path="res://Microjuegos/Andres/27_Llamar al gato/Sprites/57393d3de27d0cf4ee9a968bc255582c-ilustracion-de-mesa-rectangular-grande.webp" id="2_f66wr"]
+[ext_resource type="Texture2D" uid="uid://ckytchcwm0vx3" path="res://Microjuegos/Andres/27_Llamar al gato/Sprites/hand-drawn-speech-bubbles-doodle-illustration-free-png.webp" id="5_em8wj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j2tl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em8wj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w35f"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bek3v"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_7j2tl")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -26.0
+offset_top = -31.0
+offset_right = 1947.0
+offset_bottom = 1108.0
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 0)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_styles/focus = SubResource("StyleBoxFlat_7j2tl")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_em8wj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6w35f")
+
+[node name="ParedDeMadera" type="Sprite2D" parent="."]
+position = Vector2(1042.08, 525)
+scale = Vector2(1.32041, 1.32041)
+texture = ExtResource("1_f66wr")
+
+[node name="57393d3De27d0Cf4Ee9a968Bc255582c-ilustracion-de-mesa-rectangular-grande" type="Sprite2D" parent="."]
+position = Vector2(1102, 1230)
+scale = Vector2(4.36426, 4.36426)
+texture = ExtResource("2_f66wr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(931, 499)
+scale = Vector2(0.642578, 0.642578)
+texture = ExtResource("1_vpdon")
+
+[node name="Taza" type="Sprite2D" parent="."]
+position = Vector2(259, 473)
+scale = Vector2(0.570406, 0.570406)
+texture = ExtResource("2_0je8l")
+
+[node name="Hand-drawn-speech-bubbles-doodle-illustration-free-png" type="Sprite2D" parent="."]
+position = Vector2(1557.94, 273)
+scale = Vector2(2.04191, 2.425)
+texture = ExtResource("5_em8wj")
+
+[node name="Instruccion" type="Label" parent="."]
+offset_left = 360.0
+offset_top = 311.0
+offset_right = 1638.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxFlat_bek3v")
+text = "Escribe su nombre!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NombreGato" type="Label" parent="."]
+offset_left = 543.0
+offset_top = 863.0
+offset_right = 1313.0
+offset_bottom = 945.0
+theme_override_font_sizes/font_size = 59
+theme_override_styles/normal = SubResource("StyleBoxFlat_bek3v")
+text = "Nombre aquí*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EscribirNombre" type="Label" parent="."]
+offset_left = 1267.0
+offset_top = 169.0
+offset_right = 1854.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 66
+text = "Escribe"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TiempoRestante" type="Timer" parent="."]
+
+[node name="barraDeTiempo" type="ProgressBar" parent="."]
+offset_left = 46.0
+offset_top = 28.0
+offset_right = 1205.0
+offset_bottom = 81.0
+show_percentage = false
+
+[connection signal="timeout" from="TiempoRestante" to="." method="_on_tiempo_restante_timeout"]
