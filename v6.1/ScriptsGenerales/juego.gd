@@ -19,7 +19,9 @@ var lista_microjuegos = [
 	"res://Microjuegos/Branco/9_Flappy Birds con gatitos/Escena/9_Flappy_cat.tscn", #debo arreglarle una colision inicial
 	"res://Microjuegos/Emily/5_Encuentra al impostor/Escena/5_Encuentra_Impostor.tscn",
 	"res://Microjuegos/Branco/6_Pesca en hielo/Escena/6_Pesca_Hielo.tscn",
-	"res://Microjuegos/Branco/Secreto1/Escena/28_Secreto1.tscn"
+	"res://Microjuegos/Branco/Secreto1/Escena/28_Secreto1.tscn",
+	"res://Microjuegos/Branco/7_Recrear foto/Escena/7_Recrear_Foto.tscn",
+	"res://Microjuegos/Branco/8_Surfeando/Escena/8_Surfeando.tscn"
 ]
 # Elegir uno al azar
 func obtener_microjuego_aleatorio() -> String:

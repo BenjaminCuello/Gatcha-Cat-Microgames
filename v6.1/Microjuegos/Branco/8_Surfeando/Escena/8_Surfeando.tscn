@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl24ao0tv3omh"]
+
+[ext_resource type="Script" uid="uid://cx2qw6apklboo" path="res://Microjuegos/Branco/8_Surfeando/Script/8_Surfeando.gd" id="1_xix88"]
+[ext_resource type="Texture2D" uid="uid://d4csp17ms66ue" path="res://Microjuegos/Branco/8_Surfeando/Sprites/istockphoto-2147687404-1024x1024.jpg" id="2_3w612"]
+[ext_resource type="Texture2D" uid="uid://dmr310ttwvit1" path="res://Microjuegos/Branco/8_Surfeando/Sprites/GatoSurf.png" id="3_3w612"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksvx0"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="8Surfeando" type="Node2D"]
+script = ExtResource("1_xix88")
+
+[node name="FondoOlas" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_3w612")
+
+[node name="GatoSurfeando" type="Sprite2D" parent="."]
+position = Vector2(923, 644)
+scale = Vector2(0.298333, 0.295)
+texture = ExtResource("3_3w612")
+
+[node name="TimerApertura" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 1370.0
+offset_top = 1021.0
+offset_right = 1770.0
+offset_bottom = 1048.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+
+[node name="TimerRespuesta" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="TextoControles" type="Label" parent="."]
+offset_left = 761.0
+offset_top = 147.0
+offset_right = 1211.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ksvx0")
+text = "Presiona:
+[A]
+Rapido!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ksvx0")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerApertura" to="." method="_on_TimerApertura_timeout"]
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]
+[connection signal="timeout" from="TimerRespuesta" to="." method="_on_TimerRespuesta_timeout"]
