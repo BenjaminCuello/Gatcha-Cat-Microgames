@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bqgokx0uq4wlj"
+path="res://.godot/imported/57393d3de27d0cf4ee9a968bc255582c-ilustracion-de-mesa-rectangular-grande.webp-e0852c8d19c188d61a5e4668eecd702e.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Microjuegos/Andres/27_Llamar al gato/Sprites/57393d3de27d0cf4ee9a968bc255582c-ilustracion-de-mesa-rectangular-grande.webp"
+dest_files=["res://.godot/imported/57393d3de27d0cf4ee9a968bc255582c-ilustracion-de-mesa-rectangular-grande.webp-e0852c8d19c188d61a5e4668eecd702e.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

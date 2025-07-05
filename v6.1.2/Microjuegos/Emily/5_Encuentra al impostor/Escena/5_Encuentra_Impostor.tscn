@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bifk040hn431r"]
+
+[ext_resource type="Script" uid="uid://bl6o1bex23va0" path="res://Microjuegos/Emily/5_Encuentra al impostor/Script/5_encuentra_impostor.gd" id="1_7nbqf"]
+[ext_resource type="Texture2D" uid="uid://bkiglkf45wr80" path="res://Fondos/Fondo5.png" id="2_gdcyt"]
+[ext_resource type="Texture2D" uid="uid://w11wfujhkkn8" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/GatitoNeutro.png" id="3_hw2im"]
+[ext_resource type="Texture2D" uid="uid://beoe0rgasigff" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/Zari.png" id="4_obwhx"]
+[ext_resource type="Texture2D" uid="uid://cuyfcjhc3ib1q" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/Mapache.png" id="5_s5adp"]
+[ext_resource type="Texture2D" uid="uid://bsxd0sm6sul5k" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/Flecha1.png" id="6_7s1b8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vamqi"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="5EncuentraImpostor" type="Node2D"]
+script = ExtResource("1_7nbqf")
+
+[node name="Fondo" type="TextureRect" parent="."]
+offset_right = 1917.0
+offset_bottom = 1079.0
+texture = ExtResource("2_gdcyt")
+
+[node name="Gato" type="Sprite2D" parent="."]
+position = Vector2(959, 637)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_hw2im")
+
+[node name="Zarigueya" type="Sprite2D" parent="."]
+position = Vector2(493, 739)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_obwhx")
+
+[node name="Mapache" type="Sprite2D" parent="."]
+position = Vector2(1434, 705)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_s5adp")
+
+[node name="Flecha" type="Sprite2D" parent="."]
+position = Vector2(934, 358)
+texture = ExtResource("6_7s1b8")
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 834.0
+offset_top = 1015.0
+offset_right = 1234.0
+offset_bottom = 1042.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="TextoControles" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 801.0
+offset_right = 350.0
+offset_bottom = 1086.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_vamqi")
+text = "Presiona:
+[1,2 o 3]
+Segun
+ la posicion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_vamqi")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]
