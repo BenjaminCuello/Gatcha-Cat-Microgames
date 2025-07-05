@@ -35,3 +35,10 @@ func _on_boton_opciones_pressed() -> void:
 func _on_boton_salir_pressed() -> void:
 	print("¡Botón SALIR presionado!")
 	get_tree().quit()
+	
+	
+
+
+func _on_boton_chat_pressed() -> void:
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/chat-window.tscn")
+	
