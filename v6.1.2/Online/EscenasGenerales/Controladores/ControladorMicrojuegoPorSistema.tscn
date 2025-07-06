@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c57ma44mtq120"]
+
+[ext_resource type="Script" uid="uid://bmoa5eynybwx4" path="res://EscenasGenerales/Controladores/ControladorMicrojuegoPorSistema.gd" id="1_bmun6"]
+
+[node name="ControladorMicrojuego" type="Node2D"]
+script = ExtResource("1_bmun6")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bifk040hn431r"]
 
-[ext_resource type="Script" uid="uid://bl6o1bex23va0" path="res://Microjuegos/Emily/5_Encuentra al impostor/Script/5_encuentra_impostor.gd" id="1_7nbqf"]
-[ext_resource type="Texture2D" uid="uid://bkiglkf45wr80" path="res://Fondos/Fondo5.png" id="2_gdcyt"]
+[ext_resource type="Script" path="res://Microjuegos/Emily/5_Encuentra al impostor/Script/5_encuentra_impostor.gd" id="1_7nbqf"]
+[ext_resource type="Texture2D" uid="uid://ct4ldwfbyyqqv" path="res://Fondos/Fondo5.png" id="2_gdcyt"]
 [ext_resource type="Texture2D" uid="uid://w11wfujhkkn8" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/GatitoNeutro.png" id="3_hw2im"]
 [ext_resource type="Texture2D" uid="uid://beoe0rgasigff" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/Zari.png" id="4_obwhx"]
 [ext_resource type="Texture2D" uid="uid://cuyfcjhc3ib1q" path="res://Microjuegos/Emily/5_Encuentra al impostor/Sprites/Mapache.png" id="5_s5adp"]
