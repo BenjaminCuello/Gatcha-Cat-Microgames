@@ -2,11 +2,11 @@ extends Control
 var invitacion_recibida = ""
 var match_id = ""
 var oponente = ""
-var mi_nombre = "Ram_UCN"  
+var mi_nombre = Global.username  
 
 
 # URL de conexión con gameId y playerName personalizados
-var _host = "ws://ucn-game-server.martux.cl:4010/?gameId=E&playerName=Ram_UCN"
+var _host = "ws://ucn-game-server.martux.cl:4010/?gameId=E&playerName=%s" % mi_nombre
 @onready var _client: WebSocketClient = $WebSocketClient
 
 # Referencias a los nodos de la UI
@@ -52,18 +52,23 @@ func _on_web_socket_client_message_received(message: String):
 			_sendToChatDisplay("You are connected to the server!")
 			_addUserToList(mi_nombre)
 		"public-message":
-			_sendToChatDisplay("%s: %s" % [response.data.playerName, response.data.playerMsg])
+			_sendToChatDisplay("%s: %s" % [response["data"]["playerName"]
+, response.data.playerMsg])
 		"get-connected-players":
 			_updateUserList(response.data)
 		"player-connected":
-			_addUserToList(response.data.playerName)
+			_addUserToList(response["data"]["playerName"]
+)
 			
 		"player-disconnected":
-			_deleteUserFromList(response.data.playerName)
+			_deleteUserFromList(response["data"]["playerName"]
+)
 		"match-request-received":
-			_sendToChatDisplay("¡%s quiere jugar contigo!" % response.data.playerName)
+			_sendToChatDisplay("¡%s quiere jugar contigo!" % response["data"]["playerName"]
+)
 			# Guardar el nombre del jugador que te invitó
-			invitacion_recibida = response.data.playerName
+			invitacion_recibida = response["data"]["playerName"]
+
 	
 			# Mostrar botones de aceptar/rechazar
 			$VBoxContainer/AcceptButton.visible = true
@@ -207,6 +212,3 @@ func _ocultar_botones_match():
 	$VBoxContainer/AcceptButton.visible = false
 	$VBoxContainer/RejectButton.visible = false
 	invitacion_recibida = ""
-	
-	
-	

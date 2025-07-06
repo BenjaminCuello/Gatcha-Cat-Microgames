@@ -79,5 +79,6 @@ autoplay = true
 parameters/looping = false
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/botonHistoria" to="." method="_on_boton_historia_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/botonMultijugador" to="." method="_on_boton_multijugador_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/botonSalir" to="." method="_on_boton_salir_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/botonChat" to="." method="_on_boton_chat_pressed"]

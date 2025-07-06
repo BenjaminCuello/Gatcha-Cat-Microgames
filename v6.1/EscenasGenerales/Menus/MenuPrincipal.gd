@@ -24,10 +24,6 @@ func _on_boton_infinito_pressed() -> void:
 	print("¡Botón MODO INFINITO presionado!")
 	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
 
-func _on_boton_multijugador_pressed() -> void:
-	print("¡Botón MULTIJUGADOR presionado!")
-	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
-
 func _on_boton_opciones_pressed() -> void:
 	print("¡Botón OPCIONES presionado!")
 	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
@@ -40,5 +36,10 @@ func _on_boton_salir_pressed() -> void:
 
 
 func _on_boton_chat_pressed() -> void:
-	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/chat-window.tscn")
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")
 	
+
+
+func _on_boton_multijugador_pressed() -> void:
+	print("¡Botón MULTIJUGADOR presionado!")
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")

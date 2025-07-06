@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 Juego="*res://ScriptsGenerales/juego.gd"
 InputGlobal="*res://ScriptsGenerales/input_global.gd"
+Global="*res://ScriptsGenerales/Global.gd"
 
 [display]
 
@@ -26,6 +27,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [file_customization]
 

@@ -1,14 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqtemb164ydt6"]
 
-[ext_resource type="Script" uid="uid://d30o0f1pah1in" path="res://ScriptsGenerales/WebSocket.gd" id="1_17dk5"]
-[ext_resource type="Script" uid="uid://ds3ckqlh6vtki" path="res://ScriptsGenerales/ChatManager.gd" id="1_xfcp1"]
+[ext_resource type="Script" uid="uid://ds3ckqlh6vtki" path="res://ScriptsGenerales/ChatManager.gd" id="1_qnxky"]
+[ext_resource type="Script" uid="uid://d30o0f1pah1in" path="res://ScriptsGenerales/WebSocket.gd" id="2_pq2iq"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 927.0
-offset_bottom = 521.0
-script = ExtResource("1_xfcp1")
+offset_left = 163.0
+offset_top = 49.0
+offset_right = 1090.0
+offset_bottom = 570.0
+scale = Vector2(2.14823, 2.02722)
+script = ExtResource("1_qnxky")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -73,7 +76,7 @@ visible = false
 layout_mode = 2
 
 [node name="WebSocketClient" type="Node" parent="."]
-script = ExtResource("1_17dk5")
+script = ExtResource("2_pq2iq")
 
 [connection signal="toggled" from="VBoxContainer/ConnectButton" to="." method="_on_connect_toggled"]
 [connection signal="pressed" from="VBoxContainer/MainPanel/UserPanel/InviteButton" to="." method="_on_invite_button_pressed"]
