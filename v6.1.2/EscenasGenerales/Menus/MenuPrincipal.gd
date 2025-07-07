@@ -1,28 +1,31 @@
 extends Control
 
 func _ready():
-	# Esto asegura que se pueda salir con ESC solo en modo prueba
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	print("Vidas actuales:", Juego.vidas)
+	print("Menú Principal cargado")
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
-			get_tree().quit()  # Salir del juego al presionar ESC
+			get_tree().quit()
 
 func _on_boton_historia_pressed() -> void:
 	print("¡Botón HISTORIA presionado!")
-
-	# Reiniciar vidas y progreso
-	Juego.reiniciar()
-
-	# Ir a la cinemática
+	
+	# Inicializar modo historia
+	Juego.iniciar_modo_historia()
+	
+	# Ir a la pantalla de transición
 	get_tree().change_scene_to_file("res://EscenasGenerales/Cinematicas/CinematicaGatoDurmiendo.tscn")
-
 
 func _on_boton_infinito_pressed() -> void:
 	print("¡Botón MODO INFINITO presionado!")
-	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
+	
+	# Inicializar modo infinito
+	Juego.iniciar_modo_infinito()
+	
+	# Ir a la pantalla de transición
+	get_tree().change_scene_to_file("res://EscenasGenerales/EscenaVidasNumeroMicrojuego/MicroInicioContadorVidas.tscn")
 
 func _on_boton_multijugador_pressed() -> void:
 	print("¡Botón MULTIJUGADOR presionado!")

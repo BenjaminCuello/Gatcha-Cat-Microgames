@@ -1,8 +1,12 @@
 extends Node2D
 signal finished(success)
+
+# Variables de dificultad
+var nivel_dificultad = 1
+var tiempo_restante = 5  # 🔧 CAMBIADO: Nivel 1 = 5 segundos
+
 # Variables del juego
 var vida_muneco = 100
-var tiempo_restante = 5
 var teclas_juego = {"A": KEY_A, "S": KEY_S, "D": KEY_D, "F": KEY_F}  # Mapeando teclas
 var tecla_actual = ""
 var terminado := false
@@ -27,9 +31,36 @@ var muneco_posicion_derrota = Vector2()
 # Variables para explosión
 var particulas_explosion = null
 
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			tiempo_restante = 5
+		2:
+			tiempo_restante = 4
+		3:
+			tiempo_restante = 3
+		4:
+			tiempo_restante = 2
+		5:
+			tiempo_restante = 2
+		6:
+			tiempo_restante = 1
+		7:
+			tiempo_restante = 1
+		8:
+			tiempo_restante = 1
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo:", tiempo_restante)
+
 func _ready():
 	randomize()
-	tiempo_restante = [3, 4, 5].pick_random()
+	# 🔧 ELIMINADO: tiempo_restante = [3, 4, 5].pick_random()
+	# Ahora usa el tiempo configurado por dificultad
 
 	# También configurar el Timer real con ese mismo tiempo
 	temporizador.wait_time = tiempo_restante
@@ -110,7 +141,6 @@ func _input(event):
 			return  # Ignorar ESC
 
 		procesar_tecla_presionada(event.keycode)
-
 
 func procesar_tecla_presionada(codigo_tecla):
 	# Verificar si la tecla presionada corresponde a la tecla actual
@@ -334,7 +364,9 @@ func mostrar_mensaje_final(victoria):
 	var tween = create_tween()
 	tween.tween_property(resultado, "modulate", Color(1, 1, 1, 1), 1.0)
 	
-	emit_signal("finished", true)
+	# LÍNEA AGREGADA: Emitir la señal con el resultado correcto
+	tween.tween_callback(Callable(self, "emit_signal").bind("finished", victoria))
+
 func animar_mordisco():
 	# Animación de mordisco durante el juego
 	var tween = create_tween()

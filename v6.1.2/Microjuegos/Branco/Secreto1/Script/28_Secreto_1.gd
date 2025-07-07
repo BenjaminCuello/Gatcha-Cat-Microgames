@@ -7,14 +7,42 @@ signal finished(success)
 @onready var barra_tiempo = $BarraTiempo
 @onready var label_instruccion = $TextoInstruccion
 
+# Variables de dificultad
+var nivel_dificultad = 1
 @export var duracion_juego := 5.0
 var juego_activo := true
 var contador_espacio := 0
 
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			duracion_juego = 5.0
+		2:
+			duracion_juego = 4.5
+		3:
+			duracion_juego = 4.0
+		4:
+			duracion_juego = 3.5
+		5:
+			duracion_juego = 3.0
+		6:
+			duracion_juego = 2.5
+		7:
+			duracion_juego = 2.0
+		8:
+			duracion_juego = 1.5
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Duración juego:", duracion_juego)
+
 func _ready():
 	juego_activo = true
 	
-	# Configurar y arrancar el Timer
+	# Configurar y arrancar el Timer con la dificultad
 	tiempo_restante.wait_time = duracion_juego
 	tiempo_restante.one_shot = true
 	tiempo_restante.start()
@@ -23,6 +51,7 @@ func _ready():
 	if not tiempo_restante.timeout.is_connected(_on_TimerBarra_timeout):
 		tiempo_restante.timeout.connect(_on_TimerBarra_timeout)
 
+	# Configurar barra de tiempo con la dificultad
 	barra_tiempo.max_value = duracion_juego
 	barra_tiempo.value = duracion_juego
 
@@ -60,7 +89,10 @@ func finalizar_juego(success: bool):
 	if not juego_activo:
 		return
 	juego_activo = false
+	
+	# Detener el timer y ocultar la barra
 	tiempo_restante.stop()
+	barra_tiempo.visible = false
 
 	# Detener movimiento del gato
 	gato.velocity = Vector2.ZERO

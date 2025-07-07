@@ -6,6 +6,13 @@ var indice_caja_con_gato: int = 0
 var fase_actual: String = "mostrar_gato"
 var terminado := false
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var tiempo_total = 6.0
+var tiempo_memorizacion = 2.0
+var tiempo_mezcla = 1.5
+var cantidad_cajas = 3
+
 @onready var cajas = {
 	1: $Caja1,
 	2: $Caja2,
@@ -37,6 +44,59 @@ var posiciones_numeros_fijas = {
 }
 var orden_cajas := {}
 
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			tiempo_total = 6.0
+			tiempo_memorizacion = 2.0
+			tiempo_mezcla = 1.5
+			cantidad_cajas = 3
+		2:
+			tiempo_total = 5.5
+			tiempo_memorizacion = 1.8
+			tiempo_mezcla = 1.3
+			cantidad_cajas = 3
+		3:
+			tiempo_total = 5.0
+			tiempo_memorizacion = 1.5
+			tiempo_mezcla = 1.0
+			cantidad_cajas = 3
+		4:
+			tiempo_total = 4.5
+			tiempo_memorizacion = 1.3
+			tiempo_mezcla = 0.8
+			cantidad_cajas = 3
+		5:
+			tiempo_total = 4.0
+			tiempo_memorizacion = 1.0
+			tiempo_mezcla = 0.6
+			cantidad_cajas = 3
+		6:
+			tiempo_total = 3.5
+			tiempo_memorizacion = 0.8
+			tiempo_mezcla = 0.5
+			cantidad_cajas = 3
+		7:
+			tiempo_total = 3.0
+			tiempo_memorizacion = 0.6
+			tiempo_mezcla = 0.4
+			cantidad_cajas = 3
+		8:
+			tiempo_total = 2.5
+			tiempo_memorizacion = 0.4
+			tiempo_mezcla = 0.3
+			cantidad_cajas = 3
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo total:", tiempo_total)
+	print("Tiempo memorización:", tiempo_memorizacion)
+	print("Tiempo mezcla:", tiempo_mezcla)
+	print("Cantidad cajas:", cantidad_cajas)
+
 func _ready():
 	terminado = false
 	randomize()
@@ -48,9 +108,13 @@ func _ready():
 	numero2.visible = false
 	numero3.visible = false
 
-	barra_tiempo.max_value = 6.0
-	barra_tiempo.value = 6.0
+	# Configurar barra de tiempo según dificultad
+	barra_tiempo.max_value = tiempo_total
+	barra_tiempo.value = tiempo_total
 	barra_tiempo.visible = true
+	
+	# Configurar timer según dificultad
+	timer_barra.wait_time = tiempo_total
 	timer_barra.start()
 	timer_apertura.start(1.0)
 
@@ -62,7 +126,7 @@ func _on_TimerApertura_timeout():
 
 func iniciar_juego():
 	fase_actual = "mostrar_gato"
-	posicion_gato_inicial = randi() % 3 + 1
+	posicion_gato_inicial = randi() % cantidad_cajas + 1
 
 	for i in cajas.keys():
 		cajas[i].position = posiciones_fijas[i]
@@ -74,7 +138,8 @@ func iniciar_juego():
 	gato.global_position = pos
 	gato.visible = true
 
-	await get_tree().create_timer(2.0).timeout
+	# Tiempo de memorización según dificultad
+	await get_tree().create_timer(tiempo_memorizacion).timeout
 
 	gato.visible = false
 	fase_actual = "mezclar"
@@ -88,15 +153,16 @@ func mezclar_cajas():
 	var tween = create_tween()
 	tween.set_parallel(true)
 
-	for i in range(3):
+	for i in range(cantidad_cajas):
 		var visible = i + 1
 		var caja_index = posiciones_mezcladas[i]
 		var caja = cajas[caja_index]
 		var nueva_pos = posiciones_fijas[visible]
 
 		orden_cajas[visible] = caja_index
-		tween.tween_property(caja, "position", nueva_pos, 1.5)
-		tween.tween_property(caja, "rotation", deg_to_rad(360), 1.5)
+		# Tiempo de mezcla según dificultad
+		tween.tween_property(caja, "position", nueva_pos, tiempo_mezcla)
+		tween.tween_property(caja, "rotation", deg_to_rad(360), tiempo_mezcla)
 
 		if caja_index == posicion_gato_inicial:
 			indice_caja_con_gato = visible
@@ -128,6 +194,7 @@ func verificar_respuesta(numero: int):
 		return
 	terminado = true
 	timer_barra.stop()
+	barra_tiempo.visible = false
 	texto_controles.visible = false
 	texto_instruccion.visible = true
 
@@ -154,6 +221,7 @@ func _on_TimerBarra_timeout():
 	if terminado:
 		return
 	terminado = true
+	barra_tiempo.visible = false
 	texto_instruccion.text = "¡Se acabó el tiempo!"
 	texto_instruccion.visible = true
 	texto_controles.visible = false

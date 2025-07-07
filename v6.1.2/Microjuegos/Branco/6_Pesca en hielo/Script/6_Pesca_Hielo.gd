@@ -17,7 +17,53 @@ var velocidad = 250
 var limite_superior = 200
 var limite_inferior = 950
 
+# Variables para la dificultad
+var nivel_dificultad = 1
+var tiempo_juego = 8.0
+
+# Función para configurar la dificultad (llamada desde el sistema principal)
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+# Función para ajustar los parámetros según el nivel
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:  # Nivel 1 - Fácil
+			tiempo_juego = 6.0
+			velocidad = 210  # Más lento, más control
+		2:  # Nivel 2
+			tiempo_juego = 5.0
+			velocidad = 260  # Aumentado como pediste
+		3:  # Nivel 3
+			tiempo_juego = 4.0
+			velocidad = 320
+		4:  # Nivel 4
+			tiempo_juego = 3.0
+			velocidad = 370
+		5:  # Nivel 5
+			tiempo_juego = 2.5
+			velocidad = 420
+		6:  # Nivel 6
+			tiempo_juego = 2.0
+			velocidad = 490
+		7:  # Nivel 7
+			tiempo_juego = 1.8
+			velocidad = 540
+		8:  # Nivel 8 - Máximo
+			tiempo_juego = 1.5
+			velocidad = 600  # Súper rápido, muy difícil de controlar
+
+	print("=== DIFICULTAD CONFIGURADA ===")
+	print("Nivel: ", nivel_dificultad)
+	print("Tiempo: ", tiempo_juego, " segundos")
+	print("Velocidad del pez: ", velocidad)
+	print("===============================")
+
 func _ready():
+	# Configurar dificultad por defecto (será sobrescrita por el sistema principal)
+	ajustar_parametros_dificultad()
+	
 	obstaculos = get_tree().get_nodes_in_group("Obstaculo")
 	iniciar_juego()
 
@@ -32,10 +78,11 @@ func iniciar_juego():
 	texto_instruccion.visible = true
 	texto_controles.visible = true
 
-	barra_tiempo.max_value = 8.0
+	# Usar el tiempo configurado por la dificultad
+	barra_tiempo.max_value = tiempo_juego
 	barra_tiempo.value = barra_tiempo.max_value
 	barra_tiempo.visible = true
-	timer_barra.start()
+	timer_barra.start(tiempo_juego)
 
 	if pez.area_entered.is_connected(_on_pez_area_entered):
 		pez.area_entered.disconnect(_on_pez_area_entered)
@@ -51,6 +98,7 @@ func _process(delta):
 		return
 
 	var input_y = Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
+	# Usar la velocidad configurada por la dificultad
 	pez.position.y += -input_y * velocidad * delta
 	pez.position.y = clamp(pez.position.y, limite_superior, limite_inferior)
 

@@ -4,6 +4,10 @@ extends Control
 # Señal que emite al terminar el juego
 signal finished(victory: bool)
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var time_limit = 5.0  # 🔧 Nivel 1 = 5 segundos
+
 # Secuencia correcta de teclas (se genera aleatoriamente)
 var correct_sequence = []
 var available_keys = ["A", "S", "D", "F"]
@@ -12,7 +16,6 @@ var game_active = true
 var game_played = false
 
 # Timer variables
-var time_limit = 5.0  # 5 segundos para completar
 var time_remaining = 0.0
 var timer_active = false
 
@@ -27,6 +30,32 @@ var timer_active = false
 # Texturas del gato
 @export var cat_messy_texture: Texture2D  # Gato con pelo desordenado
 @export var cat_neat_texture: Texture2D   # Gato con pelo peinado
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			time_limit = 5.0
+		2:
+			time_limit = 4.5
+		3:
+			time_limit = 4.0
+		4:
+			time_limit = 3.5
+		5:
+			time_limit = 3.0
+		6:
+			time_limit = 2.5
+		7:
+			time_limit = 2.0
+		8:
+			time_limit = 1.5
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo límite:", time_limit)
 
 func _ready():
 	# Solo permitir que el juego se ejecute una vez
@@ -44,7 +73,7 @@ func setup_game():
 	sequence_label.text = "Secuencia: " + " → ".join(correct_sequence)
 	input_label.text = "Tu entrada: "
 	
-	# Inicializar timer
+	# 🔧 Inicializar timer con tiempo según dificultad
 	time_remaining = time_limit
 	timer_active = true
 	update_timer_display()

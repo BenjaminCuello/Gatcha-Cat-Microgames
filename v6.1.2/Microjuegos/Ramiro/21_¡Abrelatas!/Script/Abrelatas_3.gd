@@ -1,6 +1,10 @@
 extends Control
 signal finished(success)
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var tiempo_limite = 3.0  # 🔧 Nivel 1 = 3 segundos
+
 var clicks_necesarios = 0
 var clicks_actuales = 0
 var terminado := false
@@ -9,6 +13,32 @@ var terminado := false
 @onready var texto = $TextoInstruccion
 @onready var gato = $Gato
 @onready var lata = $Lata
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			tiempo_limite = 3.0
+		2:
+			tiempo_limite = 2.8
+		3:
+			tiempo_limite = 2.5
+		4:
+			tiempo_limite = 2.2
+		5:
+			tiempo_limite = 2.0
+		6:
+			tiempo_limite = 1.8
+		7:
+			tiempo_limite = 1.5
+		8:
+			tiempo_limite = 1.2
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo límite:", tiempo_limite)
 
 func _ready():
 	set_process_input(true)
@@ -26,7 +56,8 @@ func _ready():
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatobocacerrada.png")
 	lata.texture = preload("res://Microjuegos/Ramiro/21_¡Abrelatas!/Sprites/lata.png")
 
-	timer.start(3.0)
+	# 🔧 Usar tiempo según dificultad
+	timer.start(tiempo_limite)
 
 	# Ocultar el texto después de 0.5 s
 	await get_tree().create_timer(0.5).timeout

@@ -1,6 +1,10 @@
 extends Node2D
 signal finished(success)
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var time_limit = 3.0  # 🔧 Nivel 1 = 3 segundos
+
 # Referencias a los nodos de la escena
 @onready var cat_sprite = $CatSprite
 @onready var ui_label = $UI/Label
@@ -26,7 +30,6 @@ var is_key_pressed = false
 # Variables para la animación de lamida
 var lick_animation_speed = 0.3  # Velocidad de alternancia entre sprites de lamida
 var lick_timer = 0.0
-var time_limit = 3.0  # Tiempo límite para presionar espacio (en segundos)
 var current_time_limit = 0.0
 var is_time_limit_active = false
 
@@ -39,6 +42,32 @@ var final_message_duration = 0.3  # Tiempo reducido para transición más rápid
 
 # NUEVA VARIABLE: Control para emitir la señal solo una vez
 var signal_emitted = false
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			time_limit = 3.0
+		2:
+			time_limit = 2.5
+		3:
+			time_limit = 2.0
+		4:
+			time_limit = 1.5
+		5:
+			time_limit = 1.2
+		6:
+			time_limit = 1.0
+		7:
+			time_limit = 0.8
+		8:
+			time_limit = 0.5
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo límite:", time_limit)
 
 func _ready():
 	# Configuramos el estado inicial
@@ -83,7 +112,7 @@ func setup_game():
 	# Configurar el sprite inicial (gato parado)
 	cat_sprite.texture = preload("res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/gato_stanby.png")
 	
-	# Configurar la interfaz
+	# 🔧 ACTUALIZAR interfaz con tiempo según dificultad
 	ui_label.text = "Manten ESPACIO por %.1f " % time_limit
 	
 	print("Minijuego iniciado - Estado: IDLE con límite de tiempo")
@@ -185,7 +214,6 @@ func start_licking():
 	
 	ui_label.text = "¡Mantén presionada la tecla!"
 	print("Iniciando lamida - Estado: LICKING")
-
 
 func complete_licking_success():
 	"""Completa el minijuego exitosamente"""

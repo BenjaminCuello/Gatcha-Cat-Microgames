@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c5ka8iwddoks5" path="res://Microjuegos/Emily/4_Gato guatón/Sprites/bad.png" id="5_kek77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4c57u"]
-radius = 62.0
-height = 244.0
+radius = 61.0
+height = 122.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 
@@ -37,6 +37,7 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_272bh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-4, -82)
 shape = SubResource("CapsuleShape2D_4c57u")
 
 [node name="GoodFood" type="Area2D" parent="."]

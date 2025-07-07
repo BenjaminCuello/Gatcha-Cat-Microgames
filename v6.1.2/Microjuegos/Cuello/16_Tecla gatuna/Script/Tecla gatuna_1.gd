@@ -8,15 +8,42 @@ var boca_abierta = false
 var TextoInstruccion_pos_original = Vector2.ZERO
 var puede_presionar := false
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var duracion_boca_abierta = 1.5
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			duracion_boca_abierta = 1.5
+		2:
+			duracion_boca_abierta = 1.3
+		3:
+			duracion_boca_abierta = 1.1
+		4:
+			duracion_boca_abierta = 1.0
+		5:
+			duracion_boca_abierta = 0.9
+		6:
+			duracion_boca_abierta = 0.8
+		7:
+			duracion_boca_abierta = 0.7
+		8:
+			duracion_boca_abierta = 0.6
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Duración boca abierta:", duracion_boca_abierta)
 
 func _ready():
-
 	for i in range(65, 91):
 		teclas_posibles.append(String.chr(i))  # Letras A–Z
 
 	for i in range(48, 58):
 		teclas_posibles.append(String.chr(i))  # Números 0–9
-
 
 	# Ocultar todos los elementos al inicio
 	$GatoAbierto.visible = false
@@ -31,8 +58,6 @@ func _ready():
 	# Empezar microjuego altiro
 	_on_timer_apertura_timeout()
 
-
-
 func _input(event):
 	if not puede_presionar or not boca_abierta:
 		return
@@ -46,7 +71,6 @@ func _input(event):
 			acierto()
 		else:
 			fallo()
-
 
 func acierto():
 	puede_presionar = false
@@ -120,12 +144,7 @@ func fallo():
 	$TextoInstruccion.text = "¡Fallaste!"
 	$TextoInstruccion.visible = true
 
-	
-
-	
 	emit_signal("finished", false)
-
-	
 
 func _on_timer_apertura_timeout() -> void:
 	boca_abierta = true
@@ -147,8 +166,8 @@ func _on_timer_apertura_timeout() -> void:
 	$GatoCerrado.visible = false
 	$GatoAbierto.visible = true
 
-	# Tiempo aleatorio entre 1.0, 1.2 y 1.5 segundos
-	var duracion = [1.0, 1.2, 1.5].pick_random()
+	# 🔧 CAMBIO: Usar duración según dificultad (no aleatoria)
+	var duracion = duracion_boca_abierta
 
 	$BarraTiempo.max_value = duracion
 	$BarraTiempo.value = duracion
@@ -161,8 +180,6 @@ func _on_timer_apertura_timeout() -> void:
 	$TimerCierre.start()
 
 	$MusicaMicrojuego.play()
-
-
 
 func _on_timer_cierre_timeout() -> void:
 	if boca_abierta:
@@ -184,6 +201,7 @@ func _process(delta):
 			$BarraTiempo.add_theme_color_override("fg_color", Color(1, 1, 0))  # Amarillo
 		else:
 			$BarraTiempo.add_theme_color_override("fg_color", Color(1, 0, 0))  # Rojo
+
 func _exit_tree():
 	if is_instance_valid($MusicaMicrojuego) and $MusicaMicrojuego.playing:
 		$MusicaMicrojuego.stop()
