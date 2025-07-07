@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var velocidad := 900.0
 var toques_realizados := 0
@@ -94,13 +96,16 @@ func _texto_ganar():
 	texto.text = "¡Ganaste!"
 	texto.visible = true
 	set_process(false)
+	emit_signal("microjuego_superado")
 	await get_tree().create_timer(1.0).timeout
+	
 	emit_signal("finished", true)
 
 func _texto_perder():
 	texto.text = "¡Perdiste!"
 	texto.visible = true
 	set_process(false)
+	emit_signal("microjuego_fallado")
 	await get_tree().create_timer(1.0).timeout
 	emit_signal("finished", false)
 func _mover_sol():

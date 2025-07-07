@@ -1,5 +1,6 @@
 extends Node2D
-
+signal microjuego_superado
+signal microjuego_fallado
 signal finished(success)
 
 var teclas_posibles = []
@@ -76,6 +77,9 @@ func acierto():
 
 	$TextoInstruccion.text = "¡Bien hecho!"
 	$TextoInstruccion.visible = true
+	
+	emit_signal("microjuego_superado")
+
 
 	emit_signal("finished", true)
 
@@ -122,7 +126,8 @@ func fallo():
 
 	
 
-	
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)
 
 	
@@ -167,10 +172,14 @@ func _on_timer_apertura_timeout() -> void:
 func _on_timer_cierre_timeout() -> void:
 	if boca_abierta:
 		fallo()
+		emit_signal("microjuego_fallado")
+
 
 func _on_timer_barra_timeout() -> void:
 	if boca_abierta:
 		fallo()
+		emit_signal("microjuego_fallado")
+
 
 func _process(delta):
 	# Actualizar barra de tiempo

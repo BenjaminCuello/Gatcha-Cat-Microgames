@@ -1,10 +1,13 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
 signal finished(success)
 
 @onready var cat = $pataGato/CollisionShape2D
 @onready var mouse = $SpriteRaton
 @onready var jugando = true
 @export var duracion_juego = 5.0
+
 
 func _process(delta):
 	
@@ -50,10 +53,15 @@ func agarrarRaton():
 		emit_signal("finished", true)
 		jugando = false
 		$TiempoRestante.stop()
+		emit_signal("microjuego_superado")
+
 	else:
 		print("No le diste")
+		emit_signal("microjuego_fallado")
+
 
 func _on_timer_timeout():
 	jugando = false
 	emit_signal("finished", false)
 	print("juego terminado por tiempo, perdiste")
+	emit_signal("microjuego_fallado")

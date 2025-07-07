@@ -1,5 +1,7 @@
 extends Node2D
 
+signal microjuego_superado
+signal microjuego_fallado
 signal finished(success)
 
 var duracion_juego := 8.0
@@ -34,8 +36,12 @@ func _on_GatitoVolador_finished(success):
 
 	if success:
 		$LabelInstruccion.text = "¡Ganaste! Sobreviviste al tiempo."
+		emit_signal("microjuego_superado")
+
 	else:
 		$LabelInstruccion.text = "¡Perdiste! Tocaste una tubería."
+		emit_signal("microjuego_fallado")
+
 
 	$LabelInstruccion.visible = true
 

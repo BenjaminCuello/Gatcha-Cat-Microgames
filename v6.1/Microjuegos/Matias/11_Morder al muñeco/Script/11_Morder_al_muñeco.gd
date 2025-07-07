@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 # Variables del juego
 var vida_muneco = 100
 var tiempo_restante = 5
@@ -178,6 +180,7 @@ func _on_timer_actualizacion_timeout():
 
 func _on_tiempo_juego_timeout():
 	finalizar_juego(false)
+	
 
 func finalizar_juego(victoria):
 	if terminado:
@@ -334,6 +337,12 @@ func mostrar_mensaje_final(victoria):
 	var tween = create_tween()
 	tween.tween_property(resultado, "modulate", Color(1, 1, 1, 1), 1.0)
 	
+	emit_signal("finished", true)
+	if victoria:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+		
 	emit_signal("finished", true)
 func animar_mordisco():
 	# Animación de mordisco durante el juego

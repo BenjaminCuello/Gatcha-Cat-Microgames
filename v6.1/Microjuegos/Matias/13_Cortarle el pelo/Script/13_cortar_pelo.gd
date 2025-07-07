@@ -3,6 +3,8 @@ extends Control
 
 # Señal que emite al terminar el juego
 signal finished(victory: bool)
+signal microjuego_superado
+signal microjuego_fallado
 
 # Secuencia correcta de teclas (se genera aleatoriamente)
 var correct_sequence = []
@@ -84,6 +86,9 @@ func _process(delta):
 		if time_remaining <= 0:
 			timer_active = false
 			end_game_timeout()
+			emit_signal("finished", false)
+			emit_signal("microjuego_fallado")
+
 
 func update_timer_display():
 	if timer_label:
@@ -175,6 +180,12 @@ func end_game(victory: bool):
 	
 	# Emitir la señal después de un breve delay
 	await get_tree().create_timer(1.5).timeout
+	emit_signal("finished", victory)
+	if victory:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
 	emit_signal("finished", victory)
 
 func animate_scissors_success():

@@ -1,5 +1,7 @@
 extends Control
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var atrapado := false
 var terminado := false
@@ -64,6 +66,8 @@ func victoria():
 	texto.visible = true
 	await get_tree().create_timer(1.2).timeout
 	emit_signal("finished", true)
+	emit_signal("microjuego_superado")
+
 
 func derrota():
 	if terminado:
@@ -74,3 +78,4 @@ func derrota():
 	texto.visible = true
 	await get_tree().create_timer(1.2).timeout
 	emit_signal("finished", false)
+	emit_signal("microjuego_fallado")

@@ -70,10 +70,13 @@ func _on_web_socket_client_message_received(message: String):
 
 		"match-start":
 			var opp_data = response.get("data", {}).get("opponent", {})
-			oponente = opp_data.get("playerName", "")
-			match_id = response.get("data", {}).get("matchId", "")
-			_sendToChatDisplay("\u00a1La partida ha comenzado con %s!" % oponente)
-			get_tree().change_scene_to_file("res://Microjuegos/Ramiro/Pescalo/MicroPesca.tscn")
+			Global.oponente = opp_data.get("playerName", "")
+			Global.match_id = response.get("data", {}).get("matchId", "")
+			
+			_sendToChatDisplay("¡La partida ha comenzado con %s!" % Global.oponente)
+			
+			get_tree().change_scene_to_file("res://EscenasGenerales/Multiplayer/Multiplayer_Scene.tscn")
+
 
 func get_player_name(response: Dictionary) -> String:
 	if response.has("data") and typeof(response["data"]) == TYPE_DICTIONARY:

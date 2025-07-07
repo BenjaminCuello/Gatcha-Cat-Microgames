@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var lado_actual := ""  # izquierda o derecha
 var esperando := false
@@ -101,6 +103,8 @@ func victoria():
 func _on_TimerRespuesta_timeout():
 	if esperando:
 		perder()
+		emit_signal("microjuego_fallado")
+
 
 func _on_TimerCambio_timeout():
 	nueva_instruccion()
@@ -108,8 +112,12 @@ func _on_TimerCambio_timeout():
 func _on_TimerJuego_timeout():
 	if esperando:
 		perder()
+		emit_signal("microjuego_fallado")
+
 	else:
 		victoria()
+		emit_signal("microjuego_superado")
+
 
 func _process(delta):
 	if $TimerJuego.time_left > 0:

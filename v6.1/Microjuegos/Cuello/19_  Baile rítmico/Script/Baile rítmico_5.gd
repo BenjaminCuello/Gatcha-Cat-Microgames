@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var teclas = []
 var teclas_mostradas = []
@@ -85,6 +87,7 @@ func acierto():
 			$Pose3.visible = true
 			await get_tree().create_timer(0.5).timeout
 			victoria()
+
 			return
 
 	index_actual += 1
@@ -103,6 +106,8 @@ func derrota():
 		controles.visible = false
 
 		await get_tree().create_timer(1.0).timeout
+		emit_signal("microjuego_fallado")
+
 		emit_signal("finished", false)
 
 func victoria():
@@ -115,13 +120,19 @@ func victoria():
 	texto.text = "¡Genial!"
 	texto.visible = true
 	await get_tree().create_timer(1.2).timeout
+	emit_signal("microjuego_superado")
+
 	emit_signal("finished", true)
 
 func _on_TimerRespuesta_timeout():
 	derrota()
+	emit_signal("microjuego_fallado")
+
 
 func _on_TimerBarra_timeout():
 	derrota()
+	emit_signal("microjuego_fallado")
+
 
 func _process(delta):
 	if $TimerBarra.time_left > 0:

@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 # Referencias a los nodos de la escena
 @onready var cat_sprite = $CatSprite
@@ -90,18 +92,16 @@ func _process(delta):
 	"""Actualiza el juego cada frame"""
 	# Si el juego ya terminó, emitir señal inmediatamente
 	if game_completed and not signal_emitted:
-		# Emitir señal SOLO UNA VEZ y marcar como emitida
 		signal_emitted = true
 		ui_label.visible = false
-		
-		# Usar call_deferred para emitir la señal
+
 		if current_state == GameState.SUCCESS:
 			call_deferred("emit_signal", "finished", true)
+			call_deferred("emit_signal", "microjuego_superado")
 		else:
 			call_deferred("emit_signal", "finished", false)
-		
-		print("Señal 'finished' emitida con resultado: ", current_state == GameState.SUCCESS)
-		return
+			call_deferred("emit_signal", "microjuego_fallado")
+
 	
 	# Si ya se emitió la señal, no hacer nada más
 	if game_completed:

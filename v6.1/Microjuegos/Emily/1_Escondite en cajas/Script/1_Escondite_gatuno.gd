@@ -1,5 +1,7 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var posicion_gato_inicial: int
 var indice_caja_con_gato: int = 0
@@ -145,10 +147,14 @@ func verificar_respuesta(numero: int):
 		texto_instruccion.text = "¡Correcto!"
 		await get_tree().create_timer(1.0).timeout
 		emit_signal("finished", true)
+		emit_signal("microjuego_superado")
+
 	else:
 		texto_instruccion.text = "¡Fallaste!"
 		await get_tree().create_timer(1.0).timeout
 		emit_signal("finished", false)
+		emit_signal("microjuego_fallado")
+
 
 func _on_TimerBarra_timeout():
 	if terminado:
@@ -159,6 +165,8 @@ func _on_TimerBarra_timeout():
 	texto_controles.visible = false
 	await get_tree().create_timer(1.0).timeout
 	emit_signal("finished", false)
+	emit_signal("microjuego_fallado")
+
 
 func _process(delta):
 	if not terminado and timer_barra.is_stopped() == false:

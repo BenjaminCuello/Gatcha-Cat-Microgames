@@ -1,5 +1,7 @@
 extends Control
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
 
 var clicks_necesarios = 0
 var clicks_actuales = 0
@@ -60,6 +62,7 @@ func _on_Timer_timeout():
 
 	if clicks_actuales < clicks_necesarios:
 		derrota()
+		
 	else:
 		victoria()
 
@@ -72,6 +75,8 @@ func victoria():
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatofelix.png")
 	await get_tree().create_timer(1.0).timeout
 	emit_signal("finished", true)
+	emit_signal("microjuego_superado")
+
 
 func derrota():
 	if terminado: return
@@ -82,3 +87,4 @@ func derrota():
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatotriste.png")
 	await get_tree().create_timer(1.0).timeout
 	emit_signal("finished", false)
+	emit_signal("microjuego_fallado")

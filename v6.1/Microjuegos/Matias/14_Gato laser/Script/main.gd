@@ -1,6 +1,8 @@
 extends Node2D
 
 signal finished(victory: bool)
+signal microjuego_superado
+signal microjuego_fallado
 
 @onready var cat = $Cat
 @onready var laser = $Laser
@@ -142,5 +144,9 @@ func end_game(victory: bool):
 	else:
 		instruction_label.text = "¡DERROTA! El gato se aburrió con el láser"
 		instruction_label.modulate = Color.RED
-	
+
 	emit_signal("finished", victory)
+	if victory:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
