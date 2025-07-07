@@ -5,6 +5,19 @@ var posicion_gato_inicial: int
 var indice_caja_con_gato: int = 0
 var fase_actual: String = "mostrar_gato"
 var terminado := false
+var duracion_juego := 6.0  # Duración por defecto
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	duracion_juego = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Escondite en cajas configurado con dificultad ", nivel, " - Duración: ", duracion_juego, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	duracion_juego = duracion
+	print("⏱️ Duración del Escondite en cajas configurada: ", duracion, "s")
 
 @onready var cajas = {
 	1: $Caja1,
@@ -48,9 +61,10 @@ func _ready():
 	numero2.visible = false
 	numero3.visible = false
 
-	barra_tiempo.max_value = 6.0
-	barra_tiempo.value = 6.0
+	barra_tiempo.max_value = duracion_juego
+	barra_tiempo.value = duracion_juego
 	barra_tiempo.visible = true
+	timer_barra.wait_time = duracion_juego
 	timer_barra.start()
 	timer_apertura.start(1.0)
 

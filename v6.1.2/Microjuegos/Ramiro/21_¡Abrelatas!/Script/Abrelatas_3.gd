@@ -4,6 +4,19 @@ signal finished(success)
 var clicks_necesarios = 0
 var clicks_actuales = 0
 var terminado := false
+var duracion_juego := 3.0  # Duración por defecto
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	duracion_juego = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Abrelatas configurado con dificultad ", nivel, " - Duración: ", duracion_juego, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	duracion_juego = duracion
+	print("⏱️ Duración del Abrelatas configurada: ", duracion, "s")
 
 @onready var timer = $Timer
 @onready var texto = $TextoInstruccion
@@ -26,7 +39,7 @@ func _ready():
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatobocacerrada.png")
 	lata.texture = preload("res://Microjuegos/Ramiro/21_¡Abrelatas!/Sprites/lata.png")
 
-	timer.start(3.0)
+	timer.start(duracion_juego)
 
 	# Ocultar el texto después de 0.5 s
 	await get_tree().create_timer(0.5).timeout

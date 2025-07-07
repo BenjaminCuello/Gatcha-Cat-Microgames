@@ -7,6 +7,19 @@ var tecla_actual = ""
 var boca_abierta = false
 var TextoInstruccion_pos_original = Vector2.ZERO
 var puede_presionar := false
+var duracion_personalizada = 0.0  # Para dificultad personalizada
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	duracion_personalizada = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Tecla gatuna configurada con dificultad ", nivel, " - Duración: ", duracion_personalizada, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	duracion_personalizada = duracion
+	print("⏱️ Duración de Tecla gatuna configurada: ", duracion, "s")
 
 
 func _ready():
@@ -147,8 +160,8 @@ func _on_timer_apertura_timeout() -> void:
 	$GatoCerrado.visible = false
 	$GatoAbierto.visible = true
 
-	# Tiempo aleatorio entre 1.0, 1.2 y 1.5 segundos
-	var duracion = [1.0, 1.2, 1.5].pick_random()
+	# Tiempo aleatorio entre 1.0, 1.2 y 1.5 segundos, o usar duración personalizada
+	var duracion = duracion_personalizada if duracion_personalizada > 0 else [1.0, 1.2, 1.5].pick_random()
 
 	$BarraTiempo.max_value = duracion
 	$BarraTiempo.value = duracion
