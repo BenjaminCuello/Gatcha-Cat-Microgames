@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://h840madvao4i"]
 
-[ext_resource type="Script" uid="uid://bfkmuetanttve" path="res://EscenasGenerales/Menus/MenuPrincipal.gd" id="1_r0cbf"]
+[ext_resource type="Script" uid="uid://bfkmuetanttve" path="res://Online/EscenasGenerales/Menus/MenuPrincipal.gd" id="1_r0cbf"]
 [ext_resource type="Texture2D" uid="uid://ddywhan1rjexl" path="res://Fondos/Fondoprincipal.png" id="2_htm4s"]
 [ext_resource type="Texture2D" uid="uid://cs7n51v67tnqt" path="res://SpritesGenerales/titulo.png" id="3_nd5xr"]
 [ext_resource type="AudioStream" uid="uid://duod7cj3gdwv1" path="res://AudiosGenerales/MusicaMenus/MusicaMenuPrincipal.mp3" id="4_jfdov"]

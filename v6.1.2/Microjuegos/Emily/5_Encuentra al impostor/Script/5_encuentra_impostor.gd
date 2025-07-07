@@ -30,7 +30,8 @@ func _ready():
 
 func iniciar_juego():
 	texto_instruccion.text = "Encuentra al gato"
-	texto_controles.text = "Usa ← → para mover. Espacio para elegir."
+	texto_controles.text = "Usa ← → para mover. 
+	Espacio para elegir."
 	texto_instruccion.visible = true
 	texto_controles.visible = true
 

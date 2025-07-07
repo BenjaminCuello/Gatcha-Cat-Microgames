@@ -1,47 +1,57 @@
 extends Node2D
+signal finished(success)
 
 @onready var crosshair = $Crosshair
 @onready var target = $Target
-@onready var timer = $GameTimer
-@onready var label = $Label
-@onready var time_bar = $TimeBar
+@onready var timer = $TiempoRestante
+@onready var label = $Instruccion
+@onready var label_controles = $TextoControles
+@onready var time_bar = $barraDeTiempo
 
 var crosshair_speed = 1000
 var target_speed = 500
 var screen_size
 var direction = Vector2(1, 0)
-var game_over = false
+var jugando = true
+@export var duracion_juego = 5.0
 
 func _ready():
+	randomize()
+	duracion_juego = [3.0, 4.0, 5.0].pick_random()
+	
 	screen_size = get_viewport_rect().size
 	reset_crosshair()
 	reset_target()
 
-	# Configurar el temporizador
-	timer.wait_time = 9  # segundos
-	timer.one_shot = true
-	timer.start()
+	await get_tree().create_timer(1.0).timeout
+	
+	label.visible = true
+	label_controles.visible = true  # Asume que el texto ya está configurado en el editor
 
 	# Configurar barra de tiempo
-	time_bar.max_value = timer.wait_time
-	time_bar.value = timer.wait_time
+	time_bar.max_value = duracion_juego
+	time_bar.value = duracion_juego
 
-	# Señales
-	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
-	label.text = "APUNTA Y DISPARA"
+	# Conectar la señal del timer
+	timer.timeout.connect(_on_timer_timeout)
+	timer.start(duracion_juego)
 
 func _process(delta):
-	if game_over:
+	if Input.is_key_pressed(KEY_ESCAPE):
+		return  # Ignora ESC
+
+	if not jugando:
 		return
 
 	move_crosshair(delta)
 	move_target(delta)
 
 	# Actualizar barra de tiempo
-	time_bar.value = timer.time_left
+	if timer.time_left >= 0:
+		time_bar.value = timer.time_left
 
-	# Disparo
-	if Input.is_action_just_pressed("ui_accept"):
+	# Disparo con SPACE o Enter
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_SPACE)) and jugando:
 		check_hit()
 
 func move_crosshair(delta):
@@ -59,27 +69,43 @@ func move_target(delta):
 		direction.x *= -1
 
 func check_hit():
-	if game_over:
+	if not jugando:
 		return
+		
 	var distance = crosshair.position.distance_to(target.position)
 	if distance < 190:
-		end_game("🎯 ¡Victoria! Le diste al blanco")
+		# VICTORIA - Le diste al blanco
+		jugando = false
+		timer.stop()
+		target.visible = false
+		label_controles.visible = false  # Ocultar controles
+		label.text = "¡Lo atrapaste!"
+		label.visible = true
+		print("¡Victoria! Le diste al blanco")
+		emit_signal("finished", true)
 	else:
-		end_game("❌ ¡Fallaste el disparo!")
+		# DERROTA - Fallaste el disparo
+		jugando = false
+		timer.stop()
+		target.visible = false
+		label_controles.visible = false  # Ocultar controles
+		label.text = "¡Fallaste!"
+		label.visible = true
+		print("Fallaste el disparo")
+		emit_signal("finished", false)
 
 func _on_timer_timeout():
-	end_game("⏰ ¡Tiempo agotado! Perdiste")
+	if not jugando:
+		return
+	jugando = false
+	label_controles.visible = false  # Ocultar controles
+	label.text = "¡Tiempo agotado!"
+	label.visible = true
+	emit_signal("finished", false)
+	print("juego terminado por tiempo, perdiste")
 
 func reset_crosshair():
 	crosshair.position = screen_size / 2
 
 func reset_target():
-	target.position = Vector2(0, 200)
-
-func end_game(message):
-	if game_over:
-		return
-	game_over = true
-	label.text = message
-	target.visible = false
-	timer.stop()
+	target.position = Vector2(100, 200)

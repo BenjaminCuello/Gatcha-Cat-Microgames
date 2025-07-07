@@ -9,9 +9,13 @@ signal finished(victory: bool)
 @onready var cat_satisfied = $GameArea/CatSatisfied  # NUEVO
 @onready var bar_fill = $UIContainer/GripBar/BarFill
 @onready var grip_bar = $UIContainer/GripBar
-@onready var instructions = $UIContainer/Instructions
+@onready var time_bar = $UIContainer/TimeBar/BarFill  # NUEVO
+@onready var time_bar_container = $UIContainer/TimeBar  # NUEVO
+@onready var instructions_label = $UIContainer/InstructionsLabel  # NUEVO
+@onready var controls_label = $UIContainer/ControlsLabel  # NUEVO
 @onready var game_over_screen = $UIContainer/GameOverScreen
 @onready var result_label = $UIContainer/GameOverScreen/ResultLabel
+@onready var game_timer = $GameTimer  # NUEVO
 
 var game_started = false
 var game_finished = false
@@ -24,6 +28,7 @@ var defeat_threshold = 5.0
 var shake_intensity = 0.0
 var original_cat_position: Vector2
 var original_owner_position: Vector2
+var time_limit = 3.0  # Tiempo máximo en segundos
 
 func _ready():
 	setup_game()
@@ -36,9 +41,13 @@ func setup_game():
 	cat_falling.visible = false
 	cat_satisfied.visible = false
 	
-	instructions.text = "¡Mantén presionada la BARRA ESPACIADORA!"
+	# Configurar etiquetas
+	instructions_label.text = "¡Mantén la barra de fuerza alta para ganar!"
+	controls_label.text = "Controles: Presiona la BARRA ESPACIADORA para agarrar."
+	
 	game_over_screen.visible = false
 	update_grip_bar()
+	update_time_bar(time_limit)  # Configurar tiempo inicial en la barra
 	
 	await get_tree().create_timer(1.0).timeout
 	start_game()
@@ -47,15 +56,26 @@ func start_game():
 	if game_finished:
 		return
 	game_started = true
+	print("Game started")  # Depuración
+	
+	# Configurar el temporizador del juego
+	game_timer.wait_time = time_limit
+	game_timer.start()
 
 func _process(delta):
 	if not game_started or game_finished:
 		return
 	
-	if Input.is_action_pressed("grip"):
+	# Actualizar la barra de tiempo visual
+	update_time_bar(game_timer.time_left)
+	
+	# Detectar si se presiona la barra espaciadora directamente
+	if Input.is_key_pressed(KEY_SPACE):  # Detectar directamente la tecla
+		print("Key SPACE detected")  # Depuración
 		grip_strength += grip_gain_rate * delta
 		shake_intensity = 2.0
 	else:
+		print("Key SPACE NOT detected")  # Depuración
 		grip_strength -= grip_decay_rate * delta
 		shake_intensity = 5.0
 	
@@ -75,6 +95,17 @@ func update_grip_bar():
 	else:
 		bar_fill.color = Color.RED
 
+func update_time_bar(time_left):
+	var fill_percentage = time_left / time_limit
+	time_bar.size.x = time_bar_container.size.x * fill_percentage
+	
+	if fill_percentage > 0.7:
+		time_bar.color = Color.GREEN
+	elif fill_percentage > 0.3:
+		time_bar.color = Color.YELLOW
+	else:
+		time_bar.color = Color.RED
+
 func apply_shake_effect(delta):
 	if shake_intensity > 0:
 		var shake_offset = Vector2(
@@ -89,8 +120,6 @@ func apply_shake_effect(delta):
 func check_game_conditions():
 	if grip_strength >= victory_threshold:
 		end_game(true)
-	elif grip_strength <= defeat_threshold:
-		end_game(false)
 
 func end_game(victory: bool):
 	if game_finished:
@@ -98,6 +127,9 @@ func end_game(victory: bool):
 		
 	game_finished = true
 	game_started = false
+	
+	# Detener el temporizador
+	game_timer.stop()
 	
 	if victory:
 		result_label.text = "¡VICTORIA!\n¡El gato logró comerse la hamburguesa!"
@@ -166,3 +198,8 @@ func _animate_falling_arc(progress: float):
 	var current_y = start_pos.y + arc_height * sin(progress * PI) + (screen_height + 100) * (progress * progress)
 	
 	cat_falling.position = Vector2(current_x, current_y)
+
+# NUEVO: Manejar el temporizador
+func _on_GameTimer_timeout():
+	print("Time out! Game over.")  # Depuración
+	end_game(false)
