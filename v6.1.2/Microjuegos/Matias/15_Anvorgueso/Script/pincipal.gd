@@ -29,6 +29,18 @@ var shake_intensity = 0.0
 var original_cat_position: Vector2
 var original_owner_position: Vector2
 var time_limit = 3.0  # Tiempo máximo en segundos
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	time_limit = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Anvorgueso configurado con dificultad ", nivel, " - Duración: ", time_limit, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	time_limit = duracion
+	print("⏱️ Duración del Anvorgueso configurada: ", duracion, "s")
 
 func _ready():
 	setup_game()

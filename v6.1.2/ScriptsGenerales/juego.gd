@@ -1,9 +1,21 @@
 extends Node
 
+# Enum para modos de juego
+enum ModoJuego {
+	HISTORIA,
+	INFINITO
+}
+
 # Vida y control de microjuegos
 var vidas = 3
 var microjuego_actual = 0
 var max_microjuegos = 30
+var modo_juego_actual = ModoJuego.HISTORIA
+
+# Sistema de dificultad para modo infinito
+var microjuegos_jugados = {}  # Diccionario que rastrea cuántas veces se ha jugado cada microjuego
+var microjuegos_disponibles = []  # Lista de microjuegos disponibles en la ronda actual
+var ronda_actual = 1  # Contador de rondas en modo infinito
 
 # Lista de microjuegos disponibles
 var lista_microjuegos = [
@@ -29,11 +41,90 @@ var lista_microjuegos = [
 	"res://Microjuegos/Ramiro/21_¡Abrelatas!/Escena/Abrelatas (3).tscn",
 	"res://Microjuegos/Ramiro/22_Atrápalo/Escena/Atrapalo (6).tscn"
 ]
-# Elegir uno al azar
+# Elegir uno al azar sin repetir
 func obtener_microjuego_aleatorio() -> String:
-	return lista_microjuegos.pick_random()
+	if modo_juego_actual == ModoJuego.HISTORIA:
+		return obtener_microjuego_historia()
+	else:
+		return obtener_microjuego_infinito()
+
+# Obtener microjuego para modo historia (sin repetir)
+func obtener_microjuego_historia() -> String:
+	# Si no hay microjuegos disponibles, reiniciar lista
+	if microjuegos_disponibles.is_empty():
+		microjuegos_disponibles = lista_microjuegos.duplicate()
+	
+	# Elegir uno al azar y quitarlo de la lista
+	var indice = randi() % microjuegos_disponibles.size()
+	var microjuego_elegido = microjuegos_disponibles[indice]
+	microjuegos_disponibles.remove_at(indice)
+	
+	return microjuego_elegido
+
+# Obtener microjuego para modo infinito (con sistema de rondas)
+func obtener_microjuego_infinito() -> String:
+	# Si no hay microjuegos disponibles, reiniciar lista y aumentar ronda
+	if microjuegos_disponibles.is_empty():
+		microjuegos_disponibles = lista_microjuegos.duplicate()
+		ronda_actual += 1
+		print("🔄 Nueva ronda: ", ronda_actual)
+	
+	# Elegir uno al azar y quitarlo de la lista
+	var indice = randi() % microjuegos_disponibles.size()
+	var microjuego_elegido = microjuegos_disponibles[indice]
+	microjuegos_disponibles.remove_at(indice)
+	
+	# Actualizar contador de veces jugado
+	if not microjuegos_jugados.has(microjuego_elegido):
+		microjuegos_jugados[microjuego_elegido] = 0
+	microjuegos_jugados[microjuego_elegido] += 1
+	
+	return microjuego_elegido
+
+# Obtener nivel de dificultad para un microjuego
+func obtener_nivel_dificultad(microjuego: String) -> int:
+	if modo_juego_actual == ModoJuego.HISTORIA:
+		return 1  # Siempre nivel 1 en modo historia
+	else:
+		# En modo infinito, la dificultad aumenta con cada ronda
+		if microjuegos_jugados.has(microjuego):
+			return min(microjuegos_jugados[microjuego], 5)  # Máximo nivel 5
+		else:
+			return 1
+
+# Obtener duración según nivel de dificultad
+func obtener_duracion_por_dificultad(nivel: int) -> float:
+	match nivel:
+		1:
+			return 10.0
+		2:
+			return 8.0
+		3:
+			return 6.0
+		4:
+			return 4.0
+		5:
+			return 2.0
+		_:
+			return 10.0  # Por defecto
 
 # Reiniciar el juego
 func reiniciar():
 	vidas = 3
 	microjuego_actual = 0
+	microjuegos_jugados.clear()
+	microjuegos_disponibles.clear()
+	ronda_actual = 1
+
+# Configurar modo de juego
+func configurar_modo(modo: ModoJuego):
+	modo_juego_actual = modo
+	reiniciar()
+	print("🎮 Modo configurado: ", "HISTORIA" if modo == ModoJuego.HISTORIA else "INFINITO")
+
+# Verificar si el juego debe terminar
+func debe_terminar_juego() -> bool:
+	if modo_juego_actual == ModoJuego.HISTORIA:
+		return microjuego_actual >= max_microjuegos
+	else:
+		return false  # Modo infinito nunca termina por límite de microjuegos

@@ -11,6 +11,18 @@ signal finished(success) # señal que se emite al terminar el microjuego (true s
 
 var juego_activo := true # controla si el juego esta en curso o ya termino
 var duracion_juego := 5.0 # segundos que dura el microjuego
+var nivel_dificultad := 1 # nivel de dificultad (1-5)
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	duracion_juego = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Microjuego configurado con dificultad ", nivel, " - Duración: ", duracion_juego, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	duracion_juego = duracion
+	print("⏱️ Duración del microjuego configurada: ", duracion, "s")
 
 func _ready():
 	# mostrar instruccion inicial

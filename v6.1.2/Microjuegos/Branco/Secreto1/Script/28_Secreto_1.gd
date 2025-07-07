@@ -10,6 +10,18 @@ signal finished(success)
 @export var duracion_juego := 5.0
 var juego_activo := true
 var contador_espacio := 0
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	duracion_juego = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Secreto 1 configurado con dificultad ", nivel, " - Duración: ", duracion_juego, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	duracion_juego = duracion
+	print("⏱️ Duración del Secreto 1 configurada: ", duracion, "s")
 
 func _ready():
 	juego_activo = true

@@ -13,8 +13,8 @@ func _input(event):
 func _on_boton_historia_pressed() -> void:
 	print("¡Botón HISTORIA presionado!")
 
-	# Reiniciar vidas y progreso
-	Juego.reiniciar()
+	# Configurar modo historia
+	Juego.configurar_modo(Juego.ModoJuego.HISTORIA)
 
 	# Ir a la cinemática
 	get_tree().change_scene_to_file("res://EscenasGenerales/Cinematicas/CinematicaGatoDurmiendo.tscn")
@@ -22,7 +22,12 @@ func _on_boton_historia_pressed() -> void:
 
 func _on_boton_infinito_pressed() -> void:
 	print("¡Botón MODO INFINITO presionado!")
-	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
+	
+	# Configurar modo infinito
+	Juego.configurar_modo(Juego.ModoJuego.INFINITO)
+	
+	# Ir directamente al juego sin cinemática
+	get_tree().change_scene_to_file("res://EscenasGenerales/EscenaVidasNumeroMicrojuego/MicroInicioContadorVidas.tscn")
 
 func _on_boton_multijugador_pressed() -> void:
 	print("¡Botón MULTIJUGADOR presionado!")

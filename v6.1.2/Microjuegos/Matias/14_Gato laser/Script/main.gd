@@ -12,6 +12,18 @@ var game_duration = 5.0
 var laser_contact_time = 0.0
 var max_laser_contact = 3.0
 var game_active = true
+var nivel_dificultad := 1
+
+# Configurar dificultad del microjuego
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	game_duration = Juego.obtener_duracion_por_dificultad(nivel)
+	print("🎯 Gato láser configurado con dificultad ", nivel, " - Duración: ", game_duration, "s")
+
+# Método alternativo para configurar duración directamente
+func set_duracion_juego(duracion: float):
+	game_duration = duracion
+	print("⏱️ Duración del Gato láser configurada: ", duracion, "s")
 
 # Sistema de proximidad sensible
 var proximity_threshold_close = 100.0
