@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cja2xa3bgn8i4"]
 
 [ext_resource type="Script" uid="uid://kxdno7xrt0g4" path="res://Microjuegos/Cuello/19_  Baile rítmico/Script/Baile rítmico_5.gd" id="1_ang40"]
-[ext_resource type="Texture2D" uid="uid://cv88ljj5o5ye0" path="res://Fondos/CalleCiudad.png" id="2_bfn6k"]
+[ext_resource type="Texture2D" uid="uid://4q62okexlrq6" path="res://Fondos/CalleCiudad.png" id="2_bfn6k"]
 [ext_resource type="Texture2D" uid="uid://djp6d6klfaoya" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoQuieto.png" id="3_6r8hg"]
 [ext_resource type="Texture2D" uid="uid://dxfao4myf16fn" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Sombrero.png" id="4_m1g4w"]
 [ext_resource type="Texture2D" uid="uid://2o0c24klk4d2" path="res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose1.png" id="5_7rcwr"]

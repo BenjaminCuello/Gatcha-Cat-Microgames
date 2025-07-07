@@ -4,7 +4,6 @@ signal finished(success)
 # Referencias a los nodos de la escena
 @onready var cat_sprite = $CatSprite
 @onready var ui_label = $UI/Label
-@onready var label_controles = $UI/TextoControles  # Nuevo nodo para controles
 @onready var game_timer = $GameTimer
 
 # Estados del juego
@@ -74,7 +73,6 @@ func setup_game():
 	
 	# Mostrar el label al reiniciar
 	ui_label.visible = true
-	label_controles.visible = true  # Mostrar controles
 	
 	# Configurar límite de tiempo
 	current_time_limit = 0.0
@@ -84,7 +82,7 @@ func setup_game():
 	cat_sprite.texture = preload("res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/gato_stanby.png")
 	
 	# Configurar la interfaz
-	ui_label.text = "Manten ESPACIO por %.1f " % time_limit
+	ui_label.text = "¡Presiona ESPACIO rápido! Tienes %.1f segundos" % time_limit
 	
 	print("Minijuego iniciado - Estado: IDLE con límite de tiempo")
 	
@@ -95,7 +93,6 @@ func _process(delta):
 		# Emitir señal SOLO UNA VEZ y marcar como emitida
 		signal_emitted = true
 		ui_label.visible = false
-		label_controles.visible = false  # Ocultar controles
 		
 		# Usar call_deferred para emitir la señal
 		if current_state == GameState.SUCCESS:
@@ -128,7 +125,7 @@ func handle_idle_state():
 		
 		# Mostrar tiempo restante en la UI
 		var time_remaining = time_limit - current_time_limit
-		ui_label.text = "Manten ESPACIO por %.1f "  % time_remaining
+		ui_label.text = "¡Presiona ESPACIO rápido! Tiempo restante: %.1f segundos" % time_remaining
 		
 		# Verificar si se acabó el tiempo PRIMERO
 		if current_time_limit >= time_limit:
@@ -151,7 +148,7 @@ func handle_licking_state(delta):
 		
 		# Actualizar interfaz con progreso
 		var progress = (current_lick_time / lick_duration) * 100
-		ui_label.text = "¡Sigue así!  %.1f%%" % progress
+		ui_label.text = "¡Sigue así! Progreso: %.1f%%" % progress
 		
 		# Verificar si completó el tiempo requerido
 		if current_lick_time >= lick_duration:
@@ -216,3 +213,40 @@ func complete_licking_failed():
 	ui_label.visible = true  # Asegurar que sea visible
 	
 	print("Falló - Juego completado")
+
+# NUEVA FUNCIÓN: Para terminar el minijuego desde afuera si es necesario
+func force_finish_minigame():
+	"""Función para forzar el final del minijuego desde el sistema padre"""
+	if not signal_emitted:
+		signal_emitted = true
+		ui_label.visible = false
+		call_deferred("emit_signal", "finished", current_state == GameState.SUCCESS)
+		print("Minijuego forzado a terminar")
+
+func show_game_completion_alert(success: bool):
+	"""Función removida - ya no se usan alertas"""
+	pass
+
+func _on_alert_confirmed():
+	"""Función removida - ya no se usan alertas"""
+	pass
+
+# Función auxiliar para configurar las acciones de entrada
+func _input(event):
+	"""Maneja eventos de entrada adicionales si es necesario"""
+	# Esta función puede usarse para manejar inputs más complejos
+	# Por ahora, el manejo principal está en _process()
+	pass
+
+# Funciones de depuración (opcionales)
+func _on_debug_reset_pressed():
+	"""Botón de debug para reiniciar el juego"""
+	setup_game()
+
+func _on_debug_success_pressed():
+	"""Botón de debug para simular éxito"""
+	complete_licking_success()
+
+func _on_debug_fail_pressed():
+	"""Botón de debug para simular fallo"""
+	complete_licking_failed()

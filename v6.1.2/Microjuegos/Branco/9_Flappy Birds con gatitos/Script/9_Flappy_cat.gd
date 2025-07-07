@@ -35,7 +35,7 @@ func _on_GatitoVolador_finished(success):
 	if success:
 		$LabelInstruccion.text = "¡Ganaste! Sobreviviste al tiempo."
 	else:
-		$LabelInstruccion.text = "¡Perdiste! Tocaste una tubería."
+		$LabelInstruccion.text = "¡Perdiste! Tocaste un arbol."
 
 	$LabelInstruccion.visible = true
 

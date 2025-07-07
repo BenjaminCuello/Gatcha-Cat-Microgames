@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4q62okexlrq6"
-path="res://.godot/imported/CalleCiudad.png-0a110be3cf5208f66b3e2f7b3eb0b9e3.ctex"
+uid="uid://d1f7607ekk16d"
+path="res://.godot/imported/ola1.png-0e1fdd1538cc4ee117ade4d199ff2810.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fondos/CalleCiudad.png"
-dest_files=["res://.godot/imported/CalleCiudad.png-0a110be3cf5208f66b3e2f7b3eb0b9e3.ctex"]
+source_file="res://Microjuegos/Branco/8_Surfeando/Sprites/ola1.png"
+dest_files=["res://.godot/imported/ola1.png-0e1fdd1538cc4ee117ade4d199ff2810.ctex"]
 
 [params]
 

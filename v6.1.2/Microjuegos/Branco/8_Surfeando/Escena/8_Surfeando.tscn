@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl24ao0tv3omh"]
+[gd_scene load_steps=6 format=3 uid="uid://bl24ao0tv3omh"]
 
 [ext_resource type="Script" uid="uid://cx2qw6apklboo" path="res://Microjuegos/Branco/8_Surfeando/Script/8_Surfeando.gd" id="1_xix88"]
-[ext_resource type="Texture2D" uid="uid://d4csp17ms66ue" path="res://Microjuegos/Branco/8_Surfeando/Sprites/istockphoto-2147687404-1024x1024.jpg" id="2_3w612"]
-[ext_resource type="Texture2D" uid="uid://dmr310ttwvit1" path="res://Microjuegos/Branco/8_Surfeando/Sprites/GatoSurf.png" id="3_3w612"]
+[ext_resource type="Texture2D" uid="uid://b7dhuahvfv4px" path="res://Microjuegos/Branco/8_Surfeando/Sprites/fondomar.png" id="2_3w612"]
+[ext_resource type="Texture2D" uid="uid://bwle2ofom0nwb" path="res://Microjuegos/Branco/8_Surfeando/Sprites/GataConi.png" id="3_3w612"]
+[ext_resource type="Texture2D" uid="uid://d1f7607ekk16d" path="res://Microjuegos/Branco/8_Surfeando/Sprites/ola1.png" id="3_ksvx0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksvx0"]
 bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
@@ -15,9 +16,14 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_3w612")
 
+[node name="Olas" type="Sprite2D" parent="."]
+position = Vector2(960.5, 541)
+scale = Vector2(1.87402, 1.87153)
+texture = ExtResource("3_ksvx0")
+
 [node name="GatoSurfeando" type="Sprite2D" parent="."]
 position = Vector2(923, 644)
-scale = Vector2(0.298333, 0.295)
+scale = Vector2(2, 1.98)
 texture = ExtResource("3_3w612")
 
 [node name="TimerApertura" type="Timer" parent="."]
@@ -66,6 +72,11 @@ text = "¡Atento a las Teclas!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TimerOlas" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="timeout" from="TimerApertura" to="." method="_on_TimerApertura_timeout"]
 [connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]
 [connection signal="timeout" from="TimerRespuesta" to="." method="_on_TimerRespuesta_timeout"]
+[connection signal="timeout" from="TimerOlas" to="." method="_on_TimerOlas_timeout"]

@@ -30,9 +30,10 @@ func _input(event):
 	if not juego_activo:
 		return
 
-	if event is InputEventKey and event.pressed:
+	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_A:
 			pulsaciones_totales += 1
+
 
 			if pulsaciones_totales >= pulsaciones_por_carta * (cartas_lanzadas + 1):
 				lanzar_carta()

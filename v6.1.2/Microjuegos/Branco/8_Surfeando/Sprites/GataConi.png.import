@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4q62okexlrq6"
-path="res://.godot/imported/CalleCiudad.png-0a110be3cf5208f66b3e2f7b3eb0b9e3.ctex"
+uid="uid://bwle2ofom0nwb"
+path="res://.godot/imported/GataConi.png-f36e1666fe4141b38dece9ded4bb4175.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fondos/CalleCiudad.png"
-dest_files=["res://.godot/imported/CalleCiudad.png-0a110be3cf5208f66b3e2f7b3eb0b9e3.ctex"]
+source_file="res://Microjuegos/Branco/8_Surfeando/Sprites/GataConi.png"
+dest_files=["res://.godot/imported/GataConi.png-f36e1666fe4141b38dece9ded4bb4175.ctex"]
 
 [params]
 

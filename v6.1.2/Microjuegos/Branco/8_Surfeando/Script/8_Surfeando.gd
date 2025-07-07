@@ -7,9 +7,16 @@ var flechas_mostradas = []
 var index_actual := 0
 var esperando_input := false
 
+
 @onready var texto = $TextoInstruccion
 @onready var controles = $TextoControles
 @onready var gato = $GatoSurfeando
+@onready var olas = $Olas
+@onready var timer_olas = $TimerOlas
+
+var textura_ola1 : Texture2D
+var textura_ola2 : Texture2D
+var usando_ola1 := true
 
 func _ready():
 	gato.visible = true
@@ -17,6 +24,16 @@ func _ready():
 	texto.visible = true
 	controles.visible = false
 
+# Carga las texturas
+	textura_ola1 = load("res://Microjuegos/Branco/8_Surfeando/Sprites/ola1.png")
+	textura_ola2 = load("res://Microjuegos/Branco/8_Surfeando/Sprites/ola2.png")
+
+	# Establece la textura inicial
+	olas.texture = textura_ola1
+
+	# Conecta el timer si no lo hiciste desde el editor
+	timer_olas.timeout.connect(_on_TimerOlas_timeout)
+	
 	$BarraTiempo.max_value = 6.0
 	$BarraTiempo.value = 6.0
 	$BarraTiempo.visible = true
@@ -102,6 +119,13 @@ func _on_TimerRespuesta_timeout():
 
 func _on_TimerBarra_timeout():
 	derrota()
+	
+func _on_TimerOlas_timeout():
+	if usando_ola1:
+		olas.texture = textura_ola2
+	else:
+		olas.texture = textura_ola1
+	usando_ola1 = !usando_ola1
 
 func _process(delta):
 	if $TimerBarra.time_left > 0:

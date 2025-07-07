@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://3t1m2fj48puh"]
 
 [ext_resource type="Script" uid="uid://bsjy4aiqcsgac" path="res://Microjuegos/Cuello/18_Gato equilibrio/Script/Gato equilibrio_2.gd" id="1_rb7ae"]
-[ext_resource type="Texture2D" uid="uid://dbalkb2p84xpg" path="res://Fondos/Circo.jpg" id="2_yviub"]
+[ext_resource type="Texture2D" uid="uid://dbuxsk0un1jta" path="res://Fondos/Circo.png" id="2_ra6ri"]
 [ext_resource type="Texture2D" uid="uid://bfyov4l7rb265" path="res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato equilibrio.png" id="3_k6vnf"]
 [ext_resource type="Texture2D" uid="uid://06jg46vywuyi" path="res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato izq .png" id="4_g0nnm"]
 [ext_resource type="Texture2D" uid="uid://d38renn5ssbdv" path="res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato der .png" id="5_xlodk"]
@@ -17,7 +17,7 @@ script = ExtResource("1_rb7ae")
 offset_top = 1.0
 offset_right = 1918.0
 offset_bottom = 1080.0
-texture = ExtResource("2_yviub")
+texture = ExtResource("2_ra6ri")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
