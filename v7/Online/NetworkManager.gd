@@ -24,14 +24,15 @@ signal match_started(data)
 signal game_data_received(data)
 signal game_ended(data)
 signal rematch_requested(data)
-signal match_quit(data)  # Se emite cuando el OPONENTE salió (close-match recibido)
+signal match_quit(data)
 signal player_list_updated(players)
 signal chat_message_received(sender, message)
-signal private_message_received(sender, player_id, message)  # ← NUEVA SEÑAL
+signal private_message_received(sender, player_id, message)
 signal message_received(data)
+signal connection_status_changed(connected: bool)
 
 func _ready():
-	print("🔗 WebSocketManager Singleton iniciado")
+	print("🔗 NetworkManager iniciado")
 	websocket = WebSocketPeer.new()
 	connect_to_server()
 
@@ -51,6 +52,7 @@ func _process(_delta):
 				is_connected = true
 				connection_attempts = 0
 				print("✅ Conectado al servidor WebSocket!")
+				emit_signal("connection_status_changed", true)
 				on_connection_established()
 			
 			while websocket.get_available_packet_count():
@@ -65,6 +67,7 @@ func _process(_delta):
 			if is_connected:
 				print("❌ Conexión perdida")
 				is_connected = false
+				emit_signal("connection_status_changed", false)
 				attempt_reconnection()
 
 func connect_to_server():
@@ -86,7 +89,7 @@ func on_connection_established():
 	}
 	send_message(login)
 
-func send_message(data: Dictionary):
+func send_message(data: Dictionary) -> bool:
 	if not is_connected:
 		print("⚠️ No conectado. No se puede enviar mensaje.")
 		return false
@@ -114,7 +117,6 @@ func handle_message(message: String):
 		print("⚠️ Mensaje sin evento")
 		return
 	
-	# Emitir señal para interceptar todos los mensajes
 	emit_signal("message_received", data)
 	
 	var event = data.get("event", "")
@@ -123,7 +125,7 @@ func handle_message(message: String):
 	
 	print("📨 Evento: ", event, " | Estado: ", status)
 	
-	# Manejar errores específicos de send-game-data
+	# Manejar errores específicos
 	if event == "send-game-data" and status == "ERROR":
 		print("⚠️ Error en send-game-data: ", msg)
 		var player_status = data.get("data", {}).get("playerStatus", "")
@@ -135,7 +137,7 @@ func handle_message(message: String):
 			handle_login(data.get("data", {}))
 		"public-message":
 			handle_public_message(data.get("data", {}))
-		"private-message":  # ← NUEVO EVENTO
+		"private-message":
 			handle_private_message(data.get("data", {}))
 		"online-players":
 			handle_online_players(data.get("data", []))
@@ -159,7 +161,8 @@ func handle_message(message: String):
 			handle_quit_match_response()
 		"error":
 			handle_error(data.get("data", {}))
-		
+
+# Event handlers
 func handle_login(data: Dictionary):
 	player_data = data
 	print("✅ Login exitoso - ID: ", data.get("id", ""))
@@ -170,7 +173,6 @@ func handle_public_message(data: Dictionary):
 	var message = data.get("playerMsg", "")
 	emit_signal("chat_message_received", sender, message)
 
-# ← NUEVA FUNCIÓN PARA MANEJAR MENSAJES PRIVADOS
 func handle_private_message(data: Dictionary):
 	var sender = data.get("playerName", "")
 	var player_id = data.get("playerId", "")
@@ -187,19 +189,17 @@ func handle_match_request_received(data: Dictionary, message: String):
 	var player_name = extract_player_name_from_message(message)
 	
 	current_match_id = match_id
-	
 	print("⚔️ Solicitud de partida de: ", player_name)
 	emit_signal("match_request_received", player_name, player_id, match_id)
 
 func handle_match_accepted(data: Dictionary):
 	current_match_id = data.get("matchId", "")
 	match_status = data.get("matchStatus", "")
-	
 	print("✅ Partida aceptada - Estado: ", match_status)
 	emit_signal("match_accepted", data)
 
 func handle_players_ready(data: Dictionary):
-	print("🎯 Jugadores listos (puede ser revancha)")
+	print("🎯 Jugadores listos")
 	match_status = "WAITING_SYNC"
 	emit_signal("match_ready", data)
 
@@ -207,7 +207,6 @@ func handle_match_start(data: Dictionary):
 	print("🎮 PARTIDA INICIADA")
 	current_match_id = data.get("matchId", current_match_id)
 	game_state = "IN_GAME"
-	
 	emit_signal("match_started", data)
 
 func handle_receive_game_data(data: Dictionary):
@@ -220,16 +219,15 @@ func handle_game_ended(data: Dictionary):
 	emit_signal("game_ended", data)
 
 func handle_rematch_request():
-	print("🔄 Solicitud de revancha recibida del oponente")
+	print("🔄 Solicitud de revancha recibida")
 	emit_signal("rematch_requested")
 
 func handle_close_match():
 	print("🚪 CLOSE-MATCH: El oponente salió de la partida")
-	print("📝 Cualquier solicitud de revancha ha sido cancelada automáticamente")
 	emit_signal("match_quit")
 
 func handle_quit_match_response():
-	print("✅ QUIT-MATCH: Confirmación de que salí de la partida")
+	print("✅ QUIT-MATCH: Confirmación de salida")
 	emit_signal("match_quit")
 	
 func handle_error(data: Dictionary):
@@ -241,17 +239,15 @@ func extract_player_name_from_message(message: String) -> String:
 		return parts[1]
 	return "Jugador desconocido"
 
-# ===== FUNCIONES PÚBLICAS PARA LAS ESCENAS =====
-
-func send_public_message(text: String):
+# Public API functions
+func send_public_message(text: String) -> bool:
 	var message = {
 		"event": "send-public-message",
 		"data": {"message": text}
 	}
-	send_message(message)
+	return send_message(message)
 
-# ← NUEVA FUNCIÓN PARA ENVIAR MENSAJES PRIVADOS
-func send_private_message(player_id: String, text: String):
+func send_private_message(player_id: String, text: String) -> bool:
 	var message = {
 		"event": "send-private-message",
 		"data": {
@@ -259,58 +255,65 @@ func send_private_message(player_id: String, text: String):
 			"message": text
 		}
 	}
-	send_message(message)
+	return send_message(message)
 
-func send_match_request(player_id: String):
+func send_match_request(player_id: String) -> bool:
 	var request = {
 		"event": "send-match-request",
 		"data": {"playerId": player_id}
 	}
-	send_message(request)
+	return send_message(request)
 
-func accept_match():
+func accept_match() -> bool:
 	var response = {"event": "accept-match"}
-	send_message(response)
+	return send_message(response)
 
-func reject_match():
+func reject_match() -> bool:
 	var response = {"event": "reject-match"}
-	send_message(response)
+	return send_message(response)
 
-func connect_match():
+func connect_match() -> bool:
 	var connect_msg = {"event": "connect-match"}
-	send_message(connect_msg)
+	return send_message(connect_msg)
 
-func ping_match():
+func ping_match() -> bool:
 	var ping_msg = {"event": "ping-match"}
-	send_message(ping_msg)
+	return send_message(ping_msg)
 
-func send_game_data(game_data: Dictionary):
+func send_game_data(game_data: Dictionary) -> bool:
 	var message = {
 		"event": "send-game-data",
 		"data": game_data
 	}
-	send_message(message)
+	return send_message(message)
 
-func finish_game(result_data: Dictionary = {}):
+func finish_game(result_data: Dictionary = {}) -> bool:
 	var message = {
 		"event": "finish-game",
 		"data": result_data
 	}
 	game_state = "POST_GAME"
-	send_message(message)
+	return send_message(message)
 
-func send_rematch_request():
+func send_rematch_request() -> bool:
 	var message = {"event": "send-rematch-request"}
-	send_message(message)
+	return send_message(message)
 
-func quit_match():
+func quit_match() -> bool:
 	print("🚪 Enviando QUIT-MATCH...")
 	var message = {"event": "quit-match"}
-	send_message(message)
+	return send_message(message)
 
-func request_online_players():
+func request_online_players() -> bool:
 	var request = {"event": "online-players"}
-	send_message(request)
+	return send_message(request)
+
+func change_player_name(name: String) -> bool:
+	var message = {
+		"event": "change-name",
+		"data": {"name": name}
+	}
+	return send_message(message)
 
 func attempt_reconnection():
 	if connection_attempts >= max_reconnect_attempts:
@@ -332,16 +335,9 @@ func disconnect_from_server():
 		send_message(message)
 		websocket.close()
 		is_connected = false
+		emit_signal("connection_status_changed", false)
 
-func change_player_name(name: String):
-	var message = {"event": "change-name",
-	"data": {
-		"name": name
-		}
-	}
-	send_message(message)
-
-# Getters
+# Getters and utility functions
 func get_player_data() -> Dictionary:
 	return player_data
 
@@ -357,6 +353,9 @@ func set_game_state(state: String):
 
 func is_in_match() -> bool:
 	return current_match_id != ""
+
+func get_connection_status() -> bool:
+	return is_connected
 
 func _exit_tree():
 	disconnect_from_server()
