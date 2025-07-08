@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 # Variables de dificultad
 var nivel_dificultad = 1
@@ -121,16 +124,17 @@ func _process(delta):
 	"""Actualiza el juego cada frame"""
 	# Si el juego ya terminó, emitir señal inmediatamente
 	if game_completed and not signal_emitted:
-		# Emitir señal SOLO UNA VEZ y marcar como emitida
 		signal_emitted = true
 		ui_label.visible = false
-		label_controles.visible = false  # Ocultar controles
-		
-		# Usar call_deferred para emitir la señal
-		if current_state == GameState.SUCCESS:
-			call_deferred("emit_signal", "finished", true)
-		else:
-			call_deferred("emit_signal", "finished", false)
+		label_controles.visible = false
+	
+	if current_state == GameState.SUCCESS:
+		emit_signal("microjuego_superado")  # NUEVO
+		call_deferred("emit_signal", "finished", true)
+	else:
+		emit_signal("microjuego_fallado")  # NUEVO
+		call_deferred("emit_signal", "finished", false)
+
 		
 		print("Señal 'finished' emitida con resultado: ", current_state == GameState.SUCCESS)
 		return

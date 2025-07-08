@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqtemb164ydt6"]
+
+[ext_resource type="Script" uid="uid://ds3ckqlh6vtki" path="res://ScriptsGenerales/ChatManager.gd" id="1_qnxky"]
+[ext_resource type="Script" uid="uid://d30o0f1pah1in" path="res://ScriptsGenerales/WebSocket.gd" id="2_pq2iq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 163.0
+offset_top = 49.0
+offset_right = 1090.0
+offset_bottom = 570.0
+scale = Vector2(2.14823, 2.02722)
+script = ExtResource("1_qnxky")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 736.0
+offset_bottom = 491.0
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "CONNECT TO SERVER"
+
+[node name="MainPanel" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChatDisplay" type="TextEdit" parent="VBoxContainer/MainPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+
+[node name="UserPanel" type="VBoxContainer" parent="VBoxContainer/MainPanel"]
+layout_mode = 2
+
+[node name="UserList" type="ItemList" parent="VBoxContainer/MainPanel/UserPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="InviteButton" type="Button" parent="VBoxContainer/MainPanel/UserPanel"]
+layout_mode = 2
+text = "Invitar a Partida"
+
+[node name="Commands" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="InputMessage" type="LineEdit" parent="VBoxContainer/Commands"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Send a message"
+expand_to_text_length = true
+
+[node name="SendButton" type="Button" parent="VBoxContainer/Commands"]
+layout_mode = 2
+text = "SEND"
+
+[node name="VolverMenu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volver al menu principal"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AcceptButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Aceptar Invitación"
+
+[node name="RejectButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Rechazar Invitación"
+
+[node name="WebSocketClient" type="Node" parent="."]
+script = ExtResource("2_pq2iq")
+
+[connection signal="toggled" from="VBoxContainer/ConnectButton" to="." method="_on_connect_toggled"]
+[connection signal="pressed" from="VBoxContainer/MainPanel/UserPanel/InviteButton" to="." method="_on_invite_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/Commands/InputMessage" to="." method="_on_input_submitted"]
+[connection signal="pressed" from="VBoxContainer/Commands/SendButton" to="." method="_on_send_pressed"]
+[connection signal="pressed" from="VBoxContainer/VolverMenu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_web_socket_client_connected_to_server"]
+[connection signal="connection_closed" from="WebSocketClient" to="." method="_on_web_socket_client_connection_closed"]
+[connection signal="message_received" from="WebSocketClient" to="." method="_on_web_socket_client_message_received"]

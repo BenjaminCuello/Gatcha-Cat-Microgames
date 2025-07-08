@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd7wpo0ujc2dc"]
+
+[ext_resource type="Script" uid="uid://cv0ure8a1frod" path="res://escena_resultado.gd" id="1_pn6ty"]
+
+[node name="EscenaResultado" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pn6ty")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.3932, 27.635)
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.96206, 2.92416)
+
+[node name="winner" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ganador!:"
+
+[node name="winnername" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volver al menu"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

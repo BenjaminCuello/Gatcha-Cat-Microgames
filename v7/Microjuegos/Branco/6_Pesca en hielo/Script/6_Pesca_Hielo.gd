@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 signal finished(success)
 
 @onready var pez = $Pez
@@ -148,4 +151,9 @@ func finalizar_juego(exito: bool, mensaje: String):
 		pez.area_entered.disconnect(_on_pez_area_entered)
 
 	await get_tree().create_timer(1.0).timeout
+	if exito:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
 	emit_signal("finished", exito)

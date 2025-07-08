@@ -3,9 +3,7 @@ extends Control
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("Menú Principal cargado")
-	var boton_online = get_node_or_null("VBoxContainer/BotonOnline")
-	if boton_online:
-		boton_online.pressed.connect(_on_online_pressed)
+
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -34,10 +32,11 @@ func _on_boton_salir_pressed() -> void:
 func _on_boton_chat_pressed() -> void:
 	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")
 
-var boton_online = get_node_or_null("VBoxContainer/BotonOnline")
 
 
-# Agregar esta función:
-func _on_online_pressed():
-	print("🌐 Accediendo al modo online...")
-	get_tree().change_scene_to_file("res://Online/MenuOnline.tscn")
+
+func _on_boton_multijugador_pressed() -> void:
+
+	print("¡Botón MULTIJUGADOR presionado!")
+
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")

@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 # Variables de dificultad
 var nivel_dificultad = 1
@@ -188,7 +191,9 @@ func derrota():
 		controles.visible = false
 
 		await get_tree().create_timer(1.0).timeout
+		emit_signal("microjuego_fallado")  # NUEVO
 		emit_signal("finished", false)
+
 
 func victoria():
 	$TimerBarra.stop()
@@ -196,7 +201,9 @@ func victoria():
 	texto.visible = true
 	controles.visible = false
 	await get_tree().create_timer(1.2).timeout
+	emit_signal("microjuego_superado")  # NUEVO
 	emit_signal("finished", true)
+
 
 # 🔧 ELIMINADO: Ya no usamos _on_TimerRespuesta_timeout() individual
 

@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 
 signal finished(success)
 
@@ -100,6 +103,8 @@ func acierto():
 
 	$TextoInstruccion.text = "¡Bien hecho!"
 	$TextoInstruccion.visible = true
+	emit_signal("microjuego_superado")
+
 
 	emit_signal("finished", true)
 
@@ -143,6 +148,8 @@ func fallo():
 		await get_tree().create_timer(0.05).timeout  # pausa mínima para asegurar que se detuvo
 	$TextoInstruccion.text = "¡Fallaste!"
 	$TextoInstruccion.visible = true
+	emit_signal("microjuego_fallado")
+
 
 	emit_signal("finished", false)
 

@@ -1,5 +1,8 @@
 extends Control
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 # Variables de dificultad
 var nivel_dificultad = 1
@@ -104,6 +107,8 @@ func victoria():
 	texto.text = "¡Lo atrapaste!"
 	texto.visible = true
 	await get_tree().create_timer(1.2).timeout
+	emit_signal("microjuego_superado")
+
 	emit_signal("finished", true)
 
 func derrota():
@@ -114,4 +119,6 @@ func derrota():
 	texto.text = "¡Se escapó!"
 	texto.visible = true
 	await get_tree().create_timer(1.2).timeout
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)

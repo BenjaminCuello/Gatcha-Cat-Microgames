@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 @onready var gato = $Ekko
 @onready var monticulo = $Monticulo
@@ -90,11 +93,9 @@ func finalizar_juego(success: bool):
 		return
 	juego_activo = false
 	
-	# Detener el timer y ocultar la barra
 	tiempo_restante.stop()
 	barra_tiempo.visible = false
 
-	# Detener movimiento del gato
 	gato.velocity = Vector2.ZERO
 	gato.set_process(false)
 	gato.set_physics_process(false)
@@ -103,4 +104,10 @@ func finalizar_juego(success: bool):
 	label_instruccion.visible = true
 
 	await get_tree().create_timer(1.0).timeout
+
+	if success:
+		emit_signal("microjuego_superado")  # NUEVO
+	else:
+		emit_signal("microjuego_fallado")  # NUEVO
+
 	emit_signal("finished", success)

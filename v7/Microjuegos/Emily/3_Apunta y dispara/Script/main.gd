@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 @onready var crosshair = $Crosshair
 @onready var target = $Target
@@ -184,7 +187,8 @@ func terminar_juego_con_victoria():
 	# 🔧 VERIFICAR NUEVAMENTE que el mensaje sigue visible
 	label.text = "¡Lo atrapaste!"
 	label.visible = true
-	
+	emit_signal("microjuego_superado")
+
 	emit_signal("finished", true)
 
 func terminar_juego_con_derrota(mensaje: String):
@@ -211,7 +215,8 @@ func terminar_juego_con_derrota(mensaje: String):
 	# 🔧 VERIFICAR NUEVAMENTE que el mensaje sigue visible
 	label.text = mensaje
 	label.visible = true
-	
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)
 
 func _on_timer_timeout():

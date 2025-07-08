@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 @onready var MostrarNomGat = $NombreGato
 @onready var line_edit = $LineEdit
@@ -88,6 +91,8 @@ func _on_text_changed(new_text):
 	if new_text.to_upper() == nombre.to_upper():
 		$TiempoRestante.stop()
 		emit_signal("finished", true)
+		emit_signal("microjuego_superado")
+
 		Indstrucción.text = "Ganaste!"
 		Indstrucción.visible = true
 		gato.texture = load("res://Microjuegos/Andres/27_Llamar al gato/Sprites/GatoTriste .png")
@@ -103,6 +108,8 @@ func _on_tiempo_restante_timeout() -> void:
 	if not (line_edit.text.to_upper() == nombre.to_upper()):
 		$TiempoRestante.stop()
 		emit_signal("finished", false)
+		emit_signal("microjuego_fallado")
+
 		Indstrucción.text = "Perdiste!"
 		Indstrucción.visible = true
 		gato.texture = load("res://Microjuegos/Andres/27_Llamar al gato/Sprites/Pose1.png")
