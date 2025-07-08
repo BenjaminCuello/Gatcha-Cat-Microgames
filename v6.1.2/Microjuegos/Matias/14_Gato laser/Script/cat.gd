@@ -3,15 +3,53 @@ extends CharacterBody2D
 @onready var detection_area = $DetectionArea
 @onready var sprite = $CatSprite
 
-var speed = 700.0
+# Variables de dificultad
+var nivel_dificultad = 1
+var base_speed = 700.0  # Velocidad base
+var speed = 700.0  # Velocidad actual según dificultad
+
 var laser_target = null
 var is_touching_laser = false
-var game_active = true  # Nueva variable para controlar si el juego está activo
-var initial_position = Vector2.ZERO  # Guardar posición inicial
+var can_move = true  # Control de movimiento
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	print("🐱 Cat - Configurando dificultad:", nivel)
+	ajustar_velocidad_dificultad()
+
+func ajustar_velocidad_dificultad():
+	var velocidad_anterior = speed
+	
+	match nivel_dificultad:
+		1:
+			speed = base_speed  # 700
+		2:
+			speed = base_speed * 1.3  # 910
+		3:
+			speed = base_speed * 1.6  # 1120
+		4:
+			speed = base_speed * 2.0  # 1400
+		5:
+			speed = base_speed * 2.5  # 1750
+		6:
+			speed = base_speed * 3.0  # 2100
+		7:
+			speed = base_speed * 3.5  # 2450
+		8:
+			speed = base_speed * 4.0  # 2800
+
+	print("🐱 Cat - Nivel:", nivel_dificultad)
+	print("🐱 Cat - Velocidad anterior:", velocidad_anterior)
+	print("🐱 Cat - Velocidad nueva:", speed)
+	print("🐱 Cat - Multiplicador:", speed / base_speed, "x")
+	print("🐱 Cat - Aumento:", int((speed/base_speed - 1) * 100), "%")
 
 func _ready():
-	# Guardar posición inicial para reset
-	initial_position = global_position
+	print("🐱 Cat - _ready() iniciado")
+	
+	# Configurar collision layers
+	collision_layer = 1     # El gato está en layer 1
+	collision_mask = 0      # El gato NO colisiona físicamente con NADA
 	
 	# Verificar que los nodos existen antes de usarlos
 	if detection_area:
@@ -21,20 +59,19 @@ func _ready():
 	# Configurar sprite del gato solo si existe
 	if sprite:
 		sprite.modulate = Color.ORANGE
+	
+	print("🐱 Cat - _ready() completado, velocidad inicial:", speed)
 
 func _physics_process(delta):
-	# Solo mover si el juego está activo
-	if not game_active:
-		velocity = Vector2.ZERO
-		return
-		
-	# El gato siempre persigue el láser agresivamente
-	move_towards_laser(delta)
-	move_and_slide()
+	# Solo moverse si puede moverse
+	if can_move:
+		move_towards_laser(delta)
+		move_and_slide()
 
 func move_towards_laser(delta):
-	# Solo mover si el juego está activo
-	if not game_active:
+	# Solo buscar láser si puede moverse
+	if not can_move:
+		velocity = Vector2.ZERO
 		return
 		
 	# Encontrar el láser en la escena
@@ -43,18 +80,28 @@ func move_towards_laser(delta):
 		# Calcular dirección hacia el láser
 		var direction = (laser.global_position - global_position).normalized()
 		
-		# Movimiento directo y rápido hacia el láser
+		# Usar velocidad según dificultad
 		velocity = direction * speed
+		
+		# Debug ocasional para verificar velocidad
+		if randf() < 0.01:  # 1% de las veces
+			print("🐱 Cat - Velocidad actual aplicada:", speed)
 		
 		# Rotar hacia el láser (opcional, para que se vea más natural)
 		if sprite:
 			var angle = direction.angle()
 			sprite.rotation = angle
-	
-	# Limitar movimiento dentro de los bordes de la pantalla
-	var screen_rect = get_viewport().get_visible_rect()
-	global_position.x = clamp(global_position.x, screen_rect.position.x, screen_rect.size.x)
-	global_position.y = clamp(global_position.y, screen_rect.position.y, screen_rect.size.y)
+
+# Función para detener el gato
+func detener_movimiento():
+	can_move = false
+	velocity = Vector2.ZERO
+	print("🐱 Cat - Movimiento detenido")
+
+# Función para reanudar el movimiento
+func reanudar_movimiento():
+	can_move = true
+	print("🐱 Cat - Movimiento reanudado con velocidad:", speed)
 
 func _on_area_entered(area):
 	if area.name == "Laser":
@@ -65,22 +112,3 @@ func _on_area_exited(area):
 	if area.name == "Laser":
 		laser_target = null
 		is_touching_laser = false
-
-func stop_movement():
-	"""Detener completamente el movimiento del gato."""
-	game_active = false
-	velocity = Vector2.ZERO
-	# Detener cualquier animación o rotación
-	if sprite:
-		sprite.rotation = 0
-
-func reset_cat():
-	"""Resetear posición y estado del gato."""
-	game_active = true
-	global_position = initial_position
-	velocity = Vector2.ZERO
-	is_touching_laser = false
-	laser_target = null
-	if sprite:
-		sprite.rotation = 0
-		sprite.modulate = Color.ORANGE

@@ -27,9 +27,6 @@ func _on_boton_infinito_pressed() -> void:
 	# Ir a la pantalla de transición
 	get_tree().change_scene_to_file("res://EscenasGenerales/EscenaVidasNumeroMicrojuego/MicroInicioContadorVidas.tscn")
 
-func _on_boton_multijugador_pressed() -> void:
-	print("¡Botón MULTIJUGADOR presionado!")
-	# Aquí más adelante pondrás: get_tree().change_scene_to_file("...")
 
 func _on_boton_opciones_pressed() -> void:
 	print("¡Botón OPCIONES presionado!")
@@ -38,3 +35,13 @@ func _on_boton_opciones_pressed() -> void:
 func _on_boton_salir_pressed() -> void:
 	print("¡Botón SALIR presionado!")
 	get_tree().quit()
+	
+
+func _on_boton_chat_pressed() -> void:
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")
+	
+
+
+func _on_boton_multijugador_pressed() -> void:
+	print("¡Botón MULTIJUGADOR presionado!")
+	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")

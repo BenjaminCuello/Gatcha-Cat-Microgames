@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bou3ubewswu3h"]
+[gd_scene load_steps=8 format=3 uid="uid://bou3ubewswu3h"]
 
 [ext_resource type="Script" uid="uid://bq2eht7w0ub8c" path="res://Microjuegos/Matias/15_Anvorgueso/Script/pincipal.gd" id="1_jj505"]
 [ext_resource type="Texture2D" uid="uid://cppfknrq4xyps" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/Fondo_m15.png" id="2_jj505"]
@@ -7,12 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cx8jqvbeye7p0" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/gato.png" id="5_jj505"]
 [ext_resource type="Texture2D" uid="uid://chqtt2wmvo5m0" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/lose1.png" id="6_lwf0n"]
 [ext_resource type="Texture2D" uid="uid://dcir7euvokeqk" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/lleno.png" id="7_yh2jn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jj505"]
-bg_color = Color(0, 0, 0, 0.411765)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwf0n"]
-bg_color = Color(0.165656, 0.165656, 0.165657, 0.486275)
 
 [node name="Pincipal" type="Node2D"]
 script = ExtResource("1_jj505")
@@ -67,38 +61,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="InstructionsLabel" type="Label" parent="UIContainer"]
-offset_left = 349.0
-offset_top = 212.0
-offset_right = 1684.0
-offset_bottom = 444.0
-theme_override_font_sizes/font_size = 120
-theme_override_styles/normal = SubResource("StyleBoxFlat_jj505")
-text = "Come la hamburguesa!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ControlsLabel" type="Label" parent="UIContainer"]
-offset_left = -9.0
-offset_top = 757.0
-offset_right = 618.0
-offset_bottom = 1072.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 75
-theme_override_styles/normal = SubResource("StyleBoxFlat_lwf0n")
-text = "Manten la 
-tecla
-ESPACIO"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TimeBar" type="ProgressBar" parent="UIContainer"]
-offset_left = 875.0
-offset_top = 25.0
-offset_right = 1890.0
-offset_bottom = 74.0
-show_percentage = false
-
 [node name="GripBar" type="Control" parent="UIContainer"]
 anchors_preset = 0
 offset_left = 99.0
@@ -126,18 +88,36 @@ anchor_bottom = 1.0
 grow_vertical = 2
 color = Color(0, 1, 0, 1)
 
-[node name="GameOverScreen" type="Control" parent="UIContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Instructions" type="Label" parent="UIContainer"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 232.0
+offset_right = 1392.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 65
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="UIContainer"]
+layout_mode = 0
+offset_left = 1378.0
+offset_top = 33.0
+offset_right = 1862.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 80
+text = "Tiempo: 3.0s"
+
+[node name="TimerBar" type="ColorRect" parent="UIContainer"]
+layout_mode = 0
+offset_left = 1374.0
+offset_top = 133.0
+offset_right = 1879.0
+offset_bottom = 191.0
+color = Color(0, 0, 0, 0)
+
+[node name="TimerBarFill" type="ColorRect" parent="UIContainer/TimerBar"]
+layout_mode = 0
+offset_right = 505.0
+offset_bottom = 58.0
+color = Color(0.0666667, 0.882353, 0.803922, 1)
 
 [node name="GameManager" type="Node" parent="."]
-
-[node name="GameTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

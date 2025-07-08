@@ -2,20 +2,25 @@ extends Node2D
 
 signal finished(victory: bool)
 
+# Variables de dificultad
+var nivel_dificultad = 1
+var game_time = 3.0  # Tiempo según dificultad
+var max_time = 3.0   # Tiempo máximo según dificultad
+var modo_mantener_espacio = true  # 🔧 NUEVO: true = mantener espacio, false = NO presionar
+
 @onready var cat = $GameArea/Cat
 @onready var hamburger = $GameArea/Hamburger
 @onready var owner1 = $GameArea/Owner
-@onready var cat_falling = $GameArea/CatFalling  # NUEVO
-@onready var cat_satisfied = $GameArea/CatSatisfied  # NUEVO
+@onready var cat_falling = $GameArea/CatFalling
+@onready var cat_satisfied = $GameArea/CatSatisfied
 @onready var bar_fill = $UIContainer/GripBar/BarFill
 @onready var grip_bar = $UIContainer/GripBar
-@onready var time_bar = $UIContainer/TimeBar/BarFill  # NUEVO
-@onready var time_bar_container = $UIContainer/TimeBar  # NUEVO
-@onready var instructions_label = $UIContainer/InstructionsLabel  # NUEVO
-@onready var controls_label = $UIContainer/ControlsLabel  # NUEVO
-@onready var game_over_screen = $UIContainer/GameOverScreen
-@onready var result_label = $UIContainer/GameOverScreen/ResultLabel
-@onready var game_timer = $GameTimer  # NUEVO
+@onready var instructions = $UIContainer/Instructions
+
+# Referencias para el temporizador
+@onready var timer_label = $UIContainer/TimerLabel
+@onready var timer_bar = $UIContainer/TimerBar
+@onready var timer_bar_fill = $UIContainer/TimerBar/TimerBarFill
 
 var game_started = false
 var game_finished = false
@@ -25,10 +30,55 @@ var grip_gain_rate = 40.0
 var victory_threshold = 95.0
 var defeat_threshold = 5.0
 
+# Variables del temporizador
+var current_time = 0.0
+
 var shake_intensity = 0.0
 var original_cat_position: Vector2
 var original_owner_position: Vector2
-var time_limit = 3.0  # Tiempo máximo en segundos
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			game_time = 3.0
+			max_time = 3.0
+			modo_mantener_espacio = true  # Mantener espacio
+		2:
+			game_time = 3.0
+			max_time = 3.0
+			modo_mantener_espacio = false  # NO presionar nada
+		3:
+			game_time = 2.5
+			max_time = 2.5
+			modo_mantener_espacio = true  # Mantener espacio
+		4:
+			game_time = 2.5
+			max_time = 2.5
+			modo_mantener_espacio = false  # NO presionar nada
+		5:
+			game_time = 2.0
+			max_time = 2.0
+			modo_mantener_espacio = true  # Mantener espacio
+		6:
+			game_time = 2.0
+			max_time = 2.0
+			modo_mantener_espacio = false  # NO presionar nada
+		7:
+			game_time = 1.5
+			max_time = 1.5
+			modo_mantener_espacio = true  # Mantener espacio
+		8:
+			game_time = 1.5
+			max_time = 1.5
+			modo_mantener_espacio = false  # NO presionar nada
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Tiempo requerido:", game_time, "segundos")
+	print("Modo:", "MANTENER ESPACIO" if modo_mantener_espacio else "NO PRESIONAR NADA")
 
 func _ready():
 	setup_game()
@@ -41,70 +91,176 @@ func setup_game():
 	cat_falling.visible = false
 	cat_satisfied.visible = false
 	
-	# Configurar etiquetas
-	instructions_label.text = "¡Mantén la barra de fuerza alta para ganar!"
-	controls_label.text = "Controles: Presiona la BARRA ESPACIADORA para agarrar."
+	# Configurar temporizador
+	current_time = 0.0
+	setup_timer_ui()
 	
-	game_over_screen.visible = false
+	# 🔧 NUEVO: Instrucciones según el modo
+	if modo_mantener_espacio:
+		instructions.text = "¡Mantén presionada la BARRA ESPACIADORA!\n¡Tienes %.1f segundos!" % game_time
+		instructions.modulate = Color.DARK_CYAN
+	else:
+		instructions.text = "¡NO PRESIONES NADA!\n¡El gato debe resistir %.1f segundos!" % game_time
+		instructions.modulate = Color.DARK_RED
+	
 	update_grip_bar()
-	update_time_bar(time_limit)  # Configurar tiempo inicial en la barra
+	update_timer_display()
 	
 	await get_tree().create_timer(1.0).timeout
 	start_game()
+
+# Configurar la interfaz del temporizador
+func setup_timer_ui():
+	# Configurar el label del temporizador
+	if timer_label:
+		timer_label.text = "Tiempo: %.1fs" % game_time
+		timer_label.add_theme_font_size_override("font_size", 24)
+		timer_label.modulate = Color.WHITE
+	
+	# Configurar la barra de tiempo
+	if timer_bar and timer_bar_fill:
+		# 🔧 NUEVO: Color según el modo
+		if modo_mantener_espacio:
+			timer_bar_fill.color = Color.CYAN
+		else:
+			timer_bar_fill.color = Color.ORANGE
+		timer_bar_fill.size.x = timer_bar.size.x
 
 func start_game():
 	if game_finished:
 		return
 	game_started = true
-	print("Game started")  # Depuración
-	
-	# Configurar el temporizador del juego
-	game_timer.wait_time = time_limit
-	game_timer.start()
 
 func _process(delta):
 	if not game_started or game_finished:
 		return
 	
-	# Actualizar la barra de tiempo visual
-	update_time_bar(game_timer.time_left)
+	# Actualizar temporizador
+	current_time += delta
+	update_timer_display()
 	
-	# Detectar si se presiona la barra espaciadora directamente
-	if Input.is_key_pressed(KEY_SPACE):  # Detectar directamente la tecla
-		print("Key SPACE detected")  # Depuración
-		grip_strength += grip_gain_rate * delta
-		shake_intensity = 2.0
+	# Verificar si se acabó el tiempo
+	if current_time >= max_time:
+		end_game_time_up()
+		return
+	
+	# 🔧 NUEVO: Lógica según el modo
+	var space_pressed = Input.is_key_pressed(KEY_SPACE)
+	
+	if modo_mantener_espacio:
+		# Modo original: mantener espacio
+		if space_pressed:
+			grip_strength += grip_gain_rate * delta
+			shake_intensity = 2.0
+		else:
+			grip_strength -= grip_decay_rate * delta
+			shake_intensity = 5.0
 	else:
-		print("Key SPACE NOT detected")  # Depuración
-		grip_strength -= grip_decay_rate * delta
-		shake_intensity = 5.0
+		# Modo nuevo: NO presionar nada
+		if space_pressed:
+			# Si presiona espacio, pierde grip
+			grip_strength -= grip_decay_rate * delta * 1.5  # Penalización extra
+			shake_intensity = 8.0  # Shake más intenso
+		else:
+			# Si NO presiona, gana grip
+			grip_strength += grip_gain_rate * delta
+			shake_intensity = 1.0  # Shake mínimo
 	
 	grip_strength = clamp(grip_strength, 0.0, 100.0)
 	update_grip_bar()
 	apply_shake_effect(delta)
 	check_game_conditions()
 
+# Actualizar visualización del temporizador
+func update_timer_display():
+	var remaining_time = max_time - current_time
+	remaining_time = max(0.0, remaining_time)
+	
+	# Actualizar texto
+	if timer_label:
+		timer_label.text = "Tiempo: %.1fs" % remaining_time
+		
+		# Cambiar color según el tiempo restante
+		if remaining_time <= 0.5:
+			timer_label.modulate = Color.DARK_RED
+		elif remaining_time <= 1.0:
+			timer_label.modulate = Color.DARK_GOLDENROD
+		else:
+			timer_label.modulate = Color.WHITE
+	
+	# Actualizar barra de tiempo
+	if timer_bar and timer_bar_fill:
+		var time_percentage = remaining_time / max_time
+		timer_bar_fill.size.x = timer_bar.size.x * time_percentage
+		
+		# 🔧 NUEVO: Color según el modo y tiempo restante
+		if modo_mantener_espacio:
+			if remaining_time <= 0.5:
+				timer_bar_fill.color = Color.DARK_RED
+			elif remaining_time <= 1.0:
+				timer_bar_fill.color = Color.DARK_GOLDENROD
+			else:
+				timer_bar_fill.color = Color.DARK_CYAN
+		else:
+			if remaining_time <= 0.5:
+				timer_bar_fill.color = Color.DARK_RED
+			elif remaining_time <= 1.0:
+				timer_bar_fill.color = Color.DARK_GOLDENROD
+			else:
+				timer_bar_fill.color = Color.DARK_ORANGE
+
+# Función para cuando se acaba el tiempo
+func end_game_time_up():
+	if game_finished:
+		return
+		
+	game_finished = true
+	game_started = false
+	
+	var victory = grip_strength >= victory_threshold
+	
+	if victory:
+		if modo_mantener_espacio:
+			instructions.text = "¡VICTORIA!\n¡Lograste mantener la hamburguesa!"
+		else:
+			instructions.text = "¡VICTORIA!\n¡El gato resistió la tentación!"
+		instructions.modulate = Color.DARK_GREEN
+		animate_victory()
+	else:
+		if modo_mantener_espacio:
+			instructions.text = "DERROTA\n¡No pudiste mantener la hamburguesa!"
+		else:
+			instructions.text = "DERROTA\n¡El gato no pudo resistir!"
+		instructions.modulate = Color.DARK_ORANGE
+		animate_defeat()
+	
+	# Esperar a que termine la animación
+	await get_tree().create_timer(2.0).timeout
+	
+	await get_tree().create_timer(0.5).timeout
+	emit_signal("finished", victory)
+	
 func update_grip_bar():
 	var fill_percentage = grip_strength / 100.0
 	bar_fill.size.x = grip_bar.size.x * fill_percentage
 	
-	if grip_strength > 70:
-		bar_fill.color = Color.GREEN
-	elif grip_strength > 30:
-		bar_fill.color = Color.YELLOW
+	# 🔧 NUEVO: Colores según el modo
+	if modo_mantener_espacio:
+		# Modo mantener: verde = bueno
+		if grip_strength > 70:
+			bar_fill.color = Color.GREEN
+		elif grip_strength > 30:
+			bar_fill.color = Color.DARK_GOLDENROD
+		else:
+			bar_fill.color = Color.DARK_RED
 	else:
-		bar_fill.color = Color.RED
-
-func update_time_bar(time_left):
-	var fill_percentage = time_left / time_limit
-	time_bar.size.x = time_bar_container.size.x * fill_percentage
-	
-	if fill_percentage > 0.7:
-		time_bar.color = Color.GREEN
-	elif fill_percentage > 0.3:
-		time_bar.color = Color.YELLOW
-	else:
-		time_bar.color = Color.RED
+		# Modo resistir: azul = resistencia
+		if grip_strength > 70:
+			bar_fill.color = Color.BLUE
+		elif grip_strength > 30:
+			bar_fill.color = Color.PURPLE
+		else:
+			bar_fill.color = Color.DARK_RED
 
 func apply_shake_effect(delta):
 	if shake_intensity > 0:
@@ -118,8 +274,11 @@ func apply_shake_effect(delta):
 		shake_intensity = lerp(shake_intensity, 0.0, delta * 3.0)
 
 func check_game_conditions():
+	# Solo verificar victoria/derrota por grip, no por tiempo aquí
 	if grip_strength >= victory_threshold:
 		end_game(true)
+	elif grip_strength <= defeat_threshold:
+		end_game(false)
 
 func end_game(victory: bool):
 	if game_finished:
@@ -128,21 +287,23 @@ func end_game(victory: bool):
 	game_finished = true
 	game_started = false
 	
-	# Detener el temporizador
-	game_timer.stop()
-	
 	if victory:
-		result_label.text = "¡VICTORIA!\n¡El gato logró comerse la hamburguesa!"
-		result_label.modulate = Color.GREEN
+		if modo_mantener_espacio:
+			instructions.text = "¡VICTORIA!\n¡El gato logró comerse la hamburguesa!"
+		else:
+			instructions.text = "¡VICTORIA!\n¡El gato resistió la tentación!"
+		instructions.modulate = Color.DARK_GREEN
 		animate_victory()
 	else:
-		result_label.text = "DERROTA\nEl gato se cayó..."
-		result_label.modulate = Color.RED
+		if modo_mantener_espacio:
+			instructions.text = "DERROTA\n¡El gato perdió la hamburguesa!"
+		else:
+			instructions.text = "DERROTA\n¡El gato no pudo resistir!"
+		instructions.modulate = Color.FIREBRICK
 		animate_defeat()
 	
-	# Esperar a que termine la animación antes de mostrar resultado
+	# Esperar a que termine la animación
 	await get_tree().create_timer(2.0).timeout
-	game_over_screen.visible = true
 	
 	await get_tree().create_timer(0.5).timeout
 	emit_signal("finished", victory)
@@ -172,7 +333,7 @@ func animate_defeat():
 	
 	# Animación estilo Mario Bros: caída con rotación
 	var tween = create_tween()
-	tween.set_parallel(true)  # Permite múltiples animaciones simultáneas
+	tween.set_parallel(true)
 	
 	# Caída (movimiento parabólico)
 	tween.tween_method(_animate_falling_arc, 0.0, 1.0, 2.0)
@@ -184,22 +345,12 @@ func animate_defeat():
 	tween.tween_property(cat_falling, "modulate:a", 0.0, 0.5).set_delay(1.5)
 
 func _animate_falling_arc(progress: float):
-	# Crear una trayectoria parabólica de caída
 	var start_pos = original_cat_position
-	var end_x = start_pos.x + randf_range(-100, 100)  # Desplazamiento horizontal aleatorio
+	var end_x = start_pos.x + randf_range(-100, 100)
 	var screen_height = get_viewport().get_visible_rect().size.y
 	
-	# Posición X: interpolación lineal
 	var current_x = lerp(start_pos.x, end_x, progress)
-	
-	# Posición Y: parábola que simula gravedad
-	# Primero sube un poco, luego cae aceleradamente
-	var arc_height = -50  # Altura del "salto" inicial
+	var arc_height = -50
 	var current_y = start_pos.y + arc_height * sin(progress * PI) + (screen_height + 100) * (progress * progress)
 	
 	cat_falling.position = Vector2(current_x, current_y)
-
-# NUEVO: Manejar el temporizador
-func _on_GameTimer_timeout():
-	print("Time out! Game over.")  # Depuración
-	end_game(false)

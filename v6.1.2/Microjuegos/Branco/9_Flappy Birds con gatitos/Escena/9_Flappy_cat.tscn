@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtjxv4sh0s1u0" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/9_Flappy_cat.gd" id="1_5gypy"]
 [ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://Fondos/Fondocielo.png" id="2_sme5o"]
-[ext_resource type="Script" uid="uid://dpsbd1kgmkrln" path="res://ScriptsGenerales/gatito_volador.gd" id="3_fnubj"]
+[ext_resource type="Script" uid="uid://dpsbd1kgmkrln" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/gatito_volador.gd" id="3_fnubj"]
 [ext_resource type="Texture2D" uid="uid://cr76tkti0tbbx" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/GLOBOPNG.png" id="4_5c2tq"]
 [ext_resource type="Texture2D" uid="uid://b328in2qwlxcr" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/Mario_pipe.png" id="5_k8vc0"]
 
@@ -17,7 +17,7 @@ radius = 19.0
 height = 132.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thpx6"]
-size = Vector2(183.5, 291)
+size = Vector2(202, 578.625)
 
 [node name="FlappyCat2" type="Node2D"]
 script = ExtResource("1_5gypy")
@@ -80,30 +80,32 @@ shape = SubResource("CapsuleShape2D_sme5o")
 debug_color = Color(0.852663, 0.203419, 0.76259, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="GatitoVolador"]
-position = Vector2(11.8125, -3.81251)
-scale = Vector2(0.370694, 0.37275)
+position = Vector2(26, -140)
+scale = Vector2(1, 1.006)
 texture = ExtResource("4_5c2tq")
 
 [node name="Tuberia1" type="StaticBody2D" parent="." groups=["ObstaculoVolador"]]
 position = Vector2(482, 939)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuberia1"]
-position = Vector2(0.25, -3)
+position = Vector2(137, -73)
 shape = SubResource("RectangleShape2D_thpx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tuberia1"]
-position = Vector2(-1.5, -2)
+position = Vector2(139.5, -131.5)
+scale = Vector2(1.77447, 1.82333)
 texture = ExtResource("5_k8vc0")
 
 [node name="Tuberia2" type="StaticBody2D" parent="." groups=["ObstaculoVolador"]]
 position = Vector2(1341, 932)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tuberia2"]
-position = Vector2(2.25, 2)
+position = Vector2(21, -144)
 shape = SubResource("RectangleShape2D_thpx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tuberia2"]
-position = Vector2(0.5, 3)
+position = Vector2(24.5, -148.25)
+scale = Vector2(1.95319, 2.51166)
 texture = ExtResource("5_k8vc0")
 
 [connection signal="timeout" from="TimerJuego" to="." method="_on_TimerJuego_timeout"]
