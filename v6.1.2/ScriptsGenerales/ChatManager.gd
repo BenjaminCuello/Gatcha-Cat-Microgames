@@ -22,33 +22,62 @@ func _on_web_socket_client_connected_to_server():
 	_sendToChatDisplay("Conexión establecida. Enviando login...")
 	var login_payload = {"event":"login","data":{"gameKey":"TXWGJ7"}}
 	_client.send(JSON.stringify(login_payload))
-	_sendGetUserListEvent()
+
+
 
 func _on_web_socket_client_message_received(message: String):
 	var parse := JSON.new()
-	if parse.parse(message) != OK:
+	var err = parse.parse(message)
+	if err != OK:
 		_sendToChatDisplay("[Error JSON] %s" % message)
 		return
 	var resp = parse.get_data()
-	print("Mensaje recibido:", resp)
+	print("Mensaje recibido:", message)
 	match resp.get("event", ""):
 		"connected-to-server":
 			_sendToChatDisplay("You are connected to the server!")
 			_sendGetUserListEvent()
 
 		"get-connected-players":
-			# Servidor envía lista completa de jugadores actuales
-			var list_data = resp.get("data", resp)
-			_updateUserList(list_data)
+			_updateUserList(resp.get("data", []))
+		
+		"player-status-changed":
+			var data = resp.get("data", {})
+			var id = data.get("playerId", "")
+			var new_status = data.get("playerStatus", "UNKNOWN")
+			var player_name = jugadores_conectados.get(id, null)
+			if player_name == null:
+				print("No se encontró el nombre para ID %s" % id)
+				return
+			_deleteUserFromList(player_name)
+			_addUserToList(player_name, id, new_status)
+
+
+
 
 		"player-connected":
-			var id = _extract_id(resp)
-			var name = _extract_name(resp)
-			_addUserToList(name, id)
+			var data = resp.get("data", {})
+			var id = data.get("id", "")
+			var player_name = data.get("name", "")
+			var status = data.get("status", "UNKNOWN")
+			if id != "" and player_name != "":
+				jugadores_conectados[id] = player_name
+				_addUserToList(player_name, id, status)
+
+		"login":
+			if resp.get("status", "") == "OK":
+				_sendToChatDisplay("Login exitoso como %s" % mi_nombre)
+				_sendGetUserListEvent()
+
+		"match-accepted":
+			var data = resp.get("data", {})
+			var nombre = _extract_name(resp)
+			var mid = data.get("matchId", "")
+			_sendToChatDisplay("Jugador %s aceptó tu invitación. Esperando que comience la partida..." % nombre)
+
 
 		"player-disconnected":
-			var id = _extract_id(resp)
-			_removeUserById(id)
+			_deleteUserFromList(_extract_name(resp))
 
 		"public-message":
 			var sender = _extract_name(resp)
@@ -76,42 +105,49 @@ func _on_web_socket_client_message_received(message: String):
 			get_tree().change_scene_to_file("res://EscenasGenerales/Multiplayer/MultiplayerScene.tscn")
 
 func _extract_name(resp: Dictionary) -> String:
-	var d = resp.get("data", {})
-	if typeof(d) == TYPE_DICTIONARY:
-		return d.get("playerName", d.get("name", "¿Desconocido?"))
-	return "¿Desconocido?"
+	var d = resp.get("data", null)
+	match typeof(d):
+		TYPE_STRING:
+			return d
+		TYPE_DICTIONARY:
+			return d.get("playerName", d.get("name", "¿Desconocido?"))
+	return resp.get("playerName", resp.get("name", "¿Desconocido?"))
 
 func _extract_id(resp: Dictionary) -> String:
-	var d = resp.get("data", {})
-	return d.get("playerId", "") if typeof(d) == TYPE_DICTIONARY else ""
+	var d = resp.get("data", null)
+	if typeof(d) == TYPE_DICTIONARY:
+		return d.get("playerId", "")
+	return ""
 
 func _extract_data(resp: Dictionary, key: String) -> String:
-	var d = resp.get("data", {})
-	return str(d.get(key, "")) if typeof(d) == TYPE_DICTIONARY else ""
+	var d = resp.get("data", null)
+	if typeof(d) == TYPE_DICTIONARY:
+		return str(d.get(key, ""))
+	return resp.get(key, "")
 
-func _addUserToList(name: String, id: String):
-	if name == "" or id == "":
+func _addUserToList(player_name: String, id: String, status := "UNKNOWN"):
+	if player_name == "" or id == "":
 		return
-	# Evitar duplicados
-	if jugadores_conectados.has(id):
-		return
-	var display_name = name
-	if id == _client.get_unique_id():
+	for i in range(player_list.item_count):
+		var txt = player_list.get_item_text(i)
+		if txt.begins_with(player_name):
+			return
+	var display_name = player_name
+	if player_name == mi_nombre:
 		display_name += " (Yo)"
+	display_name += " [" + status + "]"
 	player_list.add_item(display_name)
 	player_list.set_item_metadata(player_list.item_count - 1, id)
-	jugadores_conectados[id] = name
-	_sendToChatDisplay("Jugador conectado: %s" % display_name)
+	jugadores_conectados[id] = player_name
 
-func _removeUserById(id: String):
-	if not jugadores_conectados.has(id):
-		return
-	for i in range(player_list.get_item_count()):
-		if player_list.get_item_metadata(i) == id:
+
+
+func _deleteUserFromList(user: String):
+	for i in range(player_list.item_count):
+		var txt = player_list.get_item_text(i)
+		if txt == user or txt == user + " (Yo)":
 			player_list.remove_item(i)
-			break
-	jugadores_conectados.erase(id)
-	_sendToChatDisplay("Jugador desconectado: %s" % id)
+			return
 
 func _on_input_submitted(message: String):
 	_handle_send(message)
@@ -124,7 +160,9 @@ func _handle_send(text: String):
 	if text == "":
 		return
 	var sel = player_list.get_selected_items()
-	var target = player_list.get_item_metadata(sel[0]) if sel.size() > 0 else ""
+	var target = ""
+	if sel.size() > 0:
+		target = player_list.get_item_metadata(sel[0])
 	_sendMessage(text, target)
 	input_message.text = ""
 	input_message.grab_focus()
@@ -138,28 +176,28 @@ func _sendMessage(message: String, userId: String = ""):
 	if userId == "":
 		_sendToChatDisplay("Yo: %s" % message)
 	else:
-		var nombre_destinatario = jugadores_conectados.get(userId, userId)
+		var nombre_destinatario = jugadores_conectados.get(userId, "¿Desconocido?")
 		_sendToChatDisplay("(Privado a %s): %s" % [nombre_destinatario, message], true)
 
 func _sendGetUserListEvent():
 	player_list.clear()
 	_client.send(JSON.stringify({"event": "get-connected-players"}))
 
-func _updateUserList(data):
+func _updateUserList(users: Array):
 	jugadores_conectados.clear()
 	player_list.clear()
-	if typeof(data) == TYPE_ARRAY:
-		for u in data:
-			if typeof(u) == TYPE_DICTIONARY:
-				var id = u.get("playerId", "")
-				var name = u.get("playerName", u.get("name", ""))
-				if id != "":
-					jugadores_conectados[id] = name
-					var display = name + " (Yo)" if name == mi_nombre else name
-					player_list.add_item(display)
-					player_list.set_item_metadata(player_list.item_count - 1, id)
-	else:
-		print("_updateUserList: formato de dato inesperado:", data)
+	for u in users:
+		if typeof(u) == TYPE_DICTIONARY:
+			var id = u.get("playerId", "")
+			var player_name = u.get("playerName", u.get("name", ""))
+			var status = u.get("status", "UNKNOWN")
+			if id != "":
+				jugadores_conectados[id] = player_name
+				_addUserToList(player_name, id, status)
+				print("Actualizando lista de usuarios: %d jugadores" % users.size())
+
+
+
 
 func _on_connect_toggled(pressed: bool):
 	if not pressed:
@@ -178,7 +216,7 @@ func _sendToChatDisplay(msg: String, is_private: bool = false):
 
 func _on_invite_button_pressed():
 	var sel = player_list.get_selected_items()
-	if sel.empty():
+	if sel.size() == 0:
 		_sendToChatDisplay("Selecciona un jugador primero.")
 		return
 	var id = player_list.get_item_metadata(sel[0])
@@ -186,7 +224,7 @@ func _on_invite_button_pressed():
 		_sendToChatDisplay("No se pudo obtener el ID del jugador.")
 		return
 	_client.send(JSON.stringify({"event": "send-match-request", "data": {"playerId": id}}))
-	var nombre = jugadores_conectados.get(id, id)
+	var nombre = jugadores_conectados.get(id, "Desconocido")
 	_sendToChatDisplay("Solicitud enviada a %s" % nombre)
 
 func _on_accept_button_pressed():
