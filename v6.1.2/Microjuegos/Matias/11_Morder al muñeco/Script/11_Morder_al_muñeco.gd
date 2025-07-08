@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 signal finished(success)
 
 # Variables de dificultad
@@ -351,21 +354,28 @@ func mostrar_mensaje_final(victoria):
 	resultado.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	resultado.size = Vector2(400, 100)
 	resultado.position = Vector2(get_viewport_rect().size.x / 2 - 200, get_viewport_rect().size.y / 2 - 50)
-	
+
 	# Crear y asignar LabelSettings con tamaño de fuente personalizado
 	var label_settings = LabelSettings.new()
-	label_settings.font_size = 80  # ← aquí ajustas el tamaño de fuente
+	label_settings.font_size = 80
 	resultado.label_settings = label_settings
-	
+
 	# Añadir efecto de aparición gradual
 	resultado.modulate = Color(1, 1, 1, 0)
 	add_child(resultado)
-	
+
 	var tween = create_tween()
 	tween.tween_property(resultado, "modulate", Color(1, 1, 1, 1), 1.0)
-	
-	# LÍNEA AGREGADA: Emitir la señal con el resultado correcto
+
+	# NUEVO: Emitir señal de victoria o derrota
+	if victoria:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
+	# Emitir señal final
 	tween.tween_callback(Callable(self, "emit_signal").bind("finished", victoria))
+
 
 func animar_mordisco():
 	# Animación de mordisco durante el juego

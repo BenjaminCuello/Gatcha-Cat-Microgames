@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 @onready var player = $Player
 @onready var good_food = $GoodFood
@@ -199,5 +202,10 @@ func end_game(success, message):
 	# Verificar nuevamente que el mensaje sigue visible
 	label.text = message
 	label.visible = true
+	if success:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
 	
 	emit_signal("finished", success)

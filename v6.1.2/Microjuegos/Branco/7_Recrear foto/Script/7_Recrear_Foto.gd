@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 signal finished(success)
 
 enum GatoEstado { BASE, IZQUIERDA, DERECHA }
@@ -134,12 +137,15 @@ func _on_TimerBarra_timeout():
 	# Evaluar resultado
 	if estado_actual == estado_objetivo:
 		texto.text = "¡Correcto!"
+		emit_signal("microjuego_superado")  # NUEVO
 		emit_signal("finished", true)
 	else:
 		texto.text = "¡Fallaste!"
+		emit_signal("microjuego_fallado")  # NUEVO
 		emit_signal("finished", false)
 
 	texto.visible = true
+
 
 func _process(delta):
 	if timer_barra.time_left > 0:

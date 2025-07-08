@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 @onready var animales = [$Gato, $Mapache, $Zarigueya]
 @onready var flecha = $Flecha
@@ -134,7 +137,8 @@ func verificar_respuesta():
 		# Verificar nuevamente que el mensaje sigue visible
 		texto_instruccion.text = "¡Correcto! Era el gato."
 		texto_instruccion.visible = true
-		
+		emit_signal("microjuego_superado")
+
 		emit_signal("finished", true)
 	else:
 		texto_instruccion.text = "¡Fallaste! Eso no era un gato."
@@ -146,7 +150,8 @@ func verificar_respuesta():
 		# Verificar nuevamente que el mensaje sigue visible
 		texto_instruccion.text = "¡Fallaste! Eso no era un gato."
 		texto_instruccion.visible = true
-		
+		emit_signal("microjuego_fallado")
+
 		emit_signal("finished", false)
 
 func _on_timer_barra_timeout():
@@ -171,7 +176,8 @@ func _on_timer_barra_timeout():
 	# Verificar nuevamente que el mensaje sigue visible
 	texto_instruccion.text = "¡Se acabó el tiempo!"
 	texto_instruccion.visible = true
-	
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)
 
 func _process(delta):

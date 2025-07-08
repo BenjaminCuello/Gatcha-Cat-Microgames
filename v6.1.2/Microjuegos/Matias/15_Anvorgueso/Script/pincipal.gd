@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 
 signal finished(victory: bool)
 
@@ -304,9 +307,15 @@ func end_game(victory: bool):
 	
 	# Esperar a que termine la animación
 	await get_tree().create_timer(2.0).timeout
-	
 	await get_tree().create_timer(0.5).timeout
+
+	if victory:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
 	emit_signal("finished", victory)
+
 
 func animate_victory():
 	# Ocultar gato original y hamburguesa

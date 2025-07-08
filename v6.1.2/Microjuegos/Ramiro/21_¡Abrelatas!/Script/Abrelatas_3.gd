@@ -1,5 +1,8 @@
 extends Control
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 # Variables de dificultad
 var nivel_dificultad = 1
@@ -102,6 +105,8 @@ func victoria():
 	texto.visible = true
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatofelix.png")
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_superado")
+
 	emit_signal("finished", true)
 
 func derrota():
@@ -112,4 +117,6 @@ func derrota():
 	texto.visible = true
 	gato.texture = preload("res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatotriste.png")
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)

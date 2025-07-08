@@ -1,5 +1,8 @@
 # HairCuttingGame.gd
 extends Control
+signal microjuego_superado
+signal microjuego_fallado
+
 
 # Señal que emite al terminar el juego
 signal finished(victory: bool)
@@ -184,27 +187,30 @@ func process_input(key: String):
 func end_game(victory: bool):
 	game_active = false
 	game_played = true
-	timer_active = false  # Detener el timer
+	timer_active = false
 	
 	if victory:
 		instruction_label.text = "¡Perfecto! Le cortaste el pelo correctamente al gato"
 		instruction_label.modulate = Color.GREEN
 		timer_label.modulate = Color.GREEN
-		# Cambiar sprite del gato a peinado
 		if cat_sprite and cat_neat_texture:
 			cat_sprite.texture = cat_neat_texture
-		# Animación de tijeras cortando
 		animate_scissors_success()
 	else:
 		instruction_label.text = "¡Oh no! Cortaste mal el pelo. El gato está molesto"
 		instruction_label.modulate = Color.RED
 		timer_label.modulate = Color.RED
-		# El gato mantiene el pelo desordenado y se anima molesto
 		animate_cat_angry()
-	
-	# Emitir la señal después de un breve delay
+
 	await get_tree().create_timer(1.5).timeout
+
+	if victory:
+		emit_signal("microjuego_superado")
+	else:
+		emit_signal("microjuego_fallado")
+
 	emit_signal("finished", victory)
+
 
 func animate_scissors_success():
 	# Animación realista de tijeras cortando el pelo del gato

@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+signal microjuego_superado
+signal microjuego_fallado
+
 
 var duracion_juego := 5.0
 var juego_activo := true
@@ -64,6 +67,8 @@ func victoria():
 	$LabelInstruccion.text = "¡Lanzaste todas las cartas!"
 	$LabelInstruccion.visible = true
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_superado")
+
 	emit_signal("finished", true)
 
 func perder():
@@ -72,6 +77,8 @@ func perder():
 	$LabelInstruccion.text = "¡Perdiste! Tiempo agotado."
 	$LabelInstruccion.visible = true
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_fallado")
+
 	emit_signal("finished", false)
 
 func _on_TimerJuego_timeout():

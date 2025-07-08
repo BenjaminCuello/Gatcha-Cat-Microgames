@@ -1,4 +1,7 @@
 extends Node2D
+signal microjuego_superado
+signal microjuego_fallado
+
 
 signal finished(victory: bool)
 
@@ -168,18 +171,20 @@ func end_game(victory: bool):
 	game_active = false
 	game_timer.stop()
 	
-	# Detener el gato cuando termine el juego
 	if cat and cat.has_method("detener_movimiento"):
 		cat.detener_movimiento()
 	
 	if victory:
 		instruction_label.text = "¡VICTORIA! Mantuviste al gato alejado"
 		instruction_label.modulate = Color.GREEN
+		emit_signal("microjuego_superado")  # NUEVO
 	else:
 		instruction_label.text = "¡DERROTA! El gato se aburrió con el láser"
 		instruction_label.modulate = Color.RED
+		emit_signal("microjuego_fallado")  # NUEVO
 	
 	emit_signal("finished", victory)
+
 
 func reset_game():
 	# Resetear todas las variables de estado
