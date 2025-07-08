@@ -1,0 +1,153 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnccd3qa6parh"]
+
+[ext_resource type="Script" uid="uid://dhlokv7w7bxjf" path="res://Microjuegos/Emily/1_Escondite en cajas/Script/1_Escondite_gatuno.gd" id="1_olmnj"]
+[ext_resource type="Texture2D" uid="uid://cafu3aricxnq5" path="res://Fondos/fondo1atras.png" id="2_bdifs"]
+[ext_resource type="Texture2D" uid="uid://bd6oe4qvg30ih" path="res://Fondos/fondo1adelante.png" id="3_pacxm"]
+[ext_resource type="Texture2D" uid="uid://d0q5gwjafkm02" path="res://Microjuegos/Emily/1_Escondite en cajas/Sprites/Caja1.png" id="4_afum1"]
+[ext_resource type="Texture2D" uid="uid://miqyep3s05u8" path="res://Microjuegos/Emily/1_Escondite en cajas/Sprites/Gato6.png" id="5_k35ef"]
+[ext_resource type="Texture2D" uid="uid://fnuuutl8ptp0" path="res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroUno.png" id="6_dcqo3"]
+[ext_resource type="Texture2D" uid="uid://xi66hnig87jx" path="res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroDos.png" id="7_r0lny"]
+[ext_resource type="Texture2D" uid="uid://dryrw43htyu1s" path="res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroTres.png" id="8_aqhp8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(233, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(239, 119.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(242, 114)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syllc"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_olmnj")
+
+[node name="Fondo" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_bdifs")
+
+[node name="Detalles" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_pacxm")
+
+[node name="Caja1" type="Area2D" parent="."]
+position = Vector2(633.725, 691)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja1"]
+position = Vector2(-3.03125, -0.09375)
+scale = Vector2(0.183147, 0.180266)
+texture = ExtResource("4_afum1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja1"]
+position = Vector2(-1.0625, -0.187447)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Caja2" type="Area2D" parent="."]
+position = Vector2(983.725, 691)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja2"]
+position = Vector2(-3.46875, -0.781311)
+scale = Vector2(0.183999, 0.184202)
+texture = ExtResource("4_afum1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja2"]
+position = Vector2(-0.96875, 0.46875)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Caja3" type="Area2D" parent="."]
+position = Vector2(1333.72, 691)
+
+[node name="Sprite2D" type="Sprite2D" parent="Caja3"]
+position = Vector2(1.18762, -1.53125)
+scale = Vector2(0.184992, 0.18633)
+texture = ExtResource("4_afum1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja3"]
+position = Vector2(1.1875, -2.53125)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="Gato" type="Sprite2D" parent="."]
+position = Vector2(968, 676)
+scale = Vector2(0.386592, 0.359003)
+texture = ExtResource("5_k35ef")
+
+[node name="FondoMensaje" type="ColorRect" parent="."]
+offset_left = 778.725
+offset_top = 338.0
+offset_right = 818.725
+offset_bottom = 378.0
+scale = Vector2(11.6461, 2.70826)
+color = Color(0.626119, 0.227556, 0.155387, 1)
+
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 847.725
+offset_top = 363.0
+offset_right = 959.725
+offset_bottom = 386.0
+scale = Vector2(2.84266, 2.476)
+text = "Sigue al gato..."
+
+[node name="Numero1" type="Sprite2D" parent="."]
+position = Vector2(633.725, 506)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("6_dcqo3")
+
+[node name="Numero2" type="Sprite2D" parent="."]
+position = Vector2(983.725, 506)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("7_r0lny")
+
+[node name="Numero3" type="Sprite2D" parent="."]
+position = Vector2(1333.72, 506)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("8_aqhp8")
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 834.0
+offset_top = 1015.0
+offset_right = 1234.0
+offset_bottom = 1042.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+
+[node name="TimerApertura" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="TextoControles" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 801.0
+offset_right = 350.0
+offset_bottom = 1086.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_syllc")
+text = "Presiona:
+[1,2 o 3]
+Segun
+ la posicion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_syllc")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerApertura" to="." method="_on_TimerApertura_timeout"]
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]

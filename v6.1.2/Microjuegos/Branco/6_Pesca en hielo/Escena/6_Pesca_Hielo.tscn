@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2ede7gqkto7a"]
+
+[ext_resource type="Script" uid="uid://b74mvs5ikpiwn" path="res://Microjuegos/Branco/6_Pesca en hielo/Script/6_Pesca_Hielo.gd" id="1_l8h3k"]
+[ext_resource type="Texture2D" uid="uid://b0pry4epgwkh1" path="res://Fondos/Fondo6.png" id="2_c4iyp"]
+[ext_resource type="Texture2D" uid="uid://be4l6lah60ml6" path="res://Microjuegos/Branco/6_Pesca en hielo/Sprite/Hielo.png" id="3_gscd0"]
+[ext_resource type="Texture2D" uid="uid://bcygsw81bcm3x" path="res://Microjuegos/Branco/6_Pesca en hielo/Sprite/Pez.png" id="4_ytppx"]
+[ext_resource type="Script" uid="uid://2orpody5rfs5" path="res://Microjuegos/Branco/6_Pesca en hielo/Script/caja_1.gd" id="5_qxc6m"]
+[ext_resource type="Texture2D" uid="uid://cgejbb8gkbnre" path="res://Microjuegos/Branco/6_Pesca en hielo/Sprite/CajaObstaculo.png" id="6_c0eow"]
+[ext_resource type="Script" uid="uid://nugo8te1nnku" path="res://Microjuegos/Branco/6_Pesca en hielo/Script/caja_2.gd" id="7_i46ky"]
+[ext_resource type="Texture2D" uid="uid://byi4xabo3rr12" path="res://Microjuegos/Branco/6_Pesca en hielo/Sprite/Noa.png" id="8_m1u6n"]
+[ext_resource type="Texture2D" uid="uid://drypvmxk241hl" path="res://Microjuegos/Branco/6_Pesca en hielo/Sprite/Pescar.png" id="9_if2vf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8dma"]
+radius = 38.0
+height = 126.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqsbx"]
+size = Vector2(79.519, 73.2514)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb3vn"]
+size = Vector2(80.2325, 77.5736)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnr32"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="6PescaHielo" type="Node2D"]
+script = ExtResource("1_l8h3k")
+
+[node name="Fondo" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_c4iyp")
+
+[node name="Hielo" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_gscd0")
+
+[node name="Hilo" type="Line2D" parent="."]
+position = Vector2(10, 0)
+points = PackedVector2Array(756, 906, 761, 89)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Pez" type="Area2D" parent="."]
+position = Vector2(756, 959)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pez"]
+shape = SubResource("CapsuleShape2D_n8dma")
+
+[node name="SpritePez" type="Sprite2D" parent="Pez"]
+position = Vector2(0, -2)
+texture = ExtResource("4_ytppx")
+
+[node name="Caja1" type="Area2D" parent="." groups=["Obstaculo"]]
+position = Vector2(996, 423)
+script = ExtResource("5_qxc6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja1"]
+position = Vector2(0, 2.5)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_aqsbx")
+
+[node name="SpriteCaja" type="Sprite2D" parent="Caja1"]
+rotation = -0.698132
+texture = ExtResource("6_c0eow")
+
+[node name="Caja2" type="Area2D" parent="." groups=["Obstaculo"]]
+position = Vector2(539, 731)
+script = ExtResource("7_i46ky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja2"]
+position = Vector2(3.33757, 2.92621)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_cb3vn")
+
+[node name="SpriteCaja" type="Sprite2D" parent="Caja2"]
+rotation = 0.698132
+texture = ExtResource("6_c0eow")
+
+[node name="Noa" type="Sprite2D" parent="."]
+position = Vector2(1236, 93)
+texture = ExtResource("8_m1u6n")
+
+[node name="Pescar" type="Sprite2D" parent="."]
+position = Vector2(972, 114)
+texture = ExtResource("9_if2vf")
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 834.0
+offset_top = 1015.0
+offset_right = 1234.0
+offset_bottom = 1042.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="TextoControles" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 801.0
+offset_right = 350.0
+offset_bottom = 1086.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_pnr32")
+text = "Presiona:
+[1,2 o 3]
+Segun
+ la posicion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_pnr32")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]

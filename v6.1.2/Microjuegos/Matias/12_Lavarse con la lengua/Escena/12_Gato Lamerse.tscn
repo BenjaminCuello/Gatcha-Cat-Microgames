@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2hqkmga21xja"]
+
+[ext_resource type="Script" uid="uid://b57mdtaxxkawt" path="res://Microjuegos/Matias/12_Lavarse con la lengua/Script/cat_licking_game.gd" id="1_5vxte"]
+[ext_resource type="Texture2D" uid="uid://bhlcxaogjen16" path="res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/fondo_12.png" id="2_m8esx"]
+[ext_resource type="Texture2D" uid="uid://0mqndrbww0nm" path="res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/gato_stanby.png" id="3_5vxte"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8esx"]
+bg_color = Color(0.165656, 0.165656, 0.165657, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20mg2"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[node name="gato lamida" type="Node2D"]
+script = ExtResource("1_5vxte")
+
+[node name="Fondo6Pixel" type="Sprite2D" parent="."]
+position = Vector2(941, 524)
+scale = Vector2(1.92773, 1.09766)
+texture = ExtResource("2_m8esx")
+
+[node name="CatSprite" type="Sprite2D" parent="."]
+position = Vector2(1276, 615)
+scale = Vector2(0.498858, 0.40997)
+texture = ExtResource("3_5vxte")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextoControles" type="Label" parent="UI"]
+layout_mode = 0
+offset_top = 774.0
+offset_right = 627.0
+offset_bottom = 1079.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_m8esx")
+text = "MANTENER
+ESPACIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 8.0
+offset_right = 1594.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxFlat_20mg2")
+text = "Atrapalo! (Espacio)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameTimer" type="Timer" parent="."]

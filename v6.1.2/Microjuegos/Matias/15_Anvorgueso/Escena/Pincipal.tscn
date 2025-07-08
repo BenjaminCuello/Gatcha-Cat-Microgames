@@ -1,0 +1,143 @@
+[gd_scene load_steps=10 format=3 uid="uid://bou3ubewswu3h"]
+
+[ext_resource type="Script" uid="uid://bq2eht7w0ub8c" path="res://Microjuegos/Matias/15_Anvorgueso/Script/pincipal.gd" id="1_jj505"]
+[ext_resource type="Texture2D" uid="uid://cppfknrq4xyps" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/Fondo_m15.png" id="2_jj505"]
+[ext_resource type="Texture2D" uid="uid://cgbwbdll0p0mh" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/mano.png" id="3_yh2jn"]
+[ext_resource type="Texture2D" uid="uid://dix8n7iukpe6h" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/hamburguesa.png" id="4_8ucja"]
+[ext_resource type="Texture2D" uid="uid://cx8jqvbeye7p0" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/gato.png" id="5_jj505"]
+[ext_resource type="Texture2D" uid="uid://chqtt2wmvo5m0" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/lose1.png" id="6_lwf0n"]
+[ext_resource type="Texture2D" uid="uid://dcir7euvokeqk" path="res://Microjuegos/Matias/15_Anvorgueso/Sprites/lleno.png" id="7_yh2jn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jj505"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwf0n"]
+bg_color = Color(0.165656, 0.165656, 0.165657, 0.486275)
+
+[node name="Pincipal" type="Node2D"]
+script = ExtResource("1_jj505")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="fondo" type="Sprite2D" parent="GameArea"]
+position = Vector2(963.5, 542.917)
+scale = Vector2(1.8916, 1.07243)
+texture = ExtResource("2_jj505")
+
+[node name="Owner" type="Sprite2D" parent="GameArea"]
+position = Vector2(713.75, 790.5)
+scale = Vector2(0.737793, 0.649414)
+texture = ExtResource("3_yh2jn")
+
+[node name="Hamburger" type="Sprite2D" parent="GameArea"]
+position = Vector2(735, 779)
+scale = Vector2(0.476563, 0.368164)
+texture = ExtResource("4_8ucja")
+
+[node name="Cat" type="Sprite2D" parent="GameArea"]
+position = Vector2(507, 662)
+scale = Vector2(0.420898, 0.423828)
+texture = ExtResource("5_jj505")
+
+[node name="CatFalling" type="Sprite2D" parent="GameArea"]
+position = Vector2(697, 675)
+scale = Vector2(0.566894, 0.509766)
+texture = ExtResource("6_lwf0n")
+
+[node name="CatSatisfied" type="Sprite2D" parent="GameArea"]
+position = Vector2(740, 707)
+scale = Vector2(0.632446, 0.506714)
+texture = ExtResource("7_yh2jn")
+
+[node name="UIContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="InstructionsLabel" type="Label" parent="UIContainer"]
+offset_left = 349.0
+offset_top = 212.0
+offset_right = 1684.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxFlat_jj505")
+text = "Come la hamburguesa!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="UIContainer"]
+offset_left = -9.0
+offset_top = 757.0
+offset_right = 618.0
+offset_bottom = 1072.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_lwf0n")
+text = "Manten la 
+tecla
+ESPACIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeBar" type="ProgressBar" parent="UIContainer"]
+offset_left = 875.0
+offset_top = 25.0
+offset_right = 1890.0
+offset_bottom = 74.0
+show_percentage = false
+
+[node name="GripBar" type="Control" parent="UIContainer"]
+anchors_preset = 0
+offset_left = 99.0
+offset_top = 14.0
+offset_right = 799.0
+offset_bottom = 85.0
+
+[node name="BarBackground" type="ColorRect" parent="UIContainer/GripBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = -15.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="BarFill" type="ColorRect" parent="UIContainer/GripBar"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0, 1, 0, 1)
+
+[node name="GameOverScreen" type="Control" parent="UIContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameManager" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

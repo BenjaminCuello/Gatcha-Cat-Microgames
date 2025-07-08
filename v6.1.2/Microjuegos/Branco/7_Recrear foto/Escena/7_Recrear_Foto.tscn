@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3gtbr07shan2"]
+
+[ext_resource type="Script" uid="uid://cnru6ymlr3xoi" path="res://Microjuegos/Branco/7_Recrear foto/Script/7_Recrear_Foto.gd" id="1_xbq2x"]
+[ext_resource type="Texture2D" uid="uid://cafu3aricxnq5" path="res://Fondos/fondo1atras.png" id="2_bbhmm"]
+[ext_resource type="Texture2D" uid="uid://bg8ucuihc3jj4" path="res://Microjuegos/Branco/7_Recrear foto/Sprite/Pure.png" id="3_hhli1"]
+[ext_resource type="Texture2D" uid="uid://bc34do5rcte6i" path="res://Microjuegos/Branco/7_Recrear foto/Sprite/PureFoto.png" id="4_mj2px"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhli1"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.486275)
+
+[node name="7RecrearFoto" type="Node2D"]
+script = ExtResource("1_xbq2x")
+
+[node name="FondoGenerico" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_bbhmm")
+
+[node name="GatoBase" type="Sprite2D" parent="."]
+position = Vector2(972, 551)
+scale = Vector2(2, 2)
+texture = ExtResource("3_hhli1")
+
+[node name="GatoFoto" type="Sprite2D" parent="."]
+position = Vector2(1309, 696)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mj2px")
+
+[node name="BarraTiempo" type="ProgressBar" parent="."]
+offset_left = 834.0
+offset_top = 1015.0
+offset_right = 1234.0
+offset_bottom = 1042.0
+max_value = 1.5
+value = 1.5
+show_percentage = false
+
+[node name="TimerBarra" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="TimerCambioFoto" type="Timer" parent="."]
+
+[node name="TextoControles" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 801.0
+offset_right = 350.0
+offset_bottom = 1086.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_hhli1")
+text = "Presiona:
+[1,2 o 3]
+Segun
+ la posicion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextoInstruccion" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 134.0
+offset_right = 1584.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_hhli1")
+text = "¡Atento a las Teclas!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="TimerBarra" to="." method="_on_TimerBarra_timeout"]
+[connection signal="timeout" from="TimerCambioFoto" to="." method="_on_TimerCambioFoto_timeout"]
