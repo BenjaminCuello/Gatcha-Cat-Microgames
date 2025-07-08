@@ -1,0 +1,50 @@
+res://EscenasGenerales/Multiplayer/Multiplayer Scene.tscn
+res://EscenasGenerales/Multiplayer/multiplayer_scene.gd
+res://Microjuegos/Ramiro/22_Atrápalo/Escena/Atrapalo (6).tscn
+res://Microjuegos/Emily/1_Escondite en cajas/Script/1_Escondite_gatuno.gd
+res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/9_Flappy_cat.gd
+res://Microjuegos/Branco/10_Juego de cartas/Script/10_Cartas.gd
+res://Microjuegos/Matias/11_Morder al muñeco/Script/11_Morder_al_muñeco.gd
+res://Microjuegos/Matias/13_Cortarle el pelo/Script/13_cortar_pelo.gd
+res://Microjuegos/Ramiro/21_¡Abrelatas!/Script/Abrelatas_3.gd
+res://Microjuegos/Ramiro/22_Atrápalo/Script/atrapalo_6.gd
+res://Microjuegos/Andres/26_Atrapa el ratón/Script/atrapar_ratonEs.gd
+res://Microjuegos/Cuello/19_  Baile rítmico/Script/Baile rítmico_5.gd
+res://Microjuegos/Matias/12_Lavarse con la lengua/Script/cat_licking_game.gd
+res://Microjuegos/Cuello/18_Gato equilibrio/Script/Gato equilibrio_2.gd
+res://Microjuegos/Cuello/17_Gato buscando sol/Script/gato_buscando_sol.gd
+res://Microjuegos/Matias/14_Gato laser/Script/main.gd
+res://Microjuegos/Cuello/16_Tecla gatuna/Script/Tecla gatuna_1.gd
+res://EscenasGenerales/Multiplayer/Multiplayer_Scene.tscn
+res://ScriptsGenerales/ChatManager.gd
+res://EscenasGenerales/Menus/MenuPrincipal.tscn
+res://ScriptsGenerales/Global.gd
+res://EscenasGenerales/Menus/MenuPausa.tscn
+res://EscenasGenerales/Menus/Online/chat-window.tscn
+res://EscenasGenerales/Controladores/GameController.tscn
+res://EscenasGenerales/Controladores/ControladorMicrojuegoPorSistema.tscn
+res://EscenasGenerales/Menus/Online/user_login.tscn
+res://Microjuegos/Andres/26_Atrapa el ratón/Escena/atrapar_raton.tscn
+res://Microjuegos/Branco/9_Flappy Birds con gatitos/Escena/9_Flappy_cat.tscn
+res://Microjuegos/Branco/10_Juego de cartas/Escena/10_Cartas.tscn
+res://Microjuegos/Cuello/16_Tecla gatuna/Escena/Tecla gatuna (1).tscn
+res://Microjuegos/Cuello/17_Gato buscando sol/Escena/GatoBuscandoSol.tscn
+res://Microjuegos/Cuello/18_Gato equilibrio/Escena/Gato equilibrio (2).tscn
+res://Microjuegos/Cuello/19_  Baile rítmico/Escena/Baile rítmico (5).tscn
+res://Microjuegos/Emily/1_Escondite en cajas/Escena/1_Escondite_gatuno.tscn
+res://Microjuegos/Matias/11_Morder al muñeco/Escena/11_Morder_al_muñeco.tscn
+res://Microjuegos/Matias/12_Lavarse con la lengua/Escena/12_Gato Lamerse.tscn
+res://Microjuegos/Matias/13_Cortarle el pelo/Escena/13_cortarPelo.tscn
+res://Microjuegos/Matias/14_Gato laser/Escena/14_gato laser.tscn
+res://Microjuegos/Ramiro/21_¡Abrelatas!/Escena/Abrelatas (3).tscn
+res://EscenasGenerales/Controladores/ControladorMicrojuegoPorSistema.gd
+res://ScriptsGenerales/juego.gd
+res://EscenasGenerales/Menus/MenuPausa.gd
+res://EscenasGenerales/Menus/MenuPrincipal.gd
+res://EscenasGenerales/Controladores/MultiplayerGame.gd
+res://ScriptsGenerales/user_login.gd
+res://ScriptsGenerales/WebSocket.gd
+res://Microjuegos/Andres/26_Atrapa el ratón/Script/pata_gato.gd
+res://Microjuegos/Matias/14_Gato laser/Script/cat.gd
+res://Microjuegos/Matias/14_Gato laser/Script/laser.gd
+res://ScriptsGenerales/input_global.gd

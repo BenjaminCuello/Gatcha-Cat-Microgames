@@ -1,0 +1,234 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1751919534
+export_presets.cfg::TextFile/TextFile::-1::1750347022::0::1::::<><><>0<>0<><>::
+::res://AudiosGenerales/::1750347021
+::res://AudiosGenerales/MusicaMenus/::1750349026
+MusicaMenuPrincipal.mp3::AudioStreamMP3/AudioStreamMP3::8592179629010337780::1750347021::1750349026::1::::<><><>0<>0<>e98942ed897dddd530a50f99f84055ae<>res://.godot/imported/MusicaMenuPrincipal.mp3-d3a9e154e45e2ac12ace3ccabf0c025d.mp3str::
+::res://AudiosGenerales/Sonidos/::1750349026
+SonidoCinematica.mp3::AudioStreamMP3/AudioStreamMP3::7273073865918716859::1750347021::1750349026::1::::<><><>0<>0<>7a175888d5ae2bbf684e862fb4e276d2<>res://.godot/imported/SonidoCinematica.mp3-d8a0d92eab74842af19d9dbd703302af.mp3str::
+SonidoDerrotaJuego.mp3::AudioStreamMP3/AudioStreamMP3::8914184471897986755::1750347021::1750349026::1::::<><><>0<>0<>8257d39675f25138fcdda3529b59140c<>res://.godot/imported/SonidoDerrotaJuego.mp3-9e8f9634fffc0edc6b5bd4e942194f3a.mp3str::
+SonidoMicrojuegoInicio.mp3::AudioStreamMP3/AudioStreamMP3::282892559411871918::1750347021::1750349026::1::::<><><>0<>0<>64f056430c515f98f691ccfb01eb34c1<>res://.godot/imported/SonidoMicrojuegoInicio.mp3-959bee12c8f4c0d1ac47af7eaeb6657b.mp3str::
+SonidoVictoriaJuego.mp3::AudioStreamMP3/AudioStreamMP3::802408645764344012::1750347021::1750349026::1::::<><><>0<>0<>8b614d61ffca5a0f97d9a35034b2ce0a<>res://.godot/imported/SonidoVictoriaJuego.mp3-fefc74ef9b096704f571999ccace923f.mp3str::
+::res://EscenasGenerales/::1751854762
+::res://EscenasGenerales/Cinematicas/::1750347021
+CinematicaGatoDurmiendo.gd::GDScript/GDScript::2031118161225875315::1750347021::0::1::::<>Control<><>0<>0<><>::
+CinematicaGatoDurmiendo.tscn::PackedScene/PackedScene::698873577513449112::1750347021::0::1::::<><><>0<>0<><>::uid://365hpt61ahih::::res://EscenasGenerales/Cinematicas/CinematicaGatoDurmiendo.gd<>uid://dr0crk7g3yojd::::res://Fondos/GatoDurmiendo.png<>uid://biq8p4i511h5t::::res://Videos/cinematica.ogv<>uid://dbvep1ltrn3jb::::res://AudiosGenerales/Sonidos/SonidoCinematica.mp3
+::res://EscenasGenerales/Controladores/::1751854790
+ControladorMicrojuegoPorSistema.gd::GDScript/GDScript::3257641917514978091::1750347021::0::1::::<>Node<><>0<>0<><>::
+ControladorMicrojuegoPorSistema.tscn::PackedScene::6945296937118041607::1751853128::0::1::::<><><>0<>0<><>::uid://bmoa5eynybwx4::::res://EscenasGenerales/Controladores/ControladorMicrojuegoPorSistema.gd
+GameController.tscn::PackedScene::3306021342399651713::1751853128::0::1::::<><><>0<>0<><>::
+MultiplayerGame.gd::GDScript::2469280312438459397::1751854790::0::1::::<>Node<><>0<>0<><>::
+::res://EscenasGenerales/EscenaVictoriaDerrota/::1750347021
+EscenaDerrotaJuego.gd::GDScript/GDScript::2783230568550765030::1750347021::0::1::::<>Control<><>0<>0<><>::
+EscenaDerrotaJuego.tscn::PackedScene/PackedScene::4846947568028409233::1750347021::0::1::::<><><>0<>0<><>::uid://bfwhnvmgftjtu::::res://EscenasGenerales/EscenaVictoriaDerrota/EscenaDerrotaJuego.gd<>uid://c7bhbum8iaxs4::::res://Fondos/FondoDerrotaJuego.png<>uid://d0adk0fde27ed::::res://AudiosGenerales/Sonidos/SonidoDerrotaJuego.mp3
+EscenaVictoriaJuego.gd::GDScript/GDScript::4868418220615520299::1750347021::0::1::::<>Control<><>0<>0<><>::
+EscenaVictoriaJuego.tscn::PackedScene/PackedScene::3840108472492594095::1750347021::0::1::::<><><>0<>0<><>::uid://cbmkewfeo3hap::::res://EscenasGenerales/EscenaVictoriaDerrota/EscenaVictoriaJuego.gd<>uid://c3j4gbke3l78p::::res://Fondos/FondoVictoriaJuego.png<>uid://loxs2pq10rgu::::res://AudiosGenerales/Sonidos/SonidoVictoriaJuego.mp3
+::res://EscenasGenerales/EscenaVidasNumeroMicrojuego/::1750347021
+MicroInicioContadorVidas.gd::GDScript/GDScript::8862163194921985410::1750347021::0::1::::<>Control<><>0<>0<><>::
+MicroInicioContadorVidas.tscn::PackedScene/PackedScene::2634473190926134065::1750347021::0::1::::<><><>0<>0<><>::uid://dyi5segxmwb6q::::res://EscenasGenerales/EscenaVidasNumeroMicrojuego/MicroInicioContadorVidas.gd<>uid://dv35agqeil7vs::::res://Fondos/CargaMicrojuegos.png<>uid://ebbg1gkoms8e::::res://AudiosGenerales/Sonidos/SonidoMicrojuegoInicio.mp3
+::res://EscenasGenerales/Menus/::1751853128
+MenuPausa.gd::GDScript/GDScript::4879932667266964365::1750347021::0::1::::<>CanvasLayer<><>0<>0<><>::
+MenuPausa.tscn::PackedScene::9009739385056984234::1751853128::0::1::::<><><>0<>0<><>::uid://cbr41po8ljtqj::::res://EscenasGenerales/Menus/MenuPausa.gd<>uid://5210j7cuep8m::::res://SpritesGenerales/pausa.png
+MenuPrincipal.gd::GDScript/GDScript::2758773238677982530::1751843466::0::1::::<>Control<><>0<>0<><>::
+MenuPrincipal.tscn::PackedScene::561252439432637386::1751853128::0::1::::<><><>0<>0<><>::uid://bfkmuetanttve::::res://EscenasGenerales/Menus/MenuPrincipal.gd<>uid://ddywhan1rjexl::::res://Fondos/Fondoprincipal.png<>uid://cs7n51v67tnqt::::res://SpritesGenerales/titulo.png<>uid://duod7cj3gdwv1::::res://AudiosGenerales/MusicaMenus/MusicaMenuPrincipal.mp3
+::res://EscenasGenerales/Menus/Online/::1751853128
+chat-window.tscn::PackedScene::8321771118249345953::1751853128::0::1::::<><><>0<>0<><>::uid://ds3ckqlh6vtki::::res://ScriptsGenerales/ChatManager.gd<>uid://d30o0f1pah1in::::res://ScriptsGenerales/WebSocket.gd
+user_login.tscn::PackedScene::1831842289829529862::1751853128::0::1::::<><><>0<>0<><>::uid://ccbig4exccf18::::res://ScriptsGenerales/user_login.gd
+::res://EscenasGenerales/Multiplayer/::1751920088
+Multiplayer Scene.tscn::PackedScene::3154499779244371993::1751920088::0::1::::<><><>0<>0<><>::uid://brk4m5m1ay0h4::::res://EscenasGenerales/Multiplayer/multiplayer_scene.gd
+multiplayer_scene.gd::GDScript::3602058620817786351::1751920088::0::1::::<>Node<><>0<>0<><>::
+::res://Fondos/::1750349028
+Alfombra.jpeg::CompressedTexture2D/CompressedTexture2D::7059897420445570388::1750347021::1750349028::1::::<><><>0<>0<>8ddcf6f0a537e4780899adfac116b3a4<>res://.godot/imported/Alfombra.jpeg-175911465df24f694e335baa3b3d0584.ctex::
+CalleCiudad.png::CompressedTexture2D/CompressedTexture2D::6316955342159471441::1750347021::1750349028::1::::<><><>0<>0<>13eeb8e3d3dc4d695a69c2c0ba5d01b3<>res://.godot/imported/CalleCiudad.png-0a110be3cf5208f66b3e2f7b3eb0b9e3.ctex::
+CargaMicrojuegos.png::CompressedTexture2D/CompressedTexture2D::8692852194424524852::1750347021::1750349028::1::::<><><>0<>0<>eaad753fb64a18bd1319314c170f068b<>res://.godot/imported/CargaMicrojuegos.png-41017fe84dc9a4fb6aa0086d7d5d98bb.ctex::
+Circo.jpg::CompressedTexture2D/CompressedTexture2D::7230136734536682360::1750347021::1750349028::1::::<><><>0<>0<>70924d966f2beeb1ad565914028529a2<>res://.godot/imported/Circo.jpg-b1e9a19f1d3cf4ffa3e59d154a924b28.ctex::
+fondo1adelante.png::CompressedTexture2D/CompressedTexture2D::2661841654914717787::1750347021::1750349028::1::::<><><>0<>0<>6f2e3af60e91f30cf638fe276b8f9996<>res://.godot/imported/fondo1adelante.png-e46d02b559c0d36511d16739e45a7d53.ctex::
+fondo1atras.png::CompressedTexture2D/CompressedTexture2D::4784427624869918090::1750347021::1750349027::1::::<><><>0<>0<>f36e2b59a3a20ddfacaf62c093234b34<>res://.godot/imported/fondo1atras.png-212947f7dbf259ebde307a9687efacf8.ctex::
+Fondo10.png::CompressedTexture2D/CompressedTexture2D::3094597427717638624::1750347021::1750349027::1::::<><><>0<>0<>3eb309955e82711b57dfdc1debc33298<>res://.godot/imported/Fondo10.png-25880d3547c8332c309c9e38ac5207ac.ctex::
+FondoCalle.png::CompressedTexture2D/CompressedTexture2D::7312586738230889800::1750347021::1750349028::1::::<><><>0<>0<>9168634b29e8541e98393eecb7bb5767<>res://.godot/imported/FondoCalle.png-ff0edcc240c30beb0701c6a36584c15c.ctex::
+Fondocielo.png::CompressedTexture2D/CompressedTexture2D::5716765282189110473::1750347021::1750349028::1::::<><><>0<>0<>5b6cea51808e185c1890a0b107f09685<>res://.godot/imported/Fondocielo.png-f10460c1bd60af80d224bbe069e70dd6.ctex::
+FondoCiudadGenerico.png::CompressedTexture2D/CompressedTexture2D::7859276854323868119::1750347021::1750349027::1::::<><><>0<>0<>6fe5b9381ed4583edb72cc12b6acbced<>res://.godot/imported/FondoCiudadGenerico.png-08ecb12a4df7e52e6eb2254cf8c89ecf.ctex::
+FondoDerrotaJuego.png::CompressedTexture2D/CompressedTexture2D::7021376616815311101::1750347021::1750349028::1::::<><><>0<>0<>5b9c477a3bfeb29915daba9e3d9a7356<>res://.godot/imported/FondoDerrotaJuego.png-6b1a8bc78ed40569b6003dc40ea2c24a.ctex::
+Fondoprincipal.png::CompressedTexture2D/CompressedTexture2D::7420721943775886721::1750347021::1750349028::1::::<><><>0<>0<>367b439530bd7cb854e1015eea463fe6<>res://.godot/imported/Fondoprincipal.png-57596de76088e03c0ae1e388f176a5e5.ctex::
+FondoSalaDeEstar.jpeg::CompressedTexture2D/CompressedTexture2D::244822760580168430::1750347021::1750349028::1::::<><><>0<>0<>6eeb780385a1475c3d0fad609efd8abf<>res://.godot/imported/FondoSalaDeEstar.jpeg-4b9a88bd9c9df5cfb668c88f363ab3ef.ctex::
+FondoVictoriaJuego.png::CompressedTexture2D/CompressedTexture2D::6758479964782327561::1750347021::1750349028::1::::<><><>0<>0<>23f56242c5312ada1b6d210a0dd9e05b<>res://.godot/imported/FondoVictoriaJuego.png-c754384a7a3c782c69054529fbc7f129.ctex::
+GatoDurmiendo.png::CompressedTexture2D/CompressedTexture2D::8404234204237496749::1750347021::1750349027::1::::<><><>0<>0<>0d0cba074bdf957068ef840f8a3becef<>res://.godot/imported/GatoDurmiendo.png-ac295174ee9f352022563140114c10f1.ctex::
+GatosBailando.png::CompressedTexture2D/CompressedTexture2D::5515392918462644936::1750347021::1750349028::1::::<><><>0<>0<>55b4d187647dba57637ed375cd3a8451<>res://.godot/imported/GatosBailando.png-f65cced541ad4349c4f007c5adf1e1e3.ctex::
+::res://Microjuegos/::1750347022
+::res://Microjuegos/Andres/::1750347021
+::res://Microjuegos/Andres/26_Atrapa el ratón/::1750347021
+::res://Microjuegos/Andres/26_Atrapa el ratón/Escena/::1750347021
+atrapar_raton.tscn::PackedScene/PackedScene::9123719885603063327::1750347021::0::1::::<><><>0<>0<><>::uid://dadcx6u3h6xa1::::res://Microjuegos/Andres/26_Atrapa el ratón/Script/atrapar_ratonEs.gd<>uid://c7t4qj1u38bh1::::res://Fondos/Alfombra.jpeg<>uid://ctoejhsa4pls7::::res://Microjuegos/Andres/26_Atrapa el ratón/Sprites/RATON.png<>uid://dg2m472ngx6s7::::res://Microjuegos/Andres/26_Atrapa el ratón/Script/pata_gato.gd<>uid://dew3hx81j7qcn::::res://Microjuegos/Andres/26_Atrapa el ratón/Sprites/aaa.png
+::res://Microjuegos/Andres/26_Atrapa el ratón/Script/::1751921967
+atrapar_ratonEs.gd::GDScript::7165619351989562078::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+pata_gato.gd::GDScript/GDScript::7636915427260093816::1750347021::0::1::::PataGato<>CharacterBody2D<><>0<>0<><>::
+::res://Microjuegos/Andres/26_Atrapa el ratón/Sprites/::1750349027
+aaa.png::CompressedTexture2D/CompressedTexture2D::7487147572785766433::1750347021::1750349027::1::::<><><>0<>0<>b480c15287f2bfa530726ca15977c3d7<>res://.godot/imported/aaa.png-1eb1ae1e315d1547cfd02cb0d7e8ba3d.ctex::
+RATON.png::CompressedTexture2D/CompressedTexture2D::6135590020691151352::1750347021::1750349027::1::::<><><>0<>0<>ef6e3cb741a28a5333cee4c710686ca5<>res://.godot/imported/RATON.png-5641fc717402df87a4f113e397a09bfe.ctex::
+::res://Microjuegos/Branco/::1750347021
+::res://Microjuegos/Branco/9_Flappy Birds con gatitos/::1750347021
+::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Escena/::1750347021
+9_Flappy_cat.tscn::PackedScene/PackedScene::1853086928445466347::1750347021::0::1::::<><><>0<>0<><>::uid://dtjxv4sh0s1u0::::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/9_Flappy_cat.gd<>uid://cnpij3bucijph::::res://Fondos/Fondocielo.png<>uid://cr76tkti0tbbx::::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/GLOBOPNG.png<>uid://b328in2qwlxcr::::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/Mario_pipe.png
+::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/::1751921967
+9_Flappy_cat.gd::GDScript::8512865023829916201::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/::1750349027
+GLOBOPNG.png::CompressedTexture2D/CompressedTexture2D::6034028509205044005::1750347021::1750349027::1::::<><><>0<>0<>dd1c934dd1af35d099c3aa2a921c9170<>res://.godot/imported/GLOBOPNG.png-76d52d618c5fd28449f416f7ec29c061.ctex::
+Mario_pipe.png::CompressedTexture2D/CompressedTexture2D::4409465177300250537::1750347021::1750349027::1::::<><><>0<>0<>da3477e9e81e17195f12393b35fb23b7<>res://.godot/imported/Mario_pipe.png-cc8ae2acfa1bc76f7a90ca0f56b9ae14.ctex::
+::res://Microjuegos/Branco/10_Juego de cartas/::1750347021
+::res://Microjuegos/Branco/10_Juego de cartas/Escena/::1750347021
+10_Cartas.tscn::PackedScene/PackedScene::7734937083654575935::1750347021::0::1::::<><><>0<>0<><>::uid://bkdbtkblugots::::res://Fondos/Fondo10.png<>uid://d3d78jm45c2kt::::res://Microjuegos/Branco/10_Juego de cartas/Script/10_Cartas.gd<>uid://dxftndk168djo::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/Asientos.png<>uid://dm0esogsey1d3::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/GatitosMesa.png<>uid://dxqiot2eflpep::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/ElementosDelanteros.png<>uid://c4a83vej8onjb::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/pataestatica.png<>uid://peya0oyndqkj::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/patacartas-removebg-preview.png<>uid://dexkltdaw6ait::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/cartas.png<>uid://cms85f61ys6ut::::res://Microjuegos/Branco/10_Juego de cartas/Sprites/cartatirada-removebg-preview.png
+::res://Microjuegos/Branco/10_Juego de cartas/Script/::1751921967
+10_Cartas.gd::GDScript::9132745173779409507::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Branco/10_Juego de cartas/Sprites/::1750349028
+Asientos.png::CompressedTexture2D/CompressedTexture2D::8785104355949816196::1750347021::1750349028::1::::<><><>0<>0<>f85a755948bb979202d3640c5d12d166<>res://.godot/imported/Asientos.png-16129dc6be1fc6a2836b49948f0894f1.ctex::
+cartas.png::CompressedTexture2D/CompressedTexture2D::7488125930244110139::1750347021::1750349028::1::::<><><>0<>0<>246696f296eacffa81ab52990884aa60<>res://.godot/imported/cartas.png-c7058d68f0e8576a07432c8044b2ed4b.ctex::
+cartatirada-removebg-preview.png::CompressedTexture2D/CompressedTexture2D::5654323836913931591::1750347021::1750349028::1::::<><><>0<>0<>a2ab2ae8a7dc388ca0578f713587789c<>res://.godot/imported/cartatirada-removebg-preview.png-a46008c5d17a16402917d97d9e6772b8.ctex::
+ElementosDelanteros.png::CompressedTexture2D/CompressedTexture2D::8807147275718049851::1750347021::1750349028::1::::<><><>0<>0<>5d737353e6565943f08d4668e667e474<>res://.godot/imported/ElementosDelanteros.png-99cc1e15fbd40d09154ab0c86c4bfe21.ctex::
+GatitosMesa.png::CompressedTexture2D/CompressedTexture2D::8053413376268425130::1750347021::1750349028::1::::<><><>0<>0<>8dd458683a9a27bb0fdb0de67ecc9736<>res://.godot/imported/GatitosMesa.png-c6137e9b6a4db3f1369263e7c13649c6.ctex::
+patacartas-removebg-preview.png::CompressedTexture2D/CompressedTexture2D::1062548709232094725::1750347021::1750349028::1::::<><><>0<>0<>cdbb3e3db7846114e9f69f0d23adfbc4<>res://.godot/imported/patacartas-removebg-preview.png-e0ce303f473f06720ee96694340edaf7.ctex::
+pataestatica.png::CompressedTexture2D/CompressedTexture2D::6810372605502925831::1750347021::1750349028::1::::<><><>0<>0<>122b8e7aaa99cb6c5820e8875b7bada7<>res://.godot/imported/pataestatica.png-2b9cc626cdac22d65eb73725748b1154.ctex::
+::res://Microjuegos/Cuello/::1750347021
+::res://Microjuegos/Cuello/16_Tecla gatuna/::1750347021
+::res://Microjuegos/Cuello/16_Tecla gatuna/Escena/::1750347021
+Tecla gatuna (1).tscn::PackedScene/PackedScene::299326408252562184::1750347021::0::1::::<><><>0<>0<><>::uid://c63gvncd2g1nd::::res://Microjuegos/Cuello/16_Tecla gatuna/Script/Tecla gatuna_1.gd<>uid://cnpij3bucijph::::res://Fondos/Fondocielo.png<>uid://vn4hs7mx1g5j::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/manoconpescado.png<>uid://ddpnwgpwp8bec::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/pescado+.png<>uid://dgi3aj6dhml7m::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatobocacerrada.png<>uid://b0chhvj5jidlf::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatobocaabierta.png<>uid://bo4d5myab6bqf::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatotriste.png<>uid://c1i82qfmfbo5o::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatofelix.png<>uid://bvvay86utvrrl::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/manosinnada.png<>uid://dif1c0dbr3qbw::::res://Microjuegos/Cuello/16_Tecla gatuna/Musica/Microjuego_rapido.ogg<>uid://dy4d5rw2atf16::::res://Microjuegos/Cuello/16_Tecla gatuna/Sonidos/audioAprieta.ogg
+::res://Microjuegos/Cuello/16_Tecla gatuna/Musica/::1750349026
+Microjuego_rapido.ogg::AudioStreamOggVorbis/AudioStreamOggVorbis::7732678220141038024::1750347021::1750349026::1::::<><><>0<>0<>6a12778ef98fe5cd9899cad9666e5db8<>res://.godot/imported/Microjuego_rapido.ogg-05f04524540e07e4142dfb0a57addbe8.oggvorbisstr::
+::res://Microjuegos/Cuello/16_Tecla gatuna/Script/::1751921967
+Tecla gatuna_1.gd::GDScript::7006900586973295717::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Cuello/16_Tecla gatuna/Sonidos/::1750349026
+audioAprieta.ogg::AudioStreamOggVorbis/AudioStreamOggVorbis::8903897906165419679::1750347021::1750349026::1::::<><><>0<>0<>4364017cffbccd88c7d47d2fe7ce65ca<>res://.godot/imported/audioAprieta.ogg-59d57159ef3fc7032078492956972076.oggvorbisstr::
+::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/::1750349028
+gatobocaabierta.png::CompressedTexture2D/CompressedTexture2D::4145709167927730519::1750347021::1750349028::1::::<><><>0<>0<>59b0651474f960a66a1997ae7f12f4ac<>res://.godot/imported/gatobocaabierta.png-57ade56203a682568dd2676d2cd06e15.ctex::
+gatobocacerrada.png::CompressedTexture2D/CompressedTexture2D::7598610731482670952::1750347021::1750349028::1::::<><><>0<>0<>97b5bc5867acd3dc4e48d4989acbb9c2<>res://.godot/imported/gatobocacerrada.png-dac3ba8ebf27c23765464aa0bcee64f9.ctex::
+gatofelix.png::CompressedTexture2D/CompressedTexture2D::6616319049853835482::1750347021::1750349028::1::::<><><>0<>0<>f97db0ce04720a6b8d625ca87c35e74e<>res://.godot/imported/gatofelix.png-f95654e4f706acd6534a2d0358f31ee4.ctex::
+gatotriste.png::CompressedTexture2D/CompressedTexture2D::3429167841646798385::1750347021::1750349028::1::::<><><>0<>0<>7194b8db8c37779b112ed696a55f0f57<>res://.godot/imported/gatotriste.png-d6b07d33869a16db18179adc56b69dc9.ctex::
+manoconpescado.png::CompressedTexture2D/CompressedTexture2D::1502576915980053469::1750347021::1750349028::1::::<><><>0<>0<>f65a5318a2ac8ee3391f0dac697f8d33<>res://.godot/imported/manoconpescado.png-f674ffcfe864a249b90be6904f4cfd34.ctex::
+manosinnada.png::CompressedTexture2D/CompressedTexture2D::3903782974075190057::1750347021::1750349028::1::::<><><>0<>0<>77aed76fc8fc358960a4248a50703cce<>res://.godot/imported/manosinnada.png-f83bebf3553670906ddeed6fb2e553ea.ctex::
+pescado+.png::CompressedTexture2D/CompressedTexture2D::7401623196009258502::1750347021::1750349028::1::::<><><>0<>0<>234db3ffb08c8189a81abe8b607f79d7<>res://.godot/imported/pescado+.png-bb89c7310fd918feabeb982fbb22b390.ctex::
+::res://Microjuegos/Cuello/17_Gato buscando sol/::1750347021
+::res://Microjuegos/Cuello/17_Gato buscando sol/Escena/::1750347021
+GatoBuscandoSol.tscn::PackedScene/PackedScene::8198097666179345859::1750347021::0::1::::<><><>0<>0<><>::uid://co53lgyknsfhf::::res://Microjuegos/Cuello/17_Gato buscando sol/Script/gato_buscando_sol.gd<>uid://dcgjh85fm1hlg::::res://Fondos/FondoCalle.png<>uid://banxj0w0uoodn::::res://Microjuegos/Cuello/17_Gato buscando sol/Sprites/luz.png<>uid://dtvdf01lw16jy::::res://Microjuegos/Cuello/17_Gato buscando sol/Sprites/gatoquiertosol.png<>uid://b248up0s8mrbe::::res://Microjuegos/Cuello/17_Gato buscando sol/Sprites/gatomoviendosol.png
+::res://Microjuegos/Cuello/17_Gato buscando sol/Script/::1751921967
+gato_buscando_sol.gd::GDScript::5819136583158710567::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Cuello/17_Gato buscando sol/Sprites/::1750349028
+gatomoviendosol.png::CompressedTexture2D/CompressedTexture2D::4343426620759890778::1750347021::1750349028::1::::<><><>0<>0<>1f0643418c759307136a8564ee62ff51<>res://.godot/imported/gatomoviendosol.png-2f701d66f2bccd0392f85e36b3d7a6fc.ctex::
+gatoquiertosol.png::CompressedTexture2D/CompressedTexture2D::8536394446763913174::1750347021::1750349028::1::::<><><>0<>0<>a1740e5121c9bdc27438f5f2546fc106<>res://.godot/imported/gatoquiertosol.png-bd26b995e3ee0100d6d161b1c1ff02be.ctex::
+luz.png::CompressedTexture2D/CompressedTexture2D::2414671505707280507::1750347021::1750349028::1::::<><><>0<>0<>66df583af589a90b1f9379257b3a769e<>res://.godot/imported/luz.png-792d08ffbe076ac6144e5f5a8fadc282.ctex::
+::res://Microjuegos/Cuello/18_Gato equilibrio/::1750347021
+::res://Microjuegos/Cuello/18_Gato equilibrio/Escena/::1750347021
+Gato equilibrio (2).tscn::PackedScene/PackedScene::2006112296834292899::1750347021::0::1::::<><><>0<>0<><>::uid://bsjy4aiqcsgac::::res://Microjuegos/Cuello/18_Gato equilibrio/Script/Gato equilibrio_2.gd<>uid://dbalkb2p84xpg::::res://Fondos/Circo.jpg<>uid://bfyov4l7rb265::::res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato equilibrio.png<>uid://06jg46vywuyi::::res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato izq .png<>uid://d38renn5ssbdv::::res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato der .png<>uid://oreimrcy4a2s::::res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/gato cae .png
+::res://Microjuegos/Cuello/18_Gato equilibrio/Script/::1751921967
+Gato equilibrio_2.gd::GDScript::3669908277902648266::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Cuello/18_Gato equilibrio/Sprites/::1750349028
+gato cae .png::CompressedTexture2D/CompressedTexture2D::1017996043739735056::1750347021::1750349028::1::::<><><>0<>0<>d9e3aa4bc16492ae34c76650e7e6e642<>res://.godot/imported/gato cae .png-229fc8e3a0119b1a01c6c42ca64056cf.ctex::
+gato der .png::CompressedTexture2D/CompressedTexture2D::9193714175154666799::1750347021::1750349028::1::::<><><>0<>0<>2611ac92dea55cefee6a2c2d81149f37<>res://.godot/imported/gato der .png-a18e7957bdf6264fdab721886201969f.ctex::
+gato equilibrio.png::CompressedTexture2D/CompressedTexture2D::2787799049198156544::1750347021::1750349028::1::::<><><>0<>0<>f17ff4433eaec8509306c6548d82d310<>res://.godot/imported/gato equilibrio.png-20b059650af4bdf8f2f6b2ff5caae178.ctex::
+gato izq .png::CompressedTexture2D/CompressedTexture2D::1819275541078185880::1750347021::1750349028::1::::<><><>0<>0<>7072f4e03ae4f2b810891b45ff15bcae<>res://.godot/imported/gato izq .png-81860df6823d42869fdb650eba4926c6.ctex::
+::res://Microjuegos/Cuello/19_  Baile rítmico/::1750347021
+::res://Microjuegos/Cuello/19_  Baile rítmico/Escena/::1750347021
+Baile rítmico (5).tscn::PackedScene/PackedScene::5406221435501527193::1750347021::0::1::::<><><>0<>0<><>::uid://kxdno7xrt0g4::::res://Microjuegos/Cuello/19_  Baile rítmico/Script/Baile rítmico_5.gd<>uid://cv88ljj5o5ye0::::res://Fondos/CalleCiudad.png<>uid://djp6d6klfaoya::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoQuieto.png<>uid://dxfao4myf16fn::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Sombrero.png<>uid://2o0c24klk4d2::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose1.png<>uid://bby2tghry68mg::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose2 .png<>uid://cilbrqbst1dcn::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/Pose3 .png<>uid://ck3n1q26ucaun::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoFeliz .png<>uid://v0mjcwbfnt6k::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/GatoTriste .png<>uid://di581b844r1eg::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/SombreroDinero .png<>uid://1bpb2lslbu8t::::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/PersonasFelices .png
+::res://Microjuegos/Cuello/19_  Baile rítmico/Script/::1751921967
+Baile rítmico_5.gd::GDScript::749575276851913429::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Cuello/19_  Baile rítmico/Sprites/::1750349027
+GatoFeliz .png::CompressedTexture2D/CompressedTexture2D::5533369015946316709::1750347021::1750349027::1::::<><><>0<>0<>e1c11b4b91e3c055038132b8807bfacf<>res://.godot/imported/GatoFeliz .png-296287f59ba9bfb54dc9f6ee1d1d56ca.ctex::
+GatoQuieto.png::CompressedTexture2D/CompressedTexture2D::7823816538468353304::1750347021::1750349027::1::::<><><>0<>0<>a8b1dbf2e31137963d4f386774f6d90a<>res://.godot/imported/GatoQuieto.png-27b7568cc046269130cf4ee38dfebbfb.ctex::
+GatoTriste .png::CompressedTexture2D/CompressedTexture2D::1526319975393564620::1750347021::1750349027::1::::<><><>0<>0<>5c4d40421f4266b8424a9bca997ffd06<>res://.godot/imported/GatoTriste .png-72d0d8a2d5067384a6fc5ef879a9463b.ctex::
+PersonasFelices .png::CompressedTexture2D/CompressedTexture2D::1827888288984206973::1750347021::1750349027::1::::<><><>0<>0<>254449dbbf070a48b1e1c1e0990ec06f<>res://.godot/imported/PersonasFelices .png-ed15201120dce30b2822349571772f65.ctex::
+Pose1.png::CompressedTexture2D/CompressedTexture2D::1925523026589945205::1750347021::1750349027::1::::<><><>0<>0<>34206c525d9b3d4af42273eee68ab29c<>res://.godot/imported/Pose1.png-a17a7b744189dfbb7dee0d6c218e1698.ctex::
+Pose2 .png::CompressedTexture2D/CompressedTexture2D::2507828209076918650::1750347021::1750349027::1::::<><><>0<>0<>42f33800981c4601291f0ff583187c7a<>res://.godot/imported/Pose2 .png-a9d1f0cccb686eec2b7e5ba621f349ef.ctex::
+Pose3 .png::CompressedTexture2D/CompressedTexture2D::5357152190036928605::1750347021::1750349027::1::::<><><>0<>0<>faa30e0d4bf6213b13eaff37c6f0a054<>res://.godot/imported/Pose3 .png-0beb9764b9c8fc050298c8d2ffcc98bf.ctex::
+Sombrero.png::CompressedTexture2D/CompressedTexture2D::8783953887452012371::1750347021::1750349027::1::::<><><>0<>0<>b1c62a24d9e61154012308a983325b27<>res://.godot/imported/Sombrero.png-fe7e5f583ee9373f72adf689db6e137f.ctex::
+SombreroDinero .png::CompressedTexture2D/CompressedTexture2D::7784754329067151406::1750347021::1750349027::1::::<><><>0<>0<>53600921a922aa4451c9c7034ca1f1b5<>res://.godot/imported/SombreroDinero .png-0c52d663bcf39a95fd59cc56f498a837.ctex::
+::res://Microjuegos/Emily/::1750347021
+::res://Microjuegos/Emily/1_Escondite en cajas/::1750347021
+::res://Microjuegos/Emily/1_Escondite en cajas/Escena/::1750347021
+1_Escondite_gatuno.tscn::PackedScene/PackedScene::5689553376968681521::1750347021::0::1::::<><><>0<>0<><>::uid://dhlokv7w7bxjf::::res://Microjuegos/Emily/1_Escondite en cajas/Script/1_Escondite_gatuno.gd<>uid://cafu3aricxnq5::::res://Fondos/fondo1atras.png<>uid://bd6oe4qvg30ih::::res://Fondos/fondo1adelante.png<>uid://d0q5gwjafkm02::::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/Caja1.png<>uid://miqyep3s05u8::::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/Gato6.png<>uid://fnuuutl8ptp0::::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroUno.png<>uid://xi66hnig87jx::::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroDos.png<>uid://dryrw43htyu1s::::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/NumeroTres.png
+::res://Microjuegos/Emily/1_Escondite en cajas/Script/::1751921967
+1_Escondite_gatuno.gd::GDScript::7674161161144469467::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Emily/1_Escondite en cajas/Sprites/::1750349026
+Caja1.png::CompressedTexture2D/CompressedTexture2D::8948846580065524861::1750347021::1750349026::1::::<><><>0<>0<>9da02463cb75331533e4048c7e03b3f3<>res://.godot/imported/Caja1.png-281a4ebd6a3807e5dc9e42c6d0ac2356.ctex::
+Gato3.png::CompressedTexture2D/CompressedTexture2D::4146628423044626362::1750347021::1750349026::1::::<><><>0<>0<>5d1c58da3fd5111836a957885f03595c<>res://.godot/imported/Gato3.png-2ae93b29206d5e3d7109ef642eb048ad.ctex::
+Gato4.png::CompressedTexture2D/CompressedTexture2D::5144772218140188006::1750347021::1750349026::1::::<><><>0<>0<>860f267d1f8ba30992c74fbf41e71665<>res://.godot/imported/Gato4.png-0710620abbd794b6df0fcde740c4cf31.ctex::
+Gato6.png::CompressedTexture2D/CompressedTexture2D::859795711189578473::1750347021::1750349026::1::::<><><>0<>0<>6d8faf3af4c1bf6d09bb04cb285f9023<>res://.godot/imported/Gato6.png-a8a3267d800ca8eabc1808388ca53e26.ctex::
+Gato.png::CompressedTexture2D/CompressedTexture2D::1006264215705960768::1750347021::1750349026::1::::<><><>0<>0<>3fb4e93936fce0ab980e70361a8da203<>res://.godot/imported/Gato.png-d806cc6c31426231bd3bcd63541f8b9d.ctex::
+NumeroDos.png::CompressedTexture2D/CompressedTexture2D::1632796400212779377::1750347021::1750349026::1::::<><><>0<>0<>d56921f965d39aad3bd5c65db4a4d8b5<>res://.godot/imported/NumeroDos.png-71632b1497bda8c407bf90c2fa0291d0.ctex::
+NumeroTres.png::CompressedTexture2D/CompressedTexture2D::8403090502142309414::1750347021::1750349026::1::::<><><>0<>0<>6ccc6ad0179056c07aa6c0ecc5879c1f<>res://.godot/imported/NumeroTres.png-d302b2398fca5f4684fffb2efb4e7f7d.ctex::
+NumeroUno.png::CompressedTexture2D/CompressedTexture2D::379032265089153803::1750347021::1750349026::1::::<><><>0<>0<>7a312db45aebc373b525cb340b14d600<>res://.godot/imported/NumeroUno.png-a53b0f2d1330a9e4c6d750752a86b3dc.ctex::
+::res://Microjuegos/Matias/::1750347022
+::res://Microjuegos/Matias/11_Morder al muñeco/::1750347021
+::res://Microjuegos/Matias/11_Morder al muñeco/Escena/::1750347021
+11_Morder_al_muñeco.tscn::PackedScene/PackedScene::6281694169718677392::1750347021::0::1::::<><><>0<>0<><>::uid://cw7ncvxk02lgl::::res://Microjuegos/Matias/11_Morder al muñeco/Script/11_Morder_al_muñeco.gd<>uid://dqugvsec3hvi::::res://Fondos/FondoSalaDeEstar.jpeg<>uid://d034mn8qnyl7i::::res://Microjuegos/Matias/11_Morder al muñeco/Sprites/doro.png<>uid://ckoaqagi7kcnw::::res://Microjuegos/Matias/11_Morder al muñeco/Sprites/gato_panzon.png
+::res://Microjuegos/Matias/11_Morder al muñeco/Script/::1751921967
+11_Morder_al_muñeco.gd::GDScript::6383850047056292587::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Matias/11_Morder al muñeco/Sprites/::1750349026
+doro.png::CompressedTexture2D/CompressedTexture2D::8973568675988266564::1750347021::1750349026::1::::<><><>0<>0<>1b6fc56e501246bc6d1008f4400f888c<>res://.godot/imported/doro.png-9ce1359b0b948904dcb1f6f7ceeeda33.ctex::
+gato_panzon.png::CompressedTexture2D/CompressedTexture2D::5503659674701309608::1750347021::1750349026::1::::<><><>0<>0<>2963ae043ae4858485dff2390f5482f6<>res://.godot/imported/gato_panzon.png-82fa575b33461d649d9a9d58e512fbf4.ctex::
+::res://Microjuegos/Matias/12_Lavarse con la lengua/::1750347021
+::res://Microjuegos/Matias/12_Lavarse con la lengua/Escena/::1750347021
+12_Gato Lamerse.tscn::PackedScene/PackedScene::8926456401668548219::1750347021::0::1::::<><><>0<>0<><>::uid://b57mdtaxxkawt::::res://Microjuegos/Matias/12_Lavarse con la lengua/Script/cat_licking_game.gd<>uid://dlap7irpb72qb::::res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/fondo6pixel.png<>uid://0mqndrbww0nm::::res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/gato_stanby.png
+::res://Microjuegos/Matias/12_Lavarse con la lengua/Script/::1751921967
+cat_licking_game.gd::GDScript::4558881041278694687::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Matias/12_Lavarse con la lengua/Sprites/::1750349027
+cat_angry.webp::CompressedTexture2D/CompressedTexture2D::3238985551082088191::1750347021::1750349027::1::::<><><>0<>0<>a1c1608d86d09907ec400083434782d2<>res://.godot/imported/cat_angry.webp-7595b0e562aa4cf44c34fbd410005460.ctex::
+cat_lick_1.webp::CompressedTexture2D/CompressedTexture2D::4497135859248821045::1750347021::1750349027::1::::<><><>0<>0<>da7daa6ea3eedc69c99adf7b0d4a66ec<>res://.godot/imported/cat_lick_1.webp-d1bd60ae3312a2241d4c2f2bc87e346e.ctex::
+fondo6pixel.png::CompressedTexture2D/CompressedTexture2D::7932307678526746429::1750347021::1750349027::1::::<><><>0<>0<>eb34902453777f0026266cb093c5242a<>res://.godot/imported/fondo6pixel.png-7eb6e0bece099c4f921825cd13f78811.ctex::
+gatofelix.png::CompressedTexture2D/CompressedTexture2D::7135390816418080451::1750347021::1750349027::1::::<><><>0<>0<>496a835ff8e0a63ff654b81c0fe35ef5<>res://.godot/imported/gatofelix.png-6e65ccfe8738b0ede700b7a3b0f0f60f.ctex::
+gato_stanby.png::CompressedTexture2D/CompressedTexture2D::1780488495112008346::1750347021::1750349027::1::::<><><>0<>0<>0eb63e7880ae1bcd56936bb8c34fb07c<>res://.godot/imported/gato_stanby.png-223c660059d48f628914bee27b785a6b.ctex::
+::res://Microjuegos/Matias/13_Cortarle el pelo/::1750347021
+::res://Microjuegos/Matias/13_Cortarle el pelo/Escena/::1750347021
+13_cortarPelo.tscn::PackedScene/PackedScene::1653882201431111863::1750347021::0::1::::<><><>0<>0<><>::uid://ctr0k6bnyfy44::::res://Microjuegos/Matias/13_Cortarle el pelo/Script/13_cortar_pelo.gd<>uid://c3g4xf03p720x::::res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/cat_messy.png<>uid://f1ilnyt4md6n::::res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/cat_neat.png<>uid://bvtvuj6e6lu5r::::res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/gatoqueria.png<>uid://ds0jhpclr2wel::::res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/tijeras.png
+::res://Microjuegos/Matias/13_Cortarle el pelo/Script/::1751921967
+13_cortar_pelo.gd::GDScript::6143061231477660895::1751921967::0::1::::<>Control<><>0<>0<><>::
+::res://Microjuegos/Matias/13_Cortarle el pelo/Sprites/::1750349027
+cat_messy.png::CompressedTexture2D/CompressedTexture2D::6752317424355895429::1750347022::1750349027::1::::<><><>0<>0<>98c2310cf47300b86e291698ee79ec76<>res://.godot/imported/cat_messy.png-f10a6106150090ed12b002d4bbb54611.ctex::
+cat_neat.png::CompressedTexture2D/CompressedTexture2D::405124140252162503::1750347022::1750349027::1::::<><><>0<>0<>ebcb58a048383dfb7810079272ae29cc<>res://.godot/imported/cat_neat.png-11e66c209031ef6c06a29e06f4900509.ctex::
+gatoqueria.png::CompressedTexture2D/CompressedTexture2D::3900920870967823333::1750347022::1750349027::1::::<><><>0<>0<>8b97703cd43f2dbcec3777a270d17168<>res://.godot/imported/gatoqueria.png-c58b84a80f3147ed27661a85bb2b6c95.ctex::
+tijeras.png::CompressedTexture2D/CompressedTexture2D::8474830425371068083::1750347022::1750349027::1::::<><><>0<>0<>b3ec00b1e66912a5d6523f36f982929d<>res://.godot/imported/tijeras.png-9f03b29bfdd6beb886c6ad68ef40cc5e.ctex::
+::res://Microjuegos/Matias/14_Gato laser/::1750347022
+::res://Microjuegos/Matias/14_Gato laser/Escena/::1750347022
+14_gato laser.tscn::PackedScene/PackedScene::6029822744603143016::1750347022::0::1::::<><><>0<>0<><>::uid://dmhpwdjbmcbej::::res://Microjuegos/Matias/14_Gato laser/Script/main.gd<>uid://disxh0xgy8day::::res://Microjuegos/Matias/14_Gato laser/Sprites/fondo_hab.png<>uid://1511wtljer6::::res://Microjuegos/Matias/14_Gato laser/Script/cat.gd<>uid://bh5l05ngrrf7l::::res://Microjuegos/Matias/14_Gato laser/Script/laser.gd<>uid://d3w3jjxlbyvcu::::res://Microjuegos/Matias/14_Gato laser/Sprites/gatoP.png
+::res://Microjuegos/Matias/14_Gato laser/Script/::1751921967
+cat.gd::GDScript/GDScript::55543162501208009::1750347022::0::1::::<>CharacterBody2D<><>0<>0<><>::
+laser.gd::GDScript/GDScript::2940388049628141559::1750347022::0::1::::<>Area2D<><>0<>0<><>::
+main.gd::GDScript::8016929032906356421::1751921967::0::1::::<>Node2D<><>0<>0<><>::
+::res://Microjuegos/Matias/14_Gato laser/Sprites/::1750349027
+fondo_hab.png::CompressedTexture2D/CompressedTexture2D::7759341940067841452::1750347022::1750349027::1::::<><><>0<>0<>26973c8da3bab08884c7e4ef18e4e897<>res://.godot/imported/fondo_hab.png-6831e47746bd19977dfcdc8b9e5ad5bd.ctex::
+gatoP.png::CompressedTexture2D/CompressedTexture2D::9171682640218876572::1750347022::1750349027::1::::<><><>0<>0<>bf540b1b10dbd73dcc60116ee9341c41<>res://.godot/imported/gatoP.png-11f7507301436783f795e8dc6854162f.ctex::
+Laser.png::CompressedTexture2D/CompressedTexture2D::2001965966049662104::1750347022::1750349027::1::::<><><>0<>0<>033921d03c45947f8537f651338bdf72<>res://.godot/imported/Laser.png-71f4ed8593e6fd25a195165beaab875a.ctex::
+::res://Microjuegos/Ramiro/::1750348193
+::res://Microjuegos/Ramiro/21_¡Abrelatas!/::1750347022
+::res://Microjuegos/Ramiro/21_¡Abrelatas!/Escena/::1750347022
+Abrelatas (3).tscn::PackedScene/PackedScene::627733533594810833::1750347022::0::1::::<><><>0<>0<><>::uid://fsp4qtxmxhcm::::res://Microjuegos/Ramiro/21_¡Abrelatas!/Script/Abrelatas_3.gd<>uid://cnpij3bucijph::::res://Fondos/Fondocielo.png<>uid://dgi3aj6dhml7m::::res://Microjuegos/Cuello/16_Tecla gatuna/Sprites/gatobocacerrada.png<>uid://yjk3ef1stljo::::res://Microjuegos/Ramiro/21_¡Abrelatas!/Sprites/lata.png
+::res://Microjuegos/Ramiro/21_¡Abrelatas!/Script/::1751921967
+Abrelatas_3.gd::GDScript::389066431464825988::1751921967::0::1::::<>Control<><>0<>0<><>::
+::res://Microjuegos/Ramiro/21_¡Abrelatas!/Sprites/::1750349027
+fish-can-pixel-art-food-260nw-2302674731.webp::CompressedTexture2D/CompressedTexture2D::5867325999843572247::1750347022::1750349027::1::::<><><>0<>0<>10ca9e661a43c1105de5e63386776263<>res://.godot/imported/fish-can-pixel-art-food-260nw-2302674731.webp-71f5097685f21f664ee2f33c3631b3b8.ctex::
+lata.png::CompressedTexture2D/CompressedTexture2D::1703769038279874468::1750347022::1750349027::1::::<><><>0<>0<>25805eb0076df7cdbf8e66cdfd02320e<>res://.godot/imported/lata.png-8a72b41bcb10f0394e8ac9030d029715.ctex::
+lata.webp::CompressedTexture2D/CompressedTexture2D::3771346985417481060::1750347022::1750349027::1::::<><><>0<>0<>7b76430914e08fa3a7c23dbab15432b8<>res://.godot/imported/lata.webp-9de8d301f3bdf403141758b42952b564.ctex::
+::res://Microjuegos/Ramiro/22_Atrápalo/::1750347022
+::res://Microjuegos/Ramiro/22_Atrápalo/Escena/::1751922042
+Atrapalo (6).tscn::PackedScene::2339903415651520630::1751922042::0::1::::<><><>0<>0<><>::uid://d0o5s4ibnq08x::::res://Microjuegos/Ramiro/22_Atrápalo/Script/atrapalo_6.gd<>uid://cnpij3bucijph::::res://Fondos/Fondocielo.png<>uid://ccahi454ny40h::::res://Microjuegos/Ramiro/22_Atrápalo/Sprites/gatocaja.png<>uid://c4i174hdyxd7f::::res://Microjuegos/Ramiro/22_Atrápalo/Sprites/rat.png
+::res://Microjuegos/Ramiro/22_Atrápalo/Script/::1751921967
+atrapalo_6.gd::GDScript::8944739620259287885::1751921967::0::1::::<>Control<><>0<>0<><>::
+::res://Microjuegos/Ramiro/22_Atrápalo/Sprites/::1750349027
+gatocaja.png::CompressedTexture2D/CompressedTexture2D::4913659930820135293::1750347022::1750349027::1::::<><><>0<>0<>5eadf6928722600e5a101347cdc2ad6a<>res://.godot/imported/gatocaja.png-8aa425b46839498d649113fd944846ad.ctex::
+rat.png::CompressedTexture2D/CompressedTexture2D::6826470176298576169::1750347022::1750349027::1::::<><><>0<>0<>0dfe1e0d20f90336a565fbc617d19516<>res://.godot/imported/rat.png-aa3246ac63ed1ca592c455e18a57be3c.ctex::
+::res://Microjuegos/Ramiro/Pescalo/::1751844307
+::res://PlantillasGenerales/::1750347022
+PlantillaMicrojuego.tscn::PackedScene/PackedScene::6676944084859556882::1750347022::0::1::::<><><>0<>0<><>::uid://dykxw48pnfpde::::res://PlantillasGenerales/plantilla_microjuego.gd<>uid://cnpij3bucijph::::res://Fondos/Fondocielo.png
+plantilla_microjuego.gd::GDScript/GDScript::8865875429087032126::1750347022::0::1::::<>Node2D<><>0<>0<><>::
+::res://ScriptsGenerales/::1751854790
+ChatManager.gd::GDScript::8480603963328914656::1751854790::0::1::::<>Control<><>0<>0<><>::
+gatito_volador.gd::GDScript/GDScript::8249320960941555607::1750347022::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Global.gd::GDScript/GDScript::7839871849038379778::1751841644::0::1::::<>Node<><>0<>0<><>::
+input_global.gd::GDScript/GDScript::9180374806006925776::1750347022::0::1::::<>Node<><>0<>0<><>::
+juego.gd::GDScript/GDScript::4453492822548614343::1750347022::0::1::::<>Node<><>0<>0<><>::
+user_login.gd::GDScript/GDScript::4915781413526032313::1751842629::0::1::::<>Control<><>0<>0<><>::
+WebSocket.gd::GDScript/GDScript::9177054103005559581::1748548320::0::1::::WebSocketClient<>Node<><>0<>0<><>::
+::res://SpritesGenerales/::1750349027
+gatoSoñando.png::CompressedTexture2D/CompressedTexture2D::7490018545987430285::1750347022::1750349027::1::::<><><>0<>0<>3c4c6282bd629c876abff5e60f258a8b<>res://.godot/imported/gatoSoñando.png-7373b914f0fe07fcdaf6fdd1a2e3ade9.ctex::
+pausa.png::CompressedTexture2D/CompressedTexture2D::2163027317421801802::1750347022::1750349027::1::::<><><>0<>0<>6ba4ab7132dc525260e9fbf8f4970800<>res://.godot/imported/pausa.png-be12a5b36226bbb82e840495ac190e3b.ctex::
+titulo.png::CompressedTexture2D/CompressedTexture2D::6103144935223828511::1750347022::1750349027::1::::<><><>0<>0<>1cdd5c33511816fd933fa11c3edf1086<>res://.godot/imported/titulo.png-cf33c4390a46ecb60f4f2e6b51b1d7b9.ctex::
+VidaPata.png::CompressedTexture2D/CompressedTexture2D::9201558382507548566::1750347022::1750349027::1::::<><><>0<>0<>8493deb467010b081a02283028d79377<>res://.godot/imported/VidaPata.png-235f9958a822f8b8576358f59684abcc.ctex::
+::res://Videos/::1750347022
+cinematica.ogv::VideoStreamTheora/VideoStreamTheora::2982993461466611291::1750347022::0::1::::<><><>0<>0<><>::
