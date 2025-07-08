@@ -1,88 +1,77 @@
 extends Node
 
-signal game_over(winner: String)
+signal game_over(ganador, es_empate)
 
-var puntos := 0
 var vidas := 3
-const PUNTOS_PARA_EVENTO := 5
-var puntos_sin_evento := 0
-var dificultad_extra := ""
-var oponente := ""
+var microjuegos_completados := 0
+var total_microjuegos := 0
+var terminado := false
+var tiempo_final := 0
+var tiempo_oponente := 0
+var nombre_oponente := ""
 var match_id := ""
+var oponente := ""
 
-@onready var rng := RandomNumberGenerator.new()
-
-func _ready():
-	rng.randomize()
-	print("Juego estándar multijugador iniciado")
-
-func on_microjuego_superado():
-	puntos += 1
-	puntos_sin_evento += 1
-	print("Puntos: ", puntos)
-	
-	if puntos_sin_evento >= PUNTOS_PARA_EVENTO:
-		puntos_sin_evento = 0
-		_enviar_evento_aleatorio()
-
-func on_microjuego_fallado():
+# Llama esto cuando pierdes una vida y llegas a 0
+func perder_vida():
 	vidas -= 1
-	print("Vidas restantes: ", vidas)
-	if vidas <= 0:
-		_enviar_derrota()
-		emit_signal("game_over", oponente)
+	if vidas <= 0 and not terminado:
+		terminado = true
+		notificar_perdida_local(Global.username)
+		rpc("notificar_perdida_remote", Global.username)
 
-func _enviar_evento_aleatorio():
-	var efectos = ["smoke", "fast", "less-time"]
-	var evento = efectos[rng.randi_range(0, efectos.size() - 1)]
-	print("Enviando evento al oponente: ", evento)
-	
-	var payload = {
-		"event": "trigger-hazard",
-		"data": {
-			"matchId": match_id,
-			"to": oponente,
-			"hazard": evento
-		}
-	}
-	_enviar_evento_servidor(payload)
+# Llama esto cuando superas un microjuego
+func registrar_microjuego_completado():
+	microjuegos_completados += 1
+	if microjuegos_completados >= total_microjuegos and not terminado:
+		terminado = true
+		tiempo_final = Time.get_ticks_msec()
+		notificar_terminado_local(Global.username, tiempo_final)
+		rpc("notificar_terminado_remote", Global.username, tiempo_final)
 
-func _enviar_derrota():
-	var payload = {
-		"event": "player-lost",
-		"data": {
-			"matchId": match_id,
-			"to": oponente
-		}
-	}
-	_enviar_evento_servidor(payload)
-
-func recibir_evento(evento: Dictionary):
-	match evento.get("event", ""):
-		"trigger-hazard":
-			var hazard = evento["data"].get("hazard", "")
-			print("Evento de dificultad recibido: ", hazard)
-			aplicar_dificultad(hazard)
-		"player-lost":
-			print("Tu oponente ha perdido. Has ganado la partida!")
-			emit_signal("game_over", evento["data"].get("to", ""))
-
-func aplicar_dificultad(tipo: String):
-	match tipo:
-		"smoke":
-			# Agrega efecto de humo en pantalla
-			print("Aplicando efecto: humo")
-		"fast":
-			# Aumenta velocidad del microjuego
-			print("Aplicando efecto: velocidad")
-		"less-time":
-			# Reduce el tiempo disponible para el siguiente microjuego
-			print("Aplicando efecto: menos tiempo")
-
-func _enviar_evento_servidor(payload: Dictionary):
-	# 🔧 CORREGIDO: Verificar si ChatManager existe
-	var chat_manager = get_node_or_null("/root/ChatManager")
-	if chat_manager and chat_manager.has_method("enviar_evento_personalizado"):
-		chat_manager.enviar_evento_personalizado(payload)
+# Función local para notificar pérdida
+func notificar_perdida_local(jugador):
+	if terminado:
+		return
+	terminado = true
+	var ganador = ""
+	if jugador == Global.username:
+		ganador = oponente
+		emit_signal("game_over", ganador, false)
 	else:
-		print("ChatManager no encontrado o método no disponible")
+		ganador = Global.username
+		emit_signal("game_over", ganador, false)
+
+# Función local para notificar fin
+func notificar_terminado_local(jugador, tiempo):
+	if terminado:
+		return
+	if jugador == Global.username:
+		tiempo_final = tiempo
+	else:
+		tiempo_oponente = tiempo
+	if tiempo_final > 0 and tiempo_oponente > 0:
+		terminado = true
+		if abs(tiempo_final - tiempo_oponente) <= 100: # margen de 0.1s para empate
+			emit_signal("game_over", "empate", true)
+		elif tiempo_final < tiempo_oponente:
+			emit_signal("game_over", Global.username, false)
+		else:
+			emit_signal("game_over", oponente, false)
+
+# Función remota para recibir pérdida del otro jugador
+@rpc
+func notificar_perdida_remote(jugador):
+	notificar_perdida_local(jugador)
+
+# Función remota para recibir terminado del otro jugador
+@rpc
+func notificar_terminado_remote(jugador, tiempo):
+	notificar_terminado_local(jugador, tiempo)
+
+func reset():
+	vidas = 3
+	microjuegos_completados = 0
+	terminado = false
+	tiempo_final = 0
+	tiempo_oponente = 0

@@ -25,8 +25,15 @@ func _ready():
 		if label_vidas:
 			label_vidas.text = ""
 	else:
-		if label_ganador:
-			label_ganador.text = "Ganador: " + ganador
+		if ganador == Global.username:
+			if label_ganador:
+				label_ganador.text = "¡Ganaste!"
+		elif ganador == "empate":
+			if label_ganador:
+				label_ganador.text = "¡Empate!"
+		else:
+			if label_ganador:
+				label_ganador.text = "¡Perdiste!"
 		if label_stats:
 			label_stats.text = stats_text
 		if label_vidas:
@@ -36,4 +43,8 @@ func _ready():
 		boton_salir.pressed.connect(_on_BotonSalir_pressed)
 
 func _on_BotonSalir_pressed():
+	# Limpia la escena completamente y vuelve al menú principal
+	for child in get_tree().root.get_children():
+		if child != self:
+			child.queue_free()
 	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/MenuPrincipal.tscn")

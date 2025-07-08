@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dio21bm8qpgmj"]
+[gd_scene load_steps=2 format=3 uid="uid://h41gift5wy58"]
 
-[ext_resource type="Script" uid="uid://cw0wtu204cxpv" path="res://EscenasGenerales/Multiplayer/ResultadosMultijugador.gd" id="1"]
+[ext_resource type="Script" uid="uid://dgplnwa426xyp" path="res://EscenasGenerales/Multiplayer/ResultadosMultijugador.gd" id="1"]
 
 [node name="Resultados" type="Control"]
 layout_mode = 3
@@ -27,18 +27,7 @@ anchor_right = 0.75
 anchor_bottom = 0.85
 
 [node name="Resultados_VBoxContainer#LabelTitulo" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = -39.5
-offset_right = 170.0
-offset_bottom = 39.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 58
 text = "¡Resultados!"
@@ -46,18 +35,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelGanador" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = 33.0
-offset_right = 83.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
 theme_override_colors/font_color = Color(1, 0.98, 0.7, 1)
 theme_override_font_sizes/font_size = 36
 text = "Ganador: "
@@ -65,18 +43,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelStats" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 80.0
-offset_right = 71.0
-offset_bottom = 119.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
 theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Puntaje: 0"
@@ -84,18 +51,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelVidas" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = 123.0
-offset_right = 94.0
-offset_bottom = 154.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
 theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
 theme_override_font_sizes/font_size = 22
 text = "Vidas restantes: 0"
@@ -104,17 +60,6 @@ vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#BotonSalir" type="Button" parent="."]
 custom_minimum_size = Vector2(180, 60)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -86.0
-offset_top = 163.0
-offset_right = 94.0
-offset_bottom = 223.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
 theme_override_font_sizes/font_size = 26
 text = "Salir"
