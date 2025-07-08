@@ -28,6 +28,10 @@ anchor_bottom = 0.85
 
 [node name="Resultados_VBoxContainer#LabelTitulo" type="Label" parent="."]
 layout_mode = 0
+offset_left = 929.0
+offset_top = 210.0
+offset_right = 1269.0
+offset_bottom = 289.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 58
 text = "¡Resultados!"
@@ -36,6 +40,10 @@ vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelGanador" type="Label" parent="."]
 layout_mode = 0
+offset_left = 1028.0
+offset_top = 347.0
+offset_right = 1198.0
+offset_bottom = 397.0
 theme_override_colors/font_color = Color(1, 0.98, 0.7, 1)
 theme_override_font_sizes/font_size = 36
 text = "Ganador: "
@@ -44,6 +52,10 @@ vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelStats" type="Label" parent="."]
 layout_mode = 0
+offset_left = 936.0
+offset_top = 505.0
+offset_right = 1071.0
+offset_bottom = 544.0
 theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Puntaje: 0"
@@ -52,6 +64,10 @@ vertical_alignment = 1
 
 [node name="Resultados_VBoxContainer#LabelVidas" type="Label" parent="."]
 layout_mode = 0
+offset_left = 1059.0
+offset_top = 422.0
+offset_right = 1246.0
+offset_bottom = 453.0
 theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
 theme_override_font_sizes/font_size = 22
 text = "Vidas restantes: 0"
@@ -61,5 +77,9 @@ vertical_alignment = 1
 [node name="Resultados_VBoxContainer#BotonSalir" type="Button" parent="."]
 custom_minimum_size = Vector2(180, 60)
 layout_mode = 0
+offset_left = 976.0
+offset_top = 559.0
+offset_right = 1156.0
+offset_bottom = 619.0
 theme_override_font_sizes/font_size = 26
 text = "Salir"

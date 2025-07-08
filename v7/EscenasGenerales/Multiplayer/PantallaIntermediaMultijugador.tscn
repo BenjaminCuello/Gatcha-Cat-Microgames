@@ -28,6 +28,10 @@ anchor_bottom = 0.65
 
 [node name="PantallaIntermedia_VBoxContainer#LabelTitulo" type="Label" parent="."]
 layout_mode = 0
+offset_left = 450.0
+offset_top = 498.0
+offset_right = 1360.0
+offset_bottom = 565.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "¡Prepárate para el próximo microjuego!"
@@ -36,6 +40,10 @@ vertical_alignment = 1
 
 [node name="PantallaIntermedia_VBoxContainer#LabelSub" type="Label" parent="."]
 layout_mode = 0
+offset_left = 765.0
+offset_top = 672.0
+offset_right = 1089.0
+offset_bottom = 711.0
 theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Espera unos segundos…"
