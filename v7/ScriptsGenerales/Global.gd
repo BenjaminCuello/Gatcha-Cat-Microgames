@@ -9,6 +9,10 @@ var oponente: String = ""
 var is_multiplayer_mode := false
 var current_difficulty := 1
 
+# NUEVAS VARIABLES PARA OPCIONES
+var mostrar_fps := false
+var dificultad_por_defecto := 2 # Por defecto "Normal" (índice 2 del OptionButton)
+
 func _ready():
 	print("Global singleton inicializado")
 
@@ -25,3 +29,10 @@ func configurar_partida_multijugador(id: String, oponente_name: String):
 	oponente = oponente_name
 	is_multiplayer_mode = true
 	print("Partida multijugador configurada - ID:", match_id, "Oponente:", oponente)
+
+# Puedes agregar getters y setters si lo prefieres, pero no son estrictamente necesarios.
+# Ejemplo:
+# func set_mostrar_fps(value: bool):
+#     mostrar_fps = value
+# func get_mostrar_fps() -> bool:
+#     return mostrar_fps
