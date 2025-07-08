@@ -65,7 +65,7 @@ func recibir_evento(evento: Dictionary):
 			aplicar_dificultad(hazard)
 		"player-lost":
 			print("Tu oponente ha perdido. Has ganado la partida!")
-			emit_signal("game_over", Global.username)
+			emit_signal("game_over", evento["data"].get("to", ""))
 
 func aplicar_dificultad(tipo: String):
 	match tipo:

@@ -78,8 +78,10 @@ func _on_microjuego_fallado():
 
 func _on_game_over(winner: String):
 	print("Fin del juego. Ganador: ", winner)
-	
-	if winner == Global.username:
-		get_tree().change_scene_to_file("res://EscenasGenerales/EscenaVictoria.tscn")
-	else:
-		get_tree().change_scene_to_file("res://EscenasGenerales/EscenaDerrota.tscn")
+
+	var escena_resultado = preload("res://EscenasGenerales/Menus/Online/escena_resultado.tscn").instantiate()
+	escena_resultado.ganador = winner
+	escena_resultado.victoria = (winner == Global.username)
+
+	get_tree().root.add_child(escena_resultado)
+	get_tree().current_scene.queue_free()  # Opcional: elimina la escena actual
