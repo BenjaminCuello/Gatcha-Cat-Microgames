@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://h840madvao4i"]
+[gd_scene load_steps=7 format=3 uid="uid://h840madvao4i"]
 
 [ext_resource type="Script" uid="uid://bfkmuetanttve" path="res://EscenasGenerales/Menus/MenuPrincipal.gd" id="1_r0cbf"]
 [ext_resource type="Texture2D" uid="uid://ddywhan1rjexl" path="res://Fondos/Fondoprincipal.png" id="2_htm4s"]
 [ext_resource type="Texture2D" uid="uid://cs7n51v67tnqt" path="res://SpritesGenerales/titulo.png" id="3_nd5xr"]
 [ext_resource type="AudioStream" uid="uid://duod7cj3gdwv1" path="res://AudiosGenerales/MusicaMenus/MusicaMenuPrincipal.mp3" id="4_jfdov"]
+[ext_resource type="Script" uid="uid://itpnmihpaute" path="res://Online/ChatSystem (1).gd" id="5_5g7hh"]
+[ext_resource type="Script" uid="uid://dvrm8jn880sif" path="res://Online/WScript (1).gd" id="6_n3wyo"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -74,9 +76,15 @@ text = "Chat Multijugador"
 
 [node name="MusicaMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jfdov")
-volume_db = -4.0
+volume_db = -40.0
 autoplay = true
 parameters/looping = false
+
+[node name="ChatSystem" type="Node" parent="."]
+script = ExtResource("5_5g7hh")
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("6_n3wyo")
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/botonHistoria" to="." method="_on_boton_historia_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/botonInfinito" to="." method="_on_boton_infinito_pressed"]
