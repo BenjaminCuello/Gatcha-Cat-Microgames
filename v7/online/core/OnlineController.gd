@@ -1,7 +1,7 @@
 extends Node
 
 # Referencias a sistemas locales
-@onready var chat_system = get_node_or_null("../ChatSystem")
+@onready var chat_system = get_node_or_null("../ui/ChatManager")
 @onready var player_list_system = get_node_or_null("../PlayerListSystem")
 
 func _ready():
@@ -69,11 +69,11 @@ func _on_match_started(data: Dictionary):
 		chat_system.add_system_message("🎮 ¡Partida iniciada!")
 	
 	# Cambiar a selección de mapas
-	var map_selection_scene = load("res://GUI/Escenas/map_select_multijugador.tscn")
+	var map_selection_scene = load("res://online/core/Multiplayer_Scene.tscn")
 	if map_selection_scene:
 		get_tree().change_scene_to_packed(map_selection_scene)
 	else:
-		print("❌ Error: No se pudo cargar map_select_multijugador.tscn")
+		print("❌ Error: No se pudo cargar Multiplayer_Scene.tscn")
 
 func _on_rematch_request():
 	print("🔄 Solicitud de revancha del oponente")
@@ -88,7 +88,7 @@ func _on_match_quit():
 		chat_system.add_system_message("🚪 El oponente salió de la partida")
 	
 	# Volver al menú principal
-	var main_menu = load("res://Escenas/main_menu.tscn")
+	var main_menu = load("res://EscenasGenerales/Menus/MenuPrincipal.tscn")
 	if main_menu:
 		get_tree().change_scene_to_packed(main_menu)
 	else:

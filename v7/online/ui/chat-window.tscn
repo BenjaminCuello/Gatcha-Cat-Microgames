@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxq2w7vh8r0ja"]
+
+[ext_resource type="Script" path="res://online/ui/ChatManager.gd" id="1_5m8vz"]
+
+[node name="ChatWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_5m8vz")
+
+[node name="ChatPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -400.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="ChatHeader" type="HBoxContainer" parent="ChatPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ChatTitle" type="Label" parent="ChatPanel/VBoxContainer/ChatHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Chat"
+horizontal_alignment = 1
+
+[node name="ChatModeButton" type="Button" parent="ChatPanel/VBoxContainer/ChatHeader"]
+layout_mode = 2
+text = "🌐 Público"
+
+[node name="ToggleButton" type="Button" parent="ChatPanel/VBoxContainer/ChatHeader"]
+layout_mode = 2
+text = "📱"
+
+[node name="ChatMessages" type="ScrollContainer" parent="ChatPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MessagesContainer" type="VBoxContainer" parent="ChatPanel/VBoxContainer/ChatMessages"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputContainer" type="HBoxContainer" parent="ChatPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MessageInput" type="LineEdit" parent="ChatPanel/VBoxContainer/InputContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Escribe tu mensaje..."
+
+[node name="SendButton" type="Button" parent="ChatPanel/VBoxContainer/InputContainer"]
+layout_mode = 2
+text = "Enviar"
+
+[node name="ClearButton" type="Button" parent="ChatPanel/VBoxContainer/InputContainer"]
+layout_mode = 2
+text = "Limpiar"

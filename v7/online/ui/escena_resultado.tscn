@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkq2j8s3rv4g1"]
+
+[ext_resource type="Script" path="res://online/ui/escena_resultado.gd" id="1_8r2qk"]
+
+[node name="EscenaResultado" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_8r2qk")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+
+[node name="TituloContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Titulo" type="Label" parent="VBoxContainer/TituloContainer"]
+layout_mode = 2
+text = "RESULTADO DE LA PARTIDA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="VBoxContainer/TituloContainer"]
+layout_mode = 2
+
+[node name="ResultadoContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelResultado" type="Label" parent="VBoxContainer/ResultadoContainer"]
+layout_mode = 2
+text = "¡VICTORIA! 🎉"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator2" type="HSeparator" parent="VBoxContainer/ResultadoContainer"]
+layout_mode = 2
+
+[node name="DetallesContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DetallesTitulo" type="Label" parent="VBoxContainer/DetallesContainer"]
+layout_mode = 2
+text = "Detalles de la Partida"
+horizontal_alignment = 1
+
+[node name="LabelDetalles" type="Label" parent="VBoxContainer/DetallesContainer"]
+layout_mode = 2
+text = "Vidas restantes: 2
+Vidas del oponente: 0
+Microjuegos totales: 5
+Microjuegos ganados: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator3" type="HSeparator" parent="VBoxContainer/DetallesContainer"]
+layout_mode = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsTitulo" type="Label" parent="VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Estadísticas"
+horizontal_alignment = 1
+
+[node name="LabelStats" type="Label" parent="VBoxContainer/StatsContainer"]
+layout_mode = 2
+text = "Tiempo total: 120s
+Tasa de éxito: 60%
+¡Excelente trabajo! 🌟"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator4" type="HSeparator" parent="VBoxContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="BotonesContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BotonRevancha" type="Button" parent="VBoxContainer/BotonesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔄 Revancha"
+
+[node name="BotonMenu" type="Button" parent="VBoxContainer/BotonesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏠 Menú"
+
+[node name="BotonSalir" type="Button" parent="VBoxContainer/BotonesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🚪 Salir"
+
+[node name="FooterContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Separator5" type="HSeparator" parent="VBoxContainer/FooterContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer/FooterContainer"]
+layout_mode = 2
+text = "Estado: Esperando acción del jugador"
+horizontal_alignment = 1
