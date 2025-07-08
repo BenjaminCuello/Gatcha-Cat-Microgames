@@ -1,6 +1,7 @@
 extends Node
 
 @onready var game_logic := preload("res://EscenasGenerales/Controladores/MultiplayerGame.gd").new()
+var contador_microjuegos := 1  # Se incrementa después de cada microjuego
 
 var microjuegos = [
 	"res://Microjuegos/Andres/26_Atrapa el ratón/Escena/atrapar_raton.tscn",
@@ -68,7 +69,15 @@ func _on_microjuego_finished(success: bool):
 			child.queue_free()
 
 	if game_logic.vidas > 0:
-		_iniciar_microjuego()
+		# Instanciar contador online como escena intermedia
+		var contador = preload("res://EscenasGenerales/EscenaVidasNumeroMicrojuego/ContadorVidasOnline.tscn").instantiate()
+		contador.microjuego_actual = contador_microjuegos  # opcional si exportado
+		get_tree().root.add_child(contador)
+		
+		# Importante: liberar escena actual para que no quede encima
+		get_tree().current_scene.queue_free()
+
+
 
 func _on_microjuego_superado():
 	game_logic.on_microjuego_superado()
@@ -82,6 +91,39 @@ func _on_game_over(winner: String):
 	var escena_resultado = preload("res://EscenasGenerales/Menus/Online/escena_resultado.tscn").instantiate()
 	escena_resultado.ganador = winner
 	escena_resultado.victoria = (winner == Global.username)
+
+func _iniciar_microjuego_real():
+	var ruta = microjuegos.pick_random()
+
+	if not ResourceLoader.exists(ruta):
+		print("Error: Microjuego no encontrado: ", ruta)
+		return
+
+	var escena_resource = load(ruta)
+	if escena_resource == null:
+		print("Error: No se pudo cargar: ", ruta)
+		return
+
+	var escena = escena_resource.instantiate()
+
+	# Aplicar dificultad si corresponde
+	if game_logic.dificultad_extra != "":
+		if escena.has_method("aplicar_dificultad"):
+			escena.aplicar_dificultad(game_logic.dificultad_extra)
+			print("⚠️ Dificultad extra aplicada:", game_logic.dificultad_extra)
+		else:
+			print("⚠️ El microjuego no implementa aplicar_dificultad()")
+		game_logic.dificultad_extra = ""
+
+	# Conectar señales
+	if escena.has_signal("finished"):
+		escena.finished.connect(_on_microjuego_finished)
+	elif escena.has_signal("microjuego_superado"):
+		escena.microjuego_superado.connect(_on_microjuego_superado)
+		escena.microjuego_fallado.connect(_on_microjuego_fallado)
+
+	add_child(escena)
+	var escena_resultado = load("res://EscenasGenerales/EscenaVictoriaDerrota/escena_resultado.tscn").instantiate()
 
 	get_tree().root.add_child(escena_resultado)
 	get_tree().current_scene.queue_free()  # Opcional: elimina la escena actual

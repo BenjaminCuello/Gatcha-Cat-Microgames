@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdsfnhfxvse2l"]
+[gd_scene load_steps=4 format=3 uid="uid://b3qwl307svihm"]
 
-[ext_resource type="Script" uid="uid://dtbtlx82rft8c" path="res://EscenasGenerales/EscenaVidasNumeroMicrojuego/ContadorOnline.gd" id="1_3giub"]
-[ext_resource type="Script" uid="uid://dyi5segxmwb6q" path="res://EscenasGenerales/EscenaVidasNumeroMicrojuego/MicroInicioContadorVidas.gd" id="1_wnino"]
-[ext_resource type="Texture2D" uid="uid://dv35agqeil7vs" path="res://Fondos/CargaMicrojuegos.png" id="2_32sud"]
-[ext_resource type="AudioStream" uid="uid://ebbg1gkoms8e" path="res://AudiosGenerales/Sonidos/SonidoMicrojuegoInicio.mp3" id="3_b0r83"]
+[ext_resource type="Script" uid="uid://dtbtlx82rft8c" path="res://EscenasGenerales/EscenaVidasNumeroMicrojuego/ContadorOnline.gd" id="1_dog7p"]
+[ext_resource type="Texture2D" uid="uid://dv35agqeil7vs" path="res://Fondos/CargaMicrojuegos.png" id="2_alff8"]
+[ext_resource type="AudioStream" uid="uid://ebbg1gkoms8e" path="res://AudiosGenerales/Sonidos/SonidoMicrojuegoInicio.mp3" id="3_h4dik"]
 
 [node name="microInicio" type="Control"]
 layout_mode = 3
@@ -12,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3giub")
+script = ExtResource("1_dog7p")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -21,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wnino")
+script = ExtResource("1_dog7p")
 
 [node name="Fondo" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -32,7 +31,7 @@ offset_right = -4.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_32sud")
+texture = ExtResource("2_alff8")
 
 [node name="ContenedorInfo" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -63,6 +62,6 @@ text = "Vidas: ❤❤❤"
 one_shot = true
 
 [node name="MusicaInicio" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_b0r83")
+stream = ExtResource("3_h4dik")
 
 [connection signal="timeout" from="Control/TimerTransicion" to="Control" method="_on_TimerTransicion_timeout"]

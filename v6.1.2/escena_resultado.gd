@@ -1,16 +1,17 @@
 extends Control
 
-@onready var resultado_label = $VBoxContainer/Label
-@onready var ganador_label = $VBoxContainer/Label2
+@onready var resultado_winner = $VBoxContainer/winner
+@onready var ganador_label = $VBoxContainer/winnername
+
 
 var ganador: String = ""
 var victoria: bool = true
 
 func _ready():
 	if victoria:
-		resultado_label.text = "¡Ganaste! 🎉"
+		resultado_winner.text = "¡Ganaste! 🎉"
 	else:
-		resultado_label.text = "¡Perdiste! 😿"
+		resultado_winner.text = "¡Perdiste! 😿"
 
 	ganador_label.text = "Ganador: %s" % ganador
 
