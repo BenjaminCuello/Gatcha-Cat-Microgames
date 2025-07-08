@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bhyc7gxyeudu0"]
+[gd_scene load_steps=2 format=3 uid="uid://bhyc7gxyeudu0"]
+
+[ext_resource type="Script" uid="uid://dl5w4gv7exnfl" path="res://EscenasGenerales/Menus/menu_opciones.gd" id="1_rrr4j"]
 
 [node name="MenuOpciones" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rrr4j")
 
 [node name="Fondo" type="ColorRect" parent="."]
 layout_mode = 1
@@ -15,23 +18,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.172549, 0.243137, 0.313726, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(800, 600)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -185.0
+offset_top = -222.5
+offset_right = 185.0
+offset_bottom = 222.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TituloOpciones" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "OPCIONES"
+horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,7 +55,106 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SliderVolumenMaster" type="HSlider" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="LabelValorMaster" type="Label" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer"]
 layout_mode = 2
+
+[node name="LabelVolumenMusica" type="Label" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="SliderVolumenMusica" type="HSlider" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelValorMusica" type="Label" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer2"]
+layout_mode = 2
+
+[node name="LabelVolumenSFX" type="Label" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="SliderVolumenSFX" type="HSlider" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelValorSFX" type="Label" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfiguracionVideo" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPantalla" type="Label" parent="VBoxContainer/ConfiguracionVideo"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/ConfiguracionVideo"]
+layout_mode = 2
+
+[node name="CheckPantallaCompleta" type="CheckBox" parent="VBoxContainer/ConfiguracionVideo/HBoxContainer4"]
+layout_mode = 2
+
+[node name="LabelPantallaCompleta" type="Label" parent="VBoxContainer/ConfiguracionVideo/HBoxContainer4"]
+layout_mode = 2
+
+[node name="CheckVSync" type="CheckBox" parent="VBoxContainer/ConfiguracionVideo"]
+layout_mode = 2
+
+[node name="LabelVSync" type="Label" parent="VBoxContainer/ConfiguracionVideo"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfiguracionJuego" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelDificultad" type="Label" parent="VBoxContainer/ConfiguracionJuego"]
+layout_mode = 2
+
+[node name="OptionDificultad" type="OptionButton" parent="VBoxContainer/ConfiguracionJuego"]
+layout_mode = 2
+
+[node name="CheckMostrarFPS" type="CheckBox" parent="VBoxContainer/ConfiguracionJuego"]
+layout_mode = 2
+
+[node name="LabelMostrarFPS" type="Label" parent="VBoxContainer/ConfiguracionJuego"]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Botones" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BotonGuardar" type="Button" parent="VBoxContainer/Botones"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="BotonRestaurar" type="Button" parent="VBoxContainer/Botones"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="BotonVolver" type="Button" parent="VBoxContainer/Botones"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
