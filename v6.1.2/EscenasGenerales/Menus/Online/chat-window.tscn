@@ -68,12 +68,12 @@ text = "Volver al menu principal"
 layout_mode = 2
 
 [node name="AcceptButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
+text = "Aceptar Invitación"
 
 [node name="RejectButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
+text = "Rechazar Invitación"
 
 [node name="WebSocketClient" type="Node" parent="."]
 script = ExtResource("2_pq2iq")
@@ -84,6 +84,7 @@ script = ExtResource("2_pq2iq")
 [connection signal="pressed" from="VBoxContainer/Commands/SendButton" to="." method="_on_send_pressed"]
 [connection signal="pressed" from="VBoxContainer/VolverMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RejectButton" to="." method="_on_reject_button_pressed"]
 [connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_web_socket_client_connected_to_server"]
 [connection signal="connection_closed" from="WebSocketClient" to="." method="_on_web_socket_client_connection_closed"]
 [connection signal="message_received" from="WebSocketClient" to="." method="_on_web_socket_client_message_received"]

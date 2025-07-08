@@ -242,6 +242,7 @@ func _ocultar_botones_match():
 	$VBoxContainer/RejectButton.visible = false
 	invitacion_recibida = ""
 
+
 func _on_boton_volver_pressed():
 	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/MenuPrincipal.tscn")
 
