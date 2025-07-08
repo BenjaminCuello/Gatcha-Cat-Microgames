@@ -93,8 +93,9 @@ func _on_web_socket_client_message_received(message: String):
 			print("Se recibió invitación de partida:", resp)
 			invitacion_recibida = _extract_name(resp)
 			_sendToChatDisplay("%s quiere jugar contigo!" % invitacion_recibida)
-			$VBoxContainer/AcceptButton.visible = true
-			$VBoxContainer/RejectButton.visible = true
+			$VBoxContainer/HBoxContainer/AcceptButton
+			$VBoxContainer/HBoxContainer/RejectButton
+
 
 
 		"match-start":
@@ -104,7 +105,7 @@ func _on_web_socket_client_message_received(message: String):
 			Global.oponente = oponente
 			Global.match_id = match_id
 			_sendToChatDisplay("¡La partida ha comenzado con %s!" % oponente)
-			get_tree().change_scene_to_file("res://EscenasGenerales/Multiplayer/MultiplayerScene.tscn")
+			get_tree().change_scene_to_file("res://EscenasGenerales/Multiplayer/Multiplayer_Scene.tscn")
 
 func _extract_name(resp: Dictionary) -> String:
 	var d = resp.get("data", null)

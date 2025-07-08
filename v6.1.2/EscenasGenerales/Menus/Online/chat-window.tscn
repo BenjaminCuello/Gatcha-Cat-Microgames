@@ -68,10 +68,12 @@ text = "Volver al menu principal"
 layout_mode = 2
 
 [node name="AcceptButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Aceptar Invitación"
 
 [node name="RejectButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Rechazar Invitación"
 
