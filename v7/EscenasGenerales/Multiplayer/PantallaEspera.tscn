@@ -1,16 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="pantalla_espera_1"]
+[gd_scene format=3 uid="uid://dc050w8weuttg"]
+
 [node name="PantallaEspera" type="Panel"]
+modulate = Color(0, 0, 0, 0.5)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-visible = false
-modulate = Color(0,0,0,0.5)
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 anchor_left = 0.25
 anchor_top = 0.45
 anchor_right = 0.75
 anchor_bottom = 0.55
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Esperando al oponente..."
-align = 1
-valign = 1
-theme_override_colors/font_color = Color(1,1,1,1)
+horizontal_alignment = 1
+vertical_alignment = 1

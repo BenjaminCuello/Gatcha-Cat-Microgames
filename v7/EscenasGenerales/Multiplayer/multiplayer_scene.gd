@@ -1,8 +1,8 @@
 extends Node
 
 @onready var game_logic = preload("res://EscenasGenerales/Controladores/MultiplayerGame.gd").new()
+@onready var pantalla_espera = $PantallaEspera
 
-# Usa la lista de microjuegos tal como la tienes en juego.gd
 var lista_microjuegos = [
 	"res://Microjuegos/Andres/26_Atrapa el ratón/Escena/atrapar_raton.tscn",
 	"res://Microjuegos/Andres/27_Llamar al gato/Escena/llamarAlGato.tscn",
@@ -31,66 +31,100 @@ var lista_microjuegos = [
 var microjuegos_jugados := []
 var indice_actual := 0
 var microjuego_actual: Node = null
+var juego_terminado := false
+
+var jugador_termino := false
+var oponente_termino := false
 
 func _ready():
 	add_child(game_logic)
 	game_logic.total_microjuegos = lista_microjuegos.size()
-	game_logic.oponente = "Oponente" # Ajusta según tu lógica real
+	game_logic.oponente = "Oponente"
 	game_logic.connect("game_over", Callable(self, "_on_game_over"))
+	pantalla_espera.visible = false
 	cargar_siguiente_microjuego()
 
 func cargar_siguiente_microjuego():
+	if juego_terminado:
+		return
+
 	if microjuego_actual:
 		microjuego_actual.queue_free()
 		microjuego_actual = null
 
-	# Obtener el siguiente microjuego que no se haya jugado
 	var disponibles = []
 	for microjuego in lista_microjuegos:
 		if not microjuego in microjuegos_jugados:
 			disponibles.append(microjuego)
-	
-	if disponibles.size() == 0:
-		print("¡Todos los microjuegos jugados!")
+
+	if disponibles.size() == 0 or game_logic.terminado:
+		print("¡Todos los microjuegos jugados o el juego terminó!")
 		return
 
 	var siguiente = disponibles.pick_random()
-	
-	# Verificar que el archivo exista antes de cargar
-	if !ResourceLoader.exists(siguiente):
+	if not ResourceLoader.exists(siguiente):
 		print("ERROR: El archivo no existe: ", siguiente)
 		return
-	
+
 	var escena = load(siguiente)
 	microjuego_actual = escena.instantiate()
 	add_child(microjuego_actual)
 	microjuegos_jugados.append(siguiente)
 	indice_actual += 1
-	
-	# Conecta señales si existen
+
+	jugador_termino = false
+	oponente_termino = false
+	pantalla_espera.visible = false
+
 	if microjuego_actual.has_signal("completado"):
 		microjuego_actual.connect("completado", Callable(self, "_on_microjuego_completado"))
 	if microjuego_actual.has_signal("fallado"):
 		microjuego_actual.connect("fallado", Callable(self, "_on_microjuego_fallado"))
 
 func _on_microjuego_completado():
+	if juego_terminado or jugador_termino:
+		return
+	jugador_termino = true
+	rpc("notificar_terminado")
+	chequear_transicion_microjuego()
 	game_logic.registrar_microjuego_completado()
-	cargar_siguiente_microjuego()
 
 func _on_microjuego_fallado():
+	if juego_terminado or jugador_termino:
+		return
+	jugador_termino = true
+	rpc("notificar_terminado")
+	chequear_transicion_microjuego()
 	game_logic.perder_vida()
-	cargar_siguiente_microjuego()
+
+@rpc("any_peer")
+func notificar_terminado():
+	oponente_termino = true
+	chequear_transicion_microjuego()
+
+func chequear_transicion_microjuego():
+	if jugador_termino and not oponente_termino:
+		pantalla_espera.visible = true
+	elif jugador_termino and oponente_termino:
+		pantalla_espera.visible = false
+		await get_tree().create_timer(1.0).timeout
+		cargar_siguiente_microjuego()
 
 func _on_game_over(ganador, es_empate):
+	juego_terminado = true
+	if microjuego_actual:
+		microjuego_actual.queue_free()
+		microjuego_actual = null
+	pantalla_espera.visible = false
 	print("¡Juego terminado!")
 	if es_empate:
 		print("Hubo un empate.")
 	else:
 		print("Ganador: ", ganador)
-	# Aquí puedes cargar la pantalla de resultados o finalizar la partida
 
 func reiniciar_partida():
 	indice_actual = 0
 	microjuegos_jugados.clear()
+	juego_terminado = false
 	game_logic.reset()
 	cargar_siguiente_microjuego()
