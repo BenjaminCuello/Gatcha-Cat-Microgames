@@ -6,9 +6,11 @@ var oponente = ""
 var mi_nombre := Global.username
 var jugadores_conectados := {} # ID → nombre
 
+
 var _host := "ws://ucn-game-server.martux.cl:4010/?gameId=E&playerName=%s" % mi_nombre
 @onready var _client: WebSocketClient = $WebSocketClient
-
+@onready var boton_aceptar = $VBoxContainer/HBoxContainer/AcceptButton
+@onready var boton_rechazar = $VBoxContainer/HBoxContainer/RejectButton
 @onready var chat_display: TextEdit = $VBoxContainer/MainPanel/ChatDisplay
 @onready var player_list: ItemList = $VBoxContainer/MainPanel/UserPanel/UserList
 @onready var input_message: LineEdit = $VBoxContainer/Commands/InputMessage
@@ -93,8 +95,8 @@ func _on_web_socket_client_message_received(message: String):
 			print("Se recibió invitación de partida:", resp)
 			invitacion_recibida = _extract_name(resp)
 			_sendToChatDisplay("%s quiere jugar contigo!" % invitacion_recibida)
-			$VBoxContainer/HBoxContainer/AcceptButton
-			$VBoxContainer/HBoxContainer/RejectButton
+			boton_aceptar.visible = true
+			boton_rechazar.visible = true
 
 
 
@@ -241,8 +243,8 @@ func _on_reject_button_pressed():
 	_ocultar_botones_match()
 
 func _ocultar_botones_match():
-	$VBoxContainer/AcceptButton.visible = false
-	$VBoxContainer/RejectButton.visible = false
+	boton_aceptar.visible = false
+	boton_rechazar.visible = false
 	invitacion_recibida = ""
 
 
