@@ -19,9 +19,15 @@ func _on_web_socket_client_connection_closed():
 
 func _on_web_socket_client_connected_to_server():
     _sendToChatDisplay("Conexión establecida. Enviando login...")
-    var login_payload = {"event":"login","data":{"gameKey":"TXWGJ7"}}
+    var login_payload = {
+        "event": "login",
+        "data": { "gameKey": "TXWGJ7" }
+    }
     _client.send(JSON.stringify(login_payload))
+   
+    await get_tree().create_timer(1.0).timeout
     _sendGetUserListEvent()
+
 
 func _on_web_socket_client_message_received(message: String):
     var parse := JSON.new()
@@ -125,10 +131,16 @@ func _handle_send(text: String):
 
 func _sendMessage(message: String, userId: String = ""):
     var action = "send-private-message" if userId != "" else "send-public-message"
-    var payload = {"event": action, "data": {"message": message}}
+    var payload = {
+        "event": action,
+        "data": {
+            "message": message
+        }
+    }
     if userId != "":
         payload["data"]["playerName"] = userId
     _client.send(JSON.stringify(payload))
+    
     if userId == "":
         _sendToChatDisplay("Yo: %s" % message)
     else:
@@ -140,7 +152,13 @@ func _sendGetUserListEvent():
 func _updateUserList(users: Array):
     player_list.clear()
     for u in users:
-        _addUserToList(str(u))
+        var name = ""
+        if typeof(u) == TYPE_DICTIONARY:
+            name = u.get("playerName", u.get("name", "¿Desconocido?"))
+        else:
+            name = str(u)
+        _addUserToList(name)
+
 
 func _on_connect_toggled(pressed: bool):
     if not pressed:
