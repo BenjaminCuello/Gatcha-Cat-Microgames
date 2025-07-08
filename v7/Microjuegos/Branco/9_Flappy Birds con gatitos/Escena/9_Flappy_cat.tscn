@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtjxv4sh0s1u0" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/9_Flappy_cat.gd" id="1_5gypy"]
 [ext_resource type="Texture2D" uid="uid://cnpij3bucijph" path="res://Fondos/Fondocielo.png" id="2_sme5o"]
-[ext_resource type="Script" uid="uid://dpsbd1kgmkrln" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Script/gatito_volador.gd" id="3_fnubj"]
+[ext_resource type="Script" uid="uid://dpsbd1kgmkrln" path="res://ScriptsGenerales/gatito_volador.gd" id="3_fnubj"]
 [ext_resource type="Texture2D" uid="uid://cr76tkti0tbbx" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/GLOBOPNG.png" id="4_5c2tq"]
 [ext_resource type="Texture2D" uid="uid://b328in2qwlxcr" path="res://Microjuegos/Branco/9_Flappy Birds con gatitos/Sprites/Mario_pipe.png" id="5_k8vc0"]
 

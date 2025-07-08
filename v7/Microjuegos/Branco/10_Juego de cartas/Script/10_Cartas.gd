@@ -1,11 +1,40 @@
 extends Node2D
 signal finished(success)
 
+# Variables de dificultad
+var nivel_dificultad = 1
+
 var duracion_juego := 5.0
 var juego_activo := true
 var pulsaciones_totales := 0
 var cartas_lanzadas := 0
 var pulsaciones_por_carta := 5
+
+func configurar_dificultad(nivel: int):
+	nivel_dificultad = nivel
+	ajustar_parametros_dificultad()
+
+func ajustar_parametros_dificultad():
+	match nivel_dificultad:
+		1:
+			duracion_juego = 5.0  # 🔧 NIVEL 1 empieza con tiempo original
+		2:
+			duracion_juego = 4.7
+		3:
+			duracion_juego = 4.4
+		4:
+			duracion_juego = 4.1
+		5:
+			duracion_juego = 3.8
+		6:
+			duracion_juego = 3.5
+		7:
+			duracion_juego = 3.2
+		8:
+			duracion_juego = 2.9
+
+	print("Nivel configurado:", nivel_dificultad)
+	print("Duración del juego:", duracion_juego, "segundos")
 
 func _ready():
 	randomize()
@@ -18,7 +47,7 @@ func _ready():
 	$LabelInstruccion.text = "¡Presiona [A] para lanzar las cartas!"
 	$LabelInstruccion.visible = true
 
-	duracion_juego = [5.0, 6.0, 7.0].pick_random()
+	# Ya no es aleatorio, usa la dificultad configurada
 	$BarraTiempo.max_value = duracion_juego
 	$BarraTiempo.value = duracion_juego
 	$BarraTiempo.visible = true
@@ -33,7 +62,6 @@ func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_A:
 			pulsaciones_totales += 1
-
 
 			if pulsaciones_totales >= pulsaciones_por_carta * (cartas_lanzadas + 1):
 				lanzar_carta()
@@ -50,7 +78,7 @@ func lanzar_carta():
 		4:
 			$Carta4.visible = false
 
-	# Mostrar animación de mano lanzando carta (puedes conectar una animación real si tienes)
+	# Mostrar animación de mano lanzando carta
 	$CartaAnimacion.visible = true
 	await get_tree().create_timer(0.3).timeout
 	$CartaAnimacion.visible = false
@@ -76,13 +104,12 @@ func perder():
 
 func _on_TimerJuego_timeout():
 	if juego_activo:
-		juego_activo = false  # Prevenir doble finalización
+		juego_activo = false
 
 		if cartas_lanzadas >= 4:
 			victoria()
 		else:
 			perder()
-
 
 func _process(delta):
 	if $TimerJuego.time_left > 0:

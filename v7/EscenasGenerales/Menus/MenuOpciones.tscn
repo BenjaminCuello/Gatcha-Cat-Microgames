@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bhyc7gxyeudu0"]
+
+[node name="MenuOpciones" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TituloOpciones" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfiguracionAudio" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelVolumenMaster" type="Label" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ConfiguracionAudio"]
+layout_mode = 2
+
+[node name="SliderVolumenMaster" type="HSlider" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer"]
+layout_mode = 2
+
+[node name="LabelValorMaster" type="Label" parent="VBoxContainer/ConfiguracionAudio/HBoxContainer"]
+layout_mode = 2
