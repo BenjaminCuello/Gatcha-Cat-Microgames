@@ -90,10 +90,12 @@ func _on_web_socket_client_message_received(message: String):
 			_sendToChatDisplay("(Privado de %s): %s" % [label, _extract_data(resp, "message")], true)
 
 		"match-request-received":
+			print("Se recibió invitación de partida:", resp)
 			invitacion_recibida = _extract_name(resp)
 			_sendToChatDisplay("%s quiere jugar contigo!" % invitacion_recibida)
 			$VBoxContainer/AcceptButton.visible = true
 			$VBoxContainer/RejectButton.visible = true
+
 
 		"match-start":
 			var data = resp.get("data", {})
