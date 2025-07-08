@@ -20,7 +20,6 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 Juego="*res://ScriptsGenerales/juego.gd"
 InputGlobal="*res://ScriptsGenerales/input_global.gd"
 Global="*res://ScriptsGenerales/Global.gd"
-NetworkManager="*res://Online/NetworkManager.gd"
 
 [display]
 
