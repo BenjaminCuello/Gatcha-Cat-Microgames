@@ -9,10 +9,8 @@ var microjuegos = [
 	"res://Microjuegos/Branco/7_Recrear foto/Escena/7_Recrear_Foto.tscn",
 	"res://Microjuegos/Branco/8_Surfeando/Escena/8_Surfeando.tscn",
 	"res://Microjuegos/Branco/9_Flappy Birds con gatitos/Escena/9_Flappy_cat.tscn",
-	# 🔧 AGREGAR: Tus microjuegos actualizados
 	"res://Microjuegos/Matias/14_Gato laser/Escena/14_gato laser.tscn",
-	"res://Microjuegos/Matias/15_Anvorgueso/Escena/Pincipal.tscn",
-	# Agrega aquí las rutas correctas de tus microjuegos
+	"res://Microjuegos/Matias/15_Anvorgueso/Escena/Principal.tscn",
 ]
 
 func _ready():
@@ -20,7 +18,6 @@ func _ready():
 	game_logic.match_id = Global.match_id
 	game_logic.oponente = Global.oponente
 	
-	# 🔧 CORREGIDO: Usar la nueva sintaxis de conexión
 	game_logic.game_over.connect(_on_game_over)
 
 	print("MultiplayerScene lista. Jugador contra: ", Global.oponente)
@@ -28,21 +25,28 @@ func _ready():
 
 func _iniciar_microjuego():
 	var ruta = microjuegos.pick_random()
-	
-	# 🔧 CORREGIDO: Verificar que el archivo existe
+
 	if not ResourceLoader.exists(ruta):
 		print("Error: Microjuego no encontrado: ", ruta)
 		return
-	
+
 	var escena_resource = load(ruta)
 	if escena_resource == null:
 		print("Error: No se pudo cargar: ", ruta)
 		return
-		
+
 	var escena = escena_resource.instantiate()
 
-	# 🔧 CORREGIDO: Conectar señales según el tipo de microjuego
-	# Algunos usan "finished", otros usan señales específicas
+	# 🔧 NUEVO: Aplicar dificultad extra si corresponde
+	if game_logic.dificultad_extra != "":
+		if escena.has_method("aplicar_dificultad"):
+			escena.aplicar_dificultad(game_logic.dificultad_extra)
+			print("⚠️ Dificultad extra aplicada:", game_logic.dificultad_extra)
+		else:
+			print("⚠️ El microjuego no implementa aplicar_dificultad()")
+		game_logic.dificultad_extra = ""  # Resetear después de aplicar
+
+	# 🔧 CONECTAR señales según el tipo
 	if escena.has_signal("finished"):
 		escena.finished.connect(_on_microjuego_finished)
 	elif escena.has_signal("microjuego_superado"):
@@ -51,26 +55,21 @@ func _iniciar_microjuego():
 
 	add_child(escena)
 
-# 🔧 NUEVO: Manejar la señal "finished" estándar
 func _on_microjuego_finished(success: bool):
 	if success:
 		game_logic.on_microjuego_superado()
 	else:
 		game_logic.on_microjuego_fallado()
-	
-	# Esperar un poco antes del siguiente microjuego
+
 	await get_tree().create_timer(2.0).timeout
-	
-	# Limpiar microjuego anterior
+
 	for child in get_children():
 		if child != game_logic:
 			child.queue_free()
-	
-	# Iniciar siguiente microjuego si el juego sigue activo
+
 	if game_logic.vidas > 0:
 		_iniciar_microjuego()
 
-# 🔧 MANTENER: Para microjuegos con señales específicas
 func _on_microjuego_superado():
 	game_logic.on_microjuego_superado()
 
@@ -79,6 +78,8 @@ func _on_microjuego_fallado():
 
 func _on_game_over(winner: String):
 	print("Fin del juego. Ganador: ", winner)
-	# 🔧 TODO: Cargar escena de resultados
-	await get_tree().create_timer(3.0).timeout
-	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/MenuPrincipal.tscn")
+	
+	if winner == Global.username:
+		get_tree().change_scene_to_file("res://EscenasGenerales/EscenaVictoria.tscn")
+	else:
+		get_tree().change_scene_to_file("res://EscenasGenerales/EscenaDerrota.tscn")
