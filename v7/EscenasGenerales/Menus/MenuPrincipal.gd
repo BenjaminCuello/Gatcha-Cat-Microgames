@@ -29,7 +29,7 @@ func _on_boton_salir_pressed() -> void:
 	get_tree().quit()
 
 func _on_boton_chat_pressed() -> void:
-	get_tree().change_scene_to_file("res://EscenasGenerales/Menus/Online/user_login.tscn")
+	get_tree().change_scene_to_file("res://online/ui/chat-window.tscn")
 
 func _on_boton_multijugador_pressed():
-	get_tree().change_scene_to_file("res://Online/MenuMultijugador_Version2 (1).tscn")
+	get_tree().change_scene_to_file("res://online/core/Multiplayer_Scene.tscn")

@@ -1,5 +1,8 @@
 extends Node2D
 signal finished(success)
+# Señales para compatibilidad online
+signal microjuego_superado
+signal microjuego_fallado
 
 var lado_actual := ""  # izquierda o derecha
 var esperando := false
@@ -146,6 +149,7 @@ func perder():
 	$LabelInstruccion.text = "¡Perdiste!"
 	$LabelInstruccion.visible = true
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_fallado")
 	emit_signal("finished", false)
 
 func victoria():
@@ -155,6 +159,7 @@ func victoria():
 	$LabelInstruccion.text = "¡Mantuviste el equilibrio!"
 	$LabelInstruccion.visible = true
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("microjuego_superado")
 	emit_signal("finished", true)
 
 func _on_TimerRespuesta_timeout():

@@ -1,6 +1,9 @@
 extends Node2D
 
 signal finished(success)
+# Señales para compatibilidad online
+signal microjuego_superado
+signal microjuego_fallado
 
 var teclas_posibles = []
 var tecla_actual = ""
@@ -101,6 +104,7 @@ func acierto():
 	$TextoInstruccion.text = "¡Bien hecho!"
 	$TextoInstruccion.visible = true
 
+	emit_signal("microjuego_superado")
 	emit_signal("finished", true)
 
 func fallo():
@@ -144,6 +148,7 @@ func fallo():
 	$TextoInstruccion.text = "¡Fallaste!"
 	$TextoInstruccion.visible = true
 
+	emit_signal("microjuego_fallado")
 	emit_signal("finished", false)
 
 func _on_timer_apertura_timeout() -> void:
