@@ -19,14 +19,13 @@ func _on_web_socket_client_connection_closed():
 
 func _on_web_socket_client_connected_to_server():
     _sendToChatDisplay("Conexión establecida. Enviando login...")
-    var login_payload = {
-        "event": "login",
-        "data": { "gameKey": "TXWGJ7" }
-    }
+    var login_payload = {"event": "login", "data": {"gameKey": "TXWGJ7"}}
     _client.send(JSON.stringify(login_payload))
-   
+
+    # 🔧 Esperar un momento antes de solicitar lista
     await get_tree().create_timer(1.0).timeout
     _sendGetUserListEvent()
+
 
 
 func _on_web_socket_client_message_received(message: String):
@@ -152,12 +151,13 @@ func _sendGetUserListEvent():
 func _updateUserList(users: Array):
     player_list.clear()
     for u in users:
-        var name = ""
+        var username = ""
         if typeof(u) == TYPE_DICTIONARY:
-            name = u.get("playerName", u.get("name", "¿Desconocido?"))
+            username = u.get("playerName", u.get("name", "¿Desconocido?"))
         else:
-            name = str(u)
-        _addUserToList(name)
+            username = str(u)
+        _addUserToList(username)
+
 
 
 func _on_connect_toggled(pressed: bool):
