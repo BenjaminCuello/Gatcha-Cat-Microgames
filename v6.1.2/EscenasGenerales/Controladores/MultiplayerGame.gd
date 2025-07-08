@@ -6,7 +6,7 @@ var puntos := 0
 var vidas := 3
 const PUNTOS_PARA_EVENTO := 5
 var puntos_sin_evento := 0
-
+var dificultad_extra := ""
 var oponente := ""
 var match_id := ""
 

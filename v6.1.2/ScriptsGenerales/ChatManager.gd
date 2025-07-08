@@ -5,7 +5,7 @@ var match_id = ""
 var oponente = ""
 var mi_nombre := Global.username
 var jugadores_conectados := {} # ID → nombre
-
+var invitador_id := ""
 
 var _host := "ws://ucn-game-server.martux.cl:4010/?gameId=E&playerName=%s" % mi_nombre
 @onready var _client: WebSocketClient = $WebSocketClient
@@ -25,6 +25,9 @@ func _on_web_socket_client_connected_to_server():
 	var login_payload = {"event":"login","data":{"gameKey":"TXWGJ7"}}
 	_client.send(JSON.stringify(login_payload))
 
+func _enviar_connect_match():
+	var payload = {"event": "connect-match"}
+	_client.send(JSON.stringify(payload))
 
 
 func _on_web_socket_client_message_received(message: String):
@@ -42,6 +45,7 @@ func _on_web_socket_client_message_received(message: String):
 
 		"get-connected-players":
 			_updateUserList(resp.get("data", []))
+
 		
 		"player-status-changed":
 			var data = resp.get("data", {})
@@ -53,9 +57,6 @@ func _on_web_socket_client_message_received(message: String):
 				return
 			_deleteUserFromList(player_name)
 			_addUserToList(player_name, id, new_status)
-
-
-
 
 		"player-connected":
 			var data = resp.get("data", {})
@@ -71,12 +72,13 @@ func _on_web_socket_client_message_received(message: String):
 				_sendToChatDisplay("Login exitoso como %s" % mi_nombre)
 				_sendGetUserListEvent()
 
-		"match-accepted":
-			var data = resp.get("data", {})
-			var nombre = _extract_name(resp)
-			var mid = data.get("matchId", "")
-			_sendToChatDisplay("Jugador %s aceptó tu invitación. Esperando que comience la partida..." % nombre)
-
+		"accept-match":
+			if resp.get("status", "") == "OK":
+				var data = resp.get("data", {})
+				match_id = data.get("matchId", "")
+				Global.match_id = match_id
+				_sendToChatDisplay("Conectando a partida...")
+				_enviar_connect_match()
 
 		"player-disconnected":
 			_deleteUserFromList(_extract_name(resp))
@@ -92,11 +94,49 @@ func _on_web_socket_client_message_received(message: String):
 			_sendToChatDisplay("(Privado de %s): %s" % [label, _extract_data(resp, "message")], true)
 
 		"match-request-received":
-			print("Se recibió invitación de partida:", resp)
+			var data = resp.get("data", {})
+			invitador_id = data.get("playerId", "")
 			invitacion_recibida = _extract_name(resp)
-			_sendToChatDisplay("%s quiere jugar contigo!" % invitacion_recibida)
+			match_id = data.get("matchId", "")
+
+			# ¡Forzar registro en el diccionario!
+			if invitador_id != "" and invitacion_recibida != "":
+				jugadores_conectados[invitador_id] = invitacion_recibida
+
+			if invitacion_recibida == "" or invitador_id == "":
+				_sendToChatDisplay("Error: no se pudo identificar al jugador que te invitó.")
+				return
+
 			boton_aceptar.visible = true
 			boton_rechazar.visible = true
+
+		"players-ready":
+			var data = resp.get("data", {})
+			_sendToChatDisplay("¡Ambos jugadores están listos! Enviando sincronización...")
+			_client.send(JSON.stringify({
+				"event": "ping-match",
+				"data": {
+					"matchId": data.get("matchId", "")
+				}
+			}))
+
+		"match-accepted":
+			var data = resp.get("data", {})
+			var oponente_id = data.get("playerId", "")
+			match_id = data.get("matchId", "")
+			oponente = jugadores_conectados.get(oponente_id, "¿Desconocido?")
+			Global.match_id = match_id
+			Global.oponente = oponente
+			_sendToChatDisplay("Jugador %s aceptó tu invitación. Esperando que comience la partida..." % oponente)
+
+			# Enviar conexión manual a la sala
+			_client.send(JSON.stringify({
+				"event": "connect-match",
+				"data": {
+					"matchId": match_id
+				}
+			}))
+
 
 
 
@@ -108,6 +148,7 @@ func _on_web_socket_client_message_received(message: String):
 			Global.match_id = match_id
 			_sendToChatDisplay("¡La partida ha comenzado con %s!" % oponente)
 			get_tree().change_scene_to_file("res://EscenasGenerales/Multiplayer/Multiplayer_Scene.tscn")
+
 
 func _extract_name(resp: Dictionary) -> String:
 	var d = resp.get("data", null)
@@ -144,8 +185,6 @@ func _addUserToList(player_name: String, id: String, status := "UNKNOWN"):
 	player_list.add_item(display_name)
 	player_list.set_item_metadata(player_list.item_count - 1, id)
 	jugadores_conectados[id] = player_name
-
-
 
 func _deleteUserFromList(user: String):
 	for i in range(player_list.item_count):
@@ -188,9 +227,11 @@ func _sendGetUserListEvent():
 	player_list.clear()
 	_client.send(JSON.stringify({"event": "get-connected-players"}))
 
+
 func _updateUserList(users: Array):
 	jugadores_conectados.clear()
 	player_list.clear()
+	print("Usuarios conectados recibidos:", users)  # Debug temporal
 	for u in users:
 		if typeof(u) == TYPE_DICTIONARY:
 			var id = u.get("playerId", "")
@@ -199,10 +240,6 @@ func _updateUserList(users: Array):
 			if id != "":
 				jugadores_conectados[id] = player_name
 				_addUserToList(player_name, id, status)
-				print("Actualizando lista de usuarios: %d jugadores" % users.size())
-
-
-
 
 func _on_connect_toggled(pressed: bool):
 	if not pressed:
@@ -233,9 +270,29 @@ func _on_invite_button_pressed():
 	_sendToChatDisplay("Solicitud enviada a %s" % nombre)
 
 func _on_accept_button_pressed():
-	_client.send(JSON.stringify({"event": "accept-match", "data": {"playerName": invitacion_recibida}}))
+	# Solo permitir aceptar si realmente recibiste una invitación
+	if invitacion_recibida == "" or invitador_id == "":
+		_sendToChatDisplay("No hay una invitación válida para aceptar.")
+		return
+
+	var payload = {
+		"event": "accept-match",
+		"data": {
+			"playerId": invitador_id,
+			"matchId": match_id
+		}
+	}
+	_client.send(JSON.stringify(payload))
 	_sendToChatDisplay("Aceptaste la partida con %s" % invitacion_recibida)
 	_ocultar_botones_match()
+
+	# Enviar evento connect-match para indicar que este jugador está listo
+	_client.send(JSON.stringify({
+		"event": "connect-match"
+	}))
+
+
+
 
 func _on_reject_button_pressed():
 	_client.send(JSON.stringify({"event": "reject-match", "data": {"playerName": invitacion_recibida}}))

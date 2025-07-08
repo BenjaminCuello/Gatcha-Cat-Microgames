@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://brk4m5m1ay0h4" path="res://EscenasGenerales/Multiplayer/multiplayer_scene.gd" id="1_jf1jb"]
 
-[node name="MultiplayerScene" type="Node"]
+[node name="MultiplayerScene" type="CanvasLayer"]
 script = ExtResource("1_jf1jb")
